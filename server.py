@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import os, socket, threading, json, re, argparse
+import os, socket, threading, json, re, argparse, signal, sys
 from functools import lru_cache
 from datetime import datetime
 
@@ -77,7 +77,13 @@ def handle_request(conn, c_addr):
         
         print(f'[{now_strtime()}] ({c_addr[0]}:{c_addr[1]}) {req}... {status_code}')
 
+def shutdown(signal, frame):
+    print("\nStoping Server.....")
+    sys.exit(0)
+
 if __name__ == '__main__':
+    signal.signal(signal.SIGINT, shutdown)
+    
     os.system('clear')
     with socket.socket() as sock:
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
