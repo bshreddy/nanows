@@ -22,7 +22,8 @@ args = parser.parse_args()
 
 SERVER_NAME = 'ElServePie/0.1'
 BUF_SIZE = 1024
-SITE_DIR = 'site'
+SITE_DIR = 'sites'
+ERROR_SIRE_DIR = 'err_site'
 DEFAULT_PAGE = 'index.html'
 LRU_CACHE_SIZE = 0 if args.no_cache else args.cache_size
 
@@ -40,13 +41,15 @@ def parse_request(req):
     return (tuple(req[0].split(' ')), req_headers)
 
 @lru_cache(LRU_CACHE_SIZE)
-def read_page(url):
-    with open(os.path.join(SITE_DIR, url), 'br') as f:
+def read_page(url, site_dir = SITE_DIR):
+    with open(os.path.join(site_dir, url), 'br') as f:
         data = f.read()
     return data
 
 def get_response(url, http_method, req_headers):
     data = b''
+    url = DEFAULT_PAGE if url == '/' else url[1:]
+    url += '.html' if os.path.splitext(url)[1] == '' else ''
 
     if http_method == 'GET':
         try:
@@ -54,8 +57,10 @@ def get_response(url, http_method, req_headers):
             status_code = '200 OK'
         except:
             status_code = '404 Not Found'
+            data = read_page('404.html', site_dir = ERROR_SIRE_DIR)
     else:
         status_code = '405 Method Not Allowed'
+        data = read_page('405.html', site_dir = ERROR_SIRE_DIR)
     
     res_headers = {
         'Server': SERVER_NAME,
@@ -68,8 +73,7 @@ def handle_request(conn, c_addr):
     with conn:
         req, req_headers = parse_request(conn.recv(BUF_SIZE).decode('utf-8'))
         (http_method, url, http_ver) = req
-        url = DEFAULT_PAGE if url == '/' else url[1:]
-
+        
         (status_code, data, res_headers) = get_response(url, http_method, req_headers)
         res_headers = "\n".join([f'{key}: {val}' for key, val in res_headers.items()])
         res = bytearray(f'{http_ver} {status_code}\n{res_headers}\n\n', encoding='utf8')
