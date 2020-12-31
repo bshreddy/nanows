@@ -95,7 +95,7 @@ if __name__ == '__main__':
         sock.listen()
 
         print('Server Started...')
-        print(f'Listening on http:/{args.host}:{args.port}.')
+        print(f'Listening on http://{args.host}:{args.port}.')
         print('Press Ctrl+C to exit.', end='\n\n')
 
         while True:
