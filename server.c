@@ -34,7 +34,6 @@ int tcp_socket = -1;
 int main() {
     atexit(stop_server);
     signal(SIGINT, exit);
-    signal(SIGKILL, exit);
     signal(SIGTSTP, exit);
 
     int conn_fd = -1, on = 1;
