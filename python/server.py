@@ -22,7 +22,7 @@ args = parser.parse_args()
 
 SERVER_NAME = 'ElServePie/0.1'
 BUF_SIZE = 1024
-SITE_DIR = 'sites'
+SITE_DIR = 'site'
 ERROR_SIRE_DIR = 'err_site'
 DEFAULT_PAGE = 'index.html'
 LRU_CACHE_SIZE = 0 if args.no_cache else args.cache_size
@@ -38,6 +38,7 @@ def parse_request(req):
     req_headers = req[1:]
     req_headers = [re.findall('^([^ ]+):(.+)$', req_header)[0] for req_header in req_headers]
     req_headers = {x[0]: x[1].strip() for x in req_headers}
+    
     return (tuple(req[0].split(' ')), req_headers)
 
 @lru_cache(LRU_CACHE_SIZE)
