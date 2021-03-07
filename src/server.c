@@ -11,6 +11,7 @@
 #include<signal.h>
 
 #include "mimetypes.h"
+#include "request.h"
 
 #define BACKLOG 16
 #define BUF_SIZE 2048
@@ -20,7 +21,7 @@
 #define URL_BUF_SIZE 2048
 
 #define SERVER_NAME "ElServe/0.1"
-#define SITE_DIR "sites"
+#define SITE_DIR "site"
 #define DEFAULT_PAGE "/index.html"
 
 void* handleRequest(void*);
@@ -115,6 +116,9 @@ void* handleRequest(void *new_conn_fd) {
         closeRequest(new_conn_fd, file_fd);
     }
 
+    request *reqq = parse_request(req);
+    print_request(reqq);
+
     parseRequest(req, http_method, url, http_ver);
     if(strcmp(url, "/") == 0) strcpy(url, DEFAULT_PAGE);
     printf("> (%s) (%s) (%s)\n", http_method, url, http_ver);
@@ -152,16 +156,22 @@ void* handleRequest(void *new_conn_fd) {
 
 // TODO: Parse Headers as Dictonary/Hash Table
 void parseRequest(char *req, char* http_method, char* url, char* http_ver) {
-    req = strtok(req, "\r\n");
-
     strcpy(http_method, strtok(req, " "));
     strcpy(url, strtok(NULL, " "));
-    strcpy(http_ver, strtok(NULL, " "));
+    strcpy(http_ver, strtok(NULL, "\r"));
+
+    // char *header_key, *header_val;
+    // while((header_key = strtok(NULL, ":")) != NULL && (header_val = strtok(NULL, "\r")) != NULL) {
+    //     header_key+=1;
+    //     header_val+=1;
+    //     printf("(%s):(%s)\n", header_key, header_val);
+    // }
 }
 
 void closeRequest(void *new_conn_fd, int file_fd) {
     close(*((int*) new_conn_fd));
     if(file_fd != -1) close(file_fd);
     free(new_conn_fd);
+    sleep(5);
     pthread_exit(0);
 }
