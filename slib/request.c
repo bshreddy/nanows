@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <stdlib.h>
 #include <string.h>
 #include <sys/socket.h>
 
@@ -15,6 +14,8 @@ request* get_request(const int conn_fd) {
     if(recv(conn_fd, req_buf, REQ_BUF_SIZE, 0) < 0) return NULL;
 
     request *req = _initialize_request();
+    if(req == NULL) return NULL;
+
     req->conn_fd = conn_fd;
     if(!_parse_request(req_buf, req)) return NULL;
     
@@ -23,6 +24,8 @@ request* get_request(const int conn_fd) {
 
 request* parse_request(const char *req_buf, const int conn_fd) {
     request *req = _initialize_request();
+    if(req == NULL) return NULL;
+
     if(!_parse_request(req_buf, req)) return NULL;
     return req;
 }
@@ -33,7 +36,7 @@ void close_request(request *req) {
 }
 
 const char* get_request_header(const request *req, const char *header_key, char *header_val) {
-    if(header_key == NULL) return NULL;
+    if(req == NULL || header_key == NULL) return NULL;
 
     ENTRY entry, *ent;
     entry.key = strdup(header_key);
@@ -47,6 +50,8 @@ const char* get_request_header(const request *req, const char *header_key, char 
 
 request* _initialize_request() {
     request *req = malloc(sizeof(request));
+    if(req == NULL) return NULL;
+
     req->conn_fd = -1;
     req->http_method = NULL;
     req->url = NULL;
