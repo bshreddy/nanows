@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <glib.h>
 #include <unistd.h>
 
 #include "mimetypes.h"
@@ -83,17 +82,17 @@ void _mime_htab_value_destroy(gpointer data){
     data = NULL;
 }
 
-int main() {
-    if(create_mime_table() == 0) return 1;
-    printf("Created Table\n");
+// int main() {
+//     if(create_mime_table() == 0) return 1;
+//     printf("Created Table\n");
     
-    const char *val = get_mimetype_for_ext(".html", NULL);
-    printf(".html = %s\n", val);
-    printf(".html = %s\n", get_mimetype_for_url("/hello.world/index.html", NULL));
-    printf(".png = %s\n", get_mimetype_for_ext(".png", NULL));
-    printf(".png = %s\n", get_mimetype_for_url("/hello.world/index.png", NULL));
+//     const char *val = get_mimetype_for_ext(".html", NULL);
+//     printf(".html = %s\n", val);
+//     printf(".html = %s\n", get_mimetype_for_url("/hello.world/index.html", NULL));
+//     printf(".png = %s\n", get_mimetype_for_ext(".png", NULL));
+//     printf(".png = %s\n", get_mimetype_for_url("/hello.world/index.png", NULL));
 
-    destroy_mime_table();
+//     destroy_mime_table();
 
-    return 0;
-}
+//     return 0;
+// }
