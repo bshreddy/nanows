@@ -52,7 +52,8 @@ request* _initialize_request() {
     req->http_method = NULL;
     req->url = NULL;
     req->http_ver = NULL;
-    req->header_htab = NULL;
+    if((req->header_htab = g_hash_table_new_full(g_str_hash, g_str_equal, 
+                            _req_header_htab_key_destroy, _req_header_htab_value_destroy)) == NULL) return NULL;
 
     return req;
 }
@@ -66,9 +67,6 @@ int _parse_request(const char *req_buf, request *req) {
     req->http_method = strdup(strtok(req_buff, " "));
     req->url = strdup(strtok(NULL, " "));
     req->http_ver = strdup(strtok(NULL, "\r"));
-
-    if((req->header_htab = g_hash_table_new_full(g_str_hash, g_str_equal, 
-                            _req_header_htab_key_destroy, _req_header_htab_value_destroy)) == NULL) return 0;
 
     char *header_key, *header_val;
     char *key, *value;
