@@ -5,3 +5,15 @@ bin
 lib
 TODO.md
 **/a.out
+
+# autoconf
+autom4te.cache
+build
+Makefile
+Makefile.in
+aclocal.m4
+config.*
+configure*
+!configure.ac
+.deps
+.dirstamp
