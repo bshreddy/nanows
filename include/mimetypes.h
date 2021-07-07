@@ -23,4 +23,7 @@ const char* get_mimetype_for_ext(const char *, char *);
 const char* get_mimetype_for_url(const char *, char *);
 
 char* _get_ext_for_url(const char *);
+void _mime_htab_key_destroy(gpointer data);
+void _mime_htab_value_destroy(gpointer data);
+
 #endif
