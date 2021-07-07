@@ -9,12 +9,14 @@
     #define REQ_HEADER_HTABLE_SIZE 32
 #endif
 
+#include <glib.h>
+
 typedef struct request {
     int conn_fd;
     char* http_method;
     char* url;
     char* http_ver;
-    struct hsearch_data *header_htab;
+    GHashTable *header_htab;
 } request;
 
 request* get_request(const int);
@@ -26,4 +28,7 @@ void close_request(request *);
 request* _initialize_request();
 int _parse_request(const char *, request *);
 void _free_request(request *);
+void _req_header_htab_key_destroy(gpointer);
+void _req_header_htab_value_destroy(gpointer);
+void _print_header(char*, char*, gpointer);
 #endif

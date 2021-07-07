@@ -4,9 +4,6 @@
 #include <string.h>
 #include <sys/socket.h>
 
-#define __USE_GNU 1
-#include<search.h>
-
 #include "request.h"
 
 request* get_request(const int conn_fd) {
@@ -31,18 +28,17 @@ request* parse_request(const char *req_buf, const int conn_fd) {
 }
 
 void close_request(request *req) {
-    if(req->conn_fd != -1) close(req->conn_fd);
-    _free_request(req);    
+    if(req->conn_fd != -1) { close(req->conn_fd); req->conn_fd = -1; }
+    _free_request(req);
 }
 
 const char* get_request_header(const request *req, const char *header_key, char *header_val) {
     if(req == NULL || header_key == NULL) return NULL;
 
-    ENTRY entry, *ent;
-    entry.key = strdup(header_key);
-    if(hsearch_r(entry, FIND, &ent, req->header_htab)) {
-        if(header_val != NULL) strcpy(header_val, (char *)(ent->data));
-        return (const char*)(ent->data);
+    const char* _header_val = NULL;
+    if((_header_val = g_hash_table_lookup(req->header_htab, header_key)) != NULL) {
+        if(header_val != NULL) strcpy(header_val, _header_val);
+        return _header_val;
     }
 
     return NULL;
@@ -56,7 +52,8 @@ request* _initialize_request() {
     req->http_method = NULL;
     req->url = NULL;
     req->http_ver = NULL;
-    req->header_htab = malloc(sizeof(struct hsearch_data));
+    req->header_htab = NULL;
+
     return req;
 }
 
@@ -70,16 +67,16 @@ int _parse_request(const char *req_buf, request *req) {
     req->url = strdup(strtok(NULL, " "));
     req->http_ver = strdup(strtok(NULL, "\r"));
 
-    if(!hcreate_r(REQ_HEADER_HTABLE_SIZE, req->header_htab)) return 0;
+    if((req->header_htab = g_hash_table_new_full(g_str_hash, g_str_equal, 
+                            _req_header_htab_key_destroy, _req_header_htab_value_destroy)) == NULL) return 0;
 
     char *header_key, *header_val;
-    ENTRY entry, *ent;
+    char *key, *value;
 
     while((header_key = strtok(NULL, ":")) != NULL && (header_val = strtok(NULL, "\r")) != NULL) {
-        entry.key = strdup(header_key + 1);
-        entry.data = strdup(header_val + 1);
-
-        if(!hsearch_r(entry, ENTER, &ent, req->header_htab)) return 0;
+        key = strdup(header_key + 1);
+        value = strdup(header_val + 1);
+        g_hash_table_insert(req->header_htab, key, value);
     }
 
     free(req_buff);
@@ -87,15 +84,29 @@ int _parse_request(const char *req_buf, request *req) {
 }
 
 void _free_request(request *req) {
-    if(req->header_htab != NULL) {
-        hdestroy_r(req->header_htab);
-        req->header_htab = NULL;
-    }
+    if(req == NULL) return;
 
-    free(req->http_method);
-    free(req->url);
-    free(req->http_ver);
-    free(req);
+    if(req->header_htab != NULL) { g_hash_table_destroy(req->header_htab); req->header_htab = NULL; }
+    if(req->http_method != NULL) { free(req->http_method); req->http_method = NULL; }
+    if(req->url != NULL) { free(req->url); req->url = NULL; }
+    if(req->http_ver != NULL) { free(req->http_ver); req->http_ver = NULL; }
+    
+    free(req); 
+    req = NULL;
+}
+
+void _req_header_htab_key_destroy(gpointer data) {
+    free(data);
+    data = NULL;
+}
+
+void _req_header_htab_value_destroy(gpointer data) {
+    free(data);
+    data = NULL;
+}
+
+void _print_header(char* key, char* value, gpointer user_data) {
+    printf(">> %s = %s\n", key, value);
 }
 
 // int main() {
@@ -109,12 +120,13 @@ void _free_request(request *req) {
 //                                 "\r\nSec-Fetch-Mode: navigate\r\nSec-Fetch-User: ?1\r"
 //                                 "\nSec-Fetch-Dest: document\r\nAccept-Encoding: gzip, deflate, br"
 //                                 "\r\nAccept-Language: en-US,en;q=0.9\r\n\r\n";
-
-//     request *req = parse_request(req_buf, -1);
-
 //     printf("%s\n", req_buf);
+
+//     request *req = NULL;
+//     if((req = parse_request(req_buf, -1)) == NULL) return 1;
+
 //     printf("> %s\t%s\t%s\n", req->http_method, req->url, req->http_ver);
-//     printf(">> %s\n", get_request_header(req, "User-Agent", NULL));
+//     g_hash_table_foreach(req->header_htab, (GHFunc) _print_header, NULL);
 
 //     return 0;
 // }
