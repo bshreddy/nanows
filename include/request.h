@@ -19,7 +19,7 @@ typedef struct request {
 
 request* get_request(const int);
 request* parse_request(const char *, const int);
-const char* get_request_header(const request*, const char *, char *);
+const char* get_request_header(const request*, const char*, char*);
 void close_request(request *);
 
 /* Internal Helper Functions */

@@ -11,6 +11,10 @@
 #include <arpa/inet.h>
 #include <pthread.h>
 
+#include "mimetypes.h"
+#include "request.h"
+#include "response.h"
+
 #define BACKLOG 16
 #define DEFAULT_HOST "0.0.0.0"
 #define DEFAULT_PORT 8080
@@ -98,6 +102,8 @@ void setup_socket() {
 void* handle_request(void* new_conn_fd) {
     int conn_fd = *((int *) new_conn_fd);
     free(new_conn_fd);
+
+    request *req = get_request(conn_fd);
 
     return 0;
 }
