@@ -6,9 +6,13 @@
 .PHONY = compile clean
 
 CC = gcc
-CCFLAGS = -I include
+
+GLIB_CCFLAGS = -D_REENTRANT -I /usr/local/Cellar/glib/2.68.3/include/glib-2.0 -I /usr/local/Cellar/glib/2.68.3/lib/glib-2.0/include
+GLIB_LLFLAGS= -L /usr/local/Cellar/glib/2.68.3/lib -L /usr/local/opt/gettext/lib -lglib-2.0
+
+CCFLAGS = -I include ${GLIB_CCFLAGS}
 SO_CCFLAGS = ${CCFLAGS} -shared -fPIC -c
-LLFLAGS = -pthread -L lib $(LIBS:lib/lib%.so=-l%)
+LLFLAGS = -pthread -L lib $(LIBS:lib/lib%.so=-l%) ${GLIB_LLFLAGS}
 
 SLIBS := $(wildcard slib/*.c)
 LIBS := $(SLIBS:slib/%.c=lib/lib%.so)
