@@ -28,7 +28,7 @@ const char* get_response_header(const response*, const char*, char*);
 const char* set_response_header(const response*, const char*, const char*);
 ssize_t send_response_header(const response*);
 ssize_t send_response_file(const response*, const FILE*);
-ssize_t send_response(const response*, const char*);
+ssize_t send_response(const response*, const char*, ssize_t);
 void close_response(response*);
 
 response* _initialize_response();

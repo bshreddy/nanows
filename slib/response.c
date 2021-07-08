@@ -102,8 +102,8 @@ ssize_t send_response_file(const response *res, const FILE *file) {
     return total_buf_size;
 }
 
-ssize_t send_response(const response *res, const char *buf) {
-    ssize_t buf_size = strlen(buf);
+ssize_t send_response(const response *res, const char *buf, ssize_t buf_size) {
+    if(buf_size == -1) buf_size = strlen(buf);
     return send(res->conn_fd, buf, buf_size, 0);
 }
 
