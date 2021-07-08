@@ -39,9 +39,9 @@ const char* get_response_header(const response *res, const char *header_key, cha
     return NULL;
 }
 
-const char* set_response_header(const response* res, const char *header_key, char *header_val) {
+const char* set_response_header(const response* res, const char *header_key, const char *header_val) {
     if(res == NULL || header_key == NULL || header_val == NULL) return NULL;
-
+    
     if(g_hash_table_lookup(res->header_htab, header_key) == NULL) {
         char* key = strdup(header_key);
         char* val = strdup(header_val);
@@ -69,21 +69,35 @@ ssize_t send_response_header(const response *res) {
 
     // TODO: Send response headers
     GHashTableIter iter;
-    char *header_key, *header_value;
+    gpointer header_key, *header_value;
     g_hash_table_iter_init (&iter, res->header_htab);
 
-    while (g_hash_table_iter_next (&iter, &header_key, &header_value)) {
-        sprintf(buf, "%s: %s\r\n", header_key, header_value);
+    while (g_hash_table_iter_next(&iter, &header_key, &header_value)) {
+        sprintf(buf, "%s: %s\r\n", (char*) header_key, (char*) header_value);
         buf_size = strlen(buf);
         if(send(res->conn_fd, buf, buf_size, 0) != buf_size) return total_buf_size;
         total_buf_size += buf_size;
     }
     
     // Sending last line of response head
-    strcpy("\r\n", buf);
+    strcpy(buf, "\r\n");
     buf_size = strlen(buf);
     if(send(res->conn_fd, buf, buf_size, 0) != buf_size) return total_buf_size;
     total_buf_size += buf_size;
+
+    return total_buf_size;
+}
+
+ssize_t send_response_file(const response *res, const FILE *file) {
+    ssize_t total_buf_size = 0;
+    size_t buf_size = 0, send_size = 0;
+    char buf[RES_BUF_SIZE];
+
+    while((buf_size = fread(buf, 1, RES_BUF_SIZE, file)) > 0) {
+        send_size = send(res->conn_fd, buf, buf_size, 0);
+        if(send_size != buf_size) return 0;
+        total_buf_size += send_size;
+    }
 
     return total_buf_size;
 }

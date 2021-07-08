@@ -29,8 +29,8 @@ bin/%: src/%.c --dir-bin
 compile: --compile-libs --compile-bins
 
 clean: 
-	rm -r lib/*.so
-	rm -r bin/*
+	rm -rf lib/*.so
+	rm -rf bin/*
 	@echo "Cleaned Library Files and Binaries\n"
 
 --compile-libs: ${LIBS}

@@ -21,10 +21,12 @@
 #define SERVER_NAME "ElServe/2.0"
 #define SITE_DIR "site"
 #define DEFAULT_PAGE "/index.html"
+#define FILE_PATH_BUF_SIZE 1024
 
 void stop_server();
 void setup_socket();
 void* handle_request(void*);
+void clean_request(FILE*, request*, response*);
 
 int tcp_socket = -1;
 
@@ -39,6 +41,7 @@ int main(int argc, char *argv[]) {
 
     // Setup
     setup_socket();
+    create_mime_table();
 
     printf("Server Started...\nListening on http://%s:%d\nPress Ctrl+C to exit.\n\n", 
             DEFAULT_HOST, DEFAULT_PORT);
@@ -79,7 +82,7 @@ void setup_socket() {
         exit(-1);
     }
     
-    bool on = true;
+    int on = 1;
     setsockopt(tcp_socket, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on));
 
     struct sockaddr_in server_addr;
@@ -100,10 +103,50 @@ void setup_socket() {
 }
 
 void* handle_request(void* new_conn_fd) {
+    char file_path[FILE_PATH_BUF_SIZE];
     int conn_fd = *((int *) new_conn_fd);
     free(new_conn_fd);
 
-    request *req = get_request(conn_fd);
+    FILE *file = NULL;
+    request *req = NULL;
+    response *res = NULL;
 
+    req = get_request(conn_fd);
+    if(strcmp(req->url, "/") == 0) {
+        free(req->url);
+        req->url = strdup(DEFAULT_PAGE);
+    }
+    printf("> (%s) (%s) (%s)\n", req->http_method, req->url, req->http_ver);
+    sprintf(file_path, "%s%s", SITE_DIR, req->url);
+
+    file = NULL;
+    if((file = fopen(file_path, "r")) == NULL) {
+        clean_request(file, req, res);
+        return 0;
+    }
+
+    res = create_response_from_request(req);
+    res->status_code = strdup("200 OK");
+    set_response_header(res, "content-type", get_mimetype_for_url(req->url, NULL));
+    set_response_header(res, "server", SERVER_NAME);
+
+    if(send_response_header(res) == 0) {
+        clean_request(file, req, res);
+        return 0;
+    };
+
+    if(send_response_file(res, file) == 0) {
+        printf("Error Sending File: %s for URL: %s. %s\n", file_path, req->url, strerror(errno));
+        clean_request(file, req, res);
+        return 0;
+    }
+
+    clean_request(file, req, res);
     return 0;
+}
+
+void clean_request(FILE *file, request *req, response *res) {
+    if(file != NULL) { close(file); file = NULL; }
+    if(req != NULL) { close_request(req); req = NULL; }
+    if(res != NULL) { close_response(res); res = NULL; }
 }

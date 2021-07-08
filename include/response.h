@@ -25,8 +25,9 @@ typedef struct response {
 response* create_response(const int);
 response* create_response_from_request(const request*);
 const char* get_response_header(const response*, const char*, char*);
-const char* set_response_header(const response*, const char*, char*);
+const char* set_response_header(const response*, const char*, const char*);
 ssize_t send_response_header(const response*);
+ssize_t send_response_file(const response*, const FILE*);
 ssize_t send_response(const response*, const char*);
 void close_response(response*);
 
