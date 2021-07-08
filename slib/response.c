@@ -1,10 +1,8 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
 #include <sys/socket.h>
-
-#define __USE_GNU 1
-#include<search.h>
 
 #include "request.h"
 #include "response.h"
@@ -15,6 +13,8 @@ response* create_response(const int conn_fd) {
 
     res->conn_fd = dup(conn_fd);
     return res;
+
+    return NULL;
 }
 
 response* create_response_from_request(const request *req) {
@@ -23,21 +23,62 @@ response* create_response_from_request(const request *req) {
 
     res->http_ver = strdup(req->http_ver);
     return res;
+
+    return NULL;
 }
 
-ssize_t send_response_head(const response *res) {
-    char buf[1024];
+const char* get_response_header(const response *res, const char *header_key, char *header_val) {
+    if(res == NULL || header_key == NULL) return NULL;
+
+    const char* _header_val = NULL;
+    if((_header_val = g_hash_table_lookup(res->header_htab, header_key)) != NULL) {
+        if(header_val != NULL) strcpy(header_val, _header_val);
+        return _header_val;
+    }
+    
+    return NULL;
+}
+
+const char* set_response_header(const response* res, const char *header_key, char *header_val) {
+    if(res == NULL || header_key == NULL || header_val == NULL) return NULL;
+
+    if(g_hash_table_lookup(res->header_htab, header_key) == NULL) {
+        char* key = strdup(header_key);
+        char* val = strdup(header_val);
+
+        g_hash_table_insert(res->header_htab, key, val);
+        return g_hash_table_lookup(res->header_htab, key);
+    }
+
+    return NULL;
+}
+
+// TODO: Only 1 send() call
+ssize_t send_response_header(const response *res) {
+    char buf[RES_HEADER_BUF_SIZE];
     ssize_t buf_size = 0, total_buf_size = 0;
 
+    // HTTP Version and Status Code needs to be set.
+    if(res->http_ver == NULL || res->status_code == NULL) return 0;
+
     // Sending first line of response head
-    sprintf(res, "%s %s\n", res->http_ver, res->status_code);
+    sprintf(buf, "%s %s\r\n", res->http_ver, res->status_code);
     buf_size = strlen(buf);
     if(send(res->conn_fd, buf, buf_size, 0) != buf_size) return total_buf_size;
     total_buf_size += buf_size;
 
     // TODO: Send response headers
-    
+    GHashTableIter iter;
+    char *header_key, *header_value;
+    g_hash_table_iter_init (&iter, res->header_htab);
 
+    while (g_hash_table_iter_next (&iter, &header_key, &header_value)) {
+        sprintf(buf, "%s: %s\r\n", header_key, header_value);
+        buf_size = strlen(buf);
+        if(send(res->conn_fd, buf, buf_size, 0) != buf_size) return total_buf_size;
+        total_buf_size += buf_size;
+    }
+    
     // Sending last line of response head
     strcpy("\r\n", buf);
     buf_size = strlen(buf);
@@ -47,62 +88,46 @@ ssize_t send_response_head(const response *res) {
     return total_buf_size;
 }
 
-int send_response(const response *res, const char *buf) {
-    
-}
-
-const char* get_response_header(const response *res, const char *header_key, char *header_val) {
-    if(res == NULL || header_key == NULL) return NULL;
-
-    ENTRY entry, *ent;
-    entry.key = strdup(header_key);
-    if(hsearch_r(entry, FIND, &ent, res->header_htab)) {
-        if(header_val != NULL) strcpy(header_val, (char *) ent->data);
-        return (const char *)(ent->data);
-    }
-    
-    return NULL;
-}
-
-const char* set_response_header(const response* res, const char *header_key, char *header_val) {
-    if(res == NULL || header_key == NULL || header_val == NULL) return NULL;
-
-    ENTRY entry, *ent;
-    entry.key = strdup(header_key);
-    entry.data = strdup(header_val);
-
-    if(hsearch_r(entry, ENTER, &ent, res->header_htab)) {
-        strcpy(header_val, (char *) ent->data);
-        return (const char *)(ent->data);
-    }
-
-    return NULL;
+ssize_t send_response(const response *res, const char *buf) {
+    ssize_t buf_size = strlen(buf);
+    return send(res->conn_fd, buf, buf_size, 0);
 }
 
 void close_response(response *res) {
-    if(res->conn_fd != -1) close(res->conn_fd);
+    if(res->conn_fd != -1) { close(res->conn_fd); res->conn_fd = -1; }
     _free_response(res);
 }
 
 response* _initialize_response() {
     response *res = malloc(sizeof(response));
     if(res == NULL) return NULL;
-    if(!hcreate_r(REQ_HEADER_HTABLE_SIZE, res->header_htab)) return NULL;
 
     res->conn_fd = -1;
     res->http_ver = NULL;
     res->status_code = NULL;
-    res->header_htab = malloc(sizeof(struct hsearch_data));
+    if((res->header_htab = g_hash_table_new_full(g_str_hash, g_str_equal, 
+                            _res_header_htab_key_destroy, _res_header_htab_value_destroy)) == NULL) return NULL;
+    
     return res;
 }
 
 void _free_response(response *res) {
-    if(res->header_htab != NULL) {
-        hdestroy_r(res->header_htab);
-        res->header_htab = NULL;
-    }
-    
-    free(res->status_code);
-    free(res->http_ver);
-    free(res);
+    if(res == NULL) return;
+
+    if(res->header_htab != NULL) { g_hash_table_destroy(res->header_htab); res->header_htab = NULL; }
+    if(res->status_code != NULL) { free(res->status_code); res->status_code = NULL; }
+    if(res->http_ver != NULL) { free(res->http_ver); res->http_ver = NULL; }
+
+    free(res); 
+    res = NULL;
+}
+
+void _res_header_htab_key_destroy(gpointer data) {
+    free(data);
+    data = NULL;
+}
+
+void _res_header_htab_value_destroy(gpointer data) {
+    free(data);
+    data = NULL;
 }
