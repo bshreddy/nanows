@@ -18,3 +18,8 @@ char *rtrim(char *s) {
 char *trim(char *s) {
     return rtrim(ltrim(s)); 
 }
+
+void free_gerror(GError **error) {
+    g_error_free(*error);
+    *error = NULL;
+}
