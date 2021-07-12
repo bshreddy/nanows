@@ -2,7 +2,7 @@
 #define _MIMETYPES_H 1
 
 #ifndef MIME_CONF_FILE
-    #define MIME_CONF_FILE "./conf/mimetypes.conf"
+    #define MIME_CONF_FILE "./etc/mimetypes.conf"
 #endif
 
 #ifndef MIME_BUF_SIZE
