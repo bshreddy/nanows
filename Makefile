@@ -12,7 +12,7 @@ GLIB_LLFLAGS := $(shell pkg-config --libs glib-2.0)
 
 CCFLAGS = -I include ${GLIB_CCFLAGS}
 SO_CCFLAGS = ${CCFLAGS} -shared -fPIC -c
-LLFLAGS = -pthread -L lib $(LIBS:lib/lib%.so=-l%) ${GLIB_LLFLAGS}
+LLFLAGS = -pthread -L lib $(LIBS:lib/lib%.so=-l%) ${GLIB_LLFLAGS} -lm
 
 SLIBS := $(wildcard slib/*.c)
 LIBS := $(SLIBS:slib/%.c=lib/lib%.so)
