@@ -11,16 +11,13 @@
 #include <arpa/inet.h>
 #include <pthread.h>
 
+#include "config.h"
 #include "mimetypes.h"
 #include "request.h"
 #include "response.h"
 
 #define BACKLOG 16
-#define DEFAULT_HOST "0.0.0.0"
-#define DEFAULT_PORT 8080
 #define SERVER_NAME "ElServe/2.0"
-#define SITE_DIR "site"
-#define DEFAULT_PAGE "/index.html"
 #define FILE_PATH_BUF_SIZE 1024
 
 void stop_server();
@@ -40,11 +37,12 @@ int main(int argc, char *argv[]) {
     signal(SIGTSTP, exit);
 
     // Setup
-    setup_socket();
+    load_config();
     create_mime_table();
+    setup_socket();
 
     printf("Server Started...\nListening on http://%s:%d\nPress Ctrl+C to exit.\n\n", 
-            DEFAULT_HOST, DEFAULT_PORT);
+            get_config_str(HOST_CONF_KEY), get_config_int(PORT_CONF_KEY));
     
     while(true) {
         if((conn_fd = accept(tcp_socket, NULL, NULL)) < 0) {
@@ -87,8 +85,8 @@ void setup_socket() {
 
     struct sockaddr_in server_addr;
     server_addr.sin_family = AF_INET;
-    server_addr.sin_port = htons(DEFAULT_PORT);
-    inet_pton(AF_INET, DEFAULT_HOST, &(server_addr.sin_addr));
+    server_addr.sin_port = htons(get_config_int(PORT_CONF_KEY));
+    inet_pton(AF_INET, get_config_str(HOST_CONF_KEY), &(server_addr.sin_addr));
     socklen_t server_addr_len = sizeof(server_addr);
 
     if(bind(tcp_socket, (struct sockaddr *) &server_addr, server_addr_len) < 0) {
@@ -114,10 +112,10 @@ void* handle_request(void* new_conn_fd) {
     req = get_request(conn_fd);
     if(strcmp(req->url, "/") == 0) {
         free(req->url);
-        req->url = strdup(DEFAULT_PAGE);
+        req->url = get_config_str(PAGE_CONF_KEY);
     }
     printf("> (%s) (%s) (%s)\n", req->http_method, req->url, req->http_ver);
-    sprintf(file_path, "%s%s", SITE_DIR, req->url);
+    sprintf(file_path, "%s%s", get_config_str(SITE_DIR_CONF_KEY), req->url);
 
     file = NULL;
     if((file = fopen(file_path, "r")) == NULL) {
