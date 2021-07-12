@@ -31,5 +31,6 @@ bool load_config();
 char* get_config(const char*);
 char* get_config_str(const char*);
 int get_config_int(const char*);
+void unload_config();
 
 #endif

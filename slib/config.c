@@ -63,6 +63,15 @@ int get_config_int(const char *key) {
     return value;
 }
 
+void unload_config() {
+    if(config == NULL) return;
+
+    g_key_file_free(config);
+    config = NULL;
+
+    if(error != NULL) free_gerror(&error);
+}
+
 // int main () {
 //     if(!load_config()) return 1;
 //     printf("Loaded\n");

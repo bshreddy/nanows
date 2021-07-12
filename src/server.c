@@ -72,6 +72,8 @@ void stop_server() {
     printf("\nShutting down server.....\n");
     if(tcp_socket != -1) close(tcp_socket);
     tcp_socket = -1;
+    destroy_mime_table();
+    unload_config();
 }
 
 void setup_socket() {
