@@ -7,7 +7,7 @@
 
 .PHONY = compile clean
 
-CC = gcc
+CC = clang
 
 GLIB_CCFLAGS := $(shell pkg-config --cflags glib-2.0)
 GLIB_LLFLAGS := $(shell pkg-config --libs glib-2.0)
