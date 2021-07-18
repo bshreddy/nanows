@@ -69,7 +69,7 @@ ssize_t send_response_header(const response *res) {
 
     // TODO: Send response headers
     GHashTableIter iter;
-    gpointer header_key, *header_value;
+    gpointer header_key, header_value;
     g_hash_table_iter_init (&iter, res->header_htab);
 
     while (g_hash_table_iter_next(&iter, &header_key, &header_value)) {
@@ -88,7 +88,7 @@ ssize_t send_response_header(const response *res) {
     return total_buf_size;
 }
 
-ssize_t send_response_file(const response *res, const FILE *file) {
+ssize_t send_response_file(const response *res, FILE *file) {
     ssize_t total_buf_size = 0;
     size_t buf_size = 0, send_size = 0;
     char buf[RES_BUF_SIZE];

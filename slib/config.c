@@ -50,14 +50,14 @@ char* get_config_str(const char *key) {
 }
 
 int get_config_int(const char *key) {
-    if(config == NULL) return NAN;
+    if(config == NULL) return INT_MIN;
     
     if(error != NULL) free_gerror(&error);
     int value = g_key_file_get_integer(config, GROUP_NAME, key, &error);
     if(error != NULL) {
         printf("%s\n", error->message);
         free_gerror(&error);
-        return NAN;
+        return INT_MIN;
     }
 
     return value;
