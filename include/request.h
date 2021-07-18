@@ -24,7 +24,7 @@ request *parse_request(const char *, const int);
 const char *get_request_header(const request *, const char *, char *);
 void close_request(request *);
 
-/* Internal Helper Functions */
+// Internal Helper Functions
 request *_initialize_request();
 int _parse_request(const char *, request *);
 void _free_request(request *);

@@ -24,6 +24,7 @@ void destroy_mime_table();
 const char *get_mimetype_for_ext(const char *, char *);
 const char *get_mimetype_for_url(const char *, char *);
 
+// Internal Helper Functions
 char *_get_ext_for_url(const char *);
 void _mime_htab_key_destroy(gpointer);
 void _mime_htab_value_destroy(gpointer);

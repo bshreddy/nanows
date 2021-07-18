@@ -31,6 +31,7 @@ ssize_t send_response_file(const response *, FILE *);
 ssize_t send_response(const response *, const char *, ssize_t);
 void close_response(response *);
 
+// Internal Helper Functions
 response *_initialize_response();
 void _free_response(response *);
 void _res_header_htab_key_destroy(gpointer);
