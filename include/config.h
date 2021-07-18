@@ -27,7 +27,7 @@
 
 #include <glib.h>
 
-bool load_config();
+int load_config();
 char* get_config(const char*);
 char* get_config_str(const char*);
 int get_config_int(const char*);
