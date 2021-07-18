@@ -1,9 +1,9 @@
 # Usage:
-# make 			# same as `make compile`
-# make compile	# compile all binaries
-# make check	# builds tests and runs them
-# make test		# runs all built tests from bin/tests
-# make clean	# remove ALL binaries and object files
+# make          # same as `make compile`
+# make compile  # compile all binaries
+# make check    # builds tests and runs them
+# make test     # runs all built tests from bin/tests
+# make clean    # remove ALL binaries and object files
 
 .PHONY = compile clean
 
@@ -46,7 +46,7 @@ check: --remove-old-tests --compile-tests --run-tests
 
 test: --run-tests
 
-clean: 
+clean:
 	rm -rf lib/*.so
 	rm -rf bin/*
 	@echo "Cleaned Library Files and Binaries\n"
