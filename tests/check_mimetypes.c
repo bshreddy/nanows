@@ -49,7 +49,7 @@ START_TEST(test_get_mimetype_for_url) {
 }
 END_TEST
 
-Suite* mimetypes_suite() {
+Suite *mimetypes_suite() {
     const TTest *tests[] = {test_create_mime_table, test_get_mimetype_for_ext_without_table,
                             test_get_mimetype_for_ext, test_get_mimetype_for_ext_default};
 

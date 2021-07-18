@@ -7,5 +7,5 @@ char *ltrim(char *s);
 char *rtrim(char *s);
 char *trim(char *s);
 
-void free_gerror(GError**);
+void free_gerror(GError **);
 #endif
