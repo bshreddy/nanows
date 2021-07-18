@@ -1,6 +1,8 @@
 # Usage:
 # make 			# same as `make compile`
 # make compile	# compile all binaries
+# make check	# builds tests and runs them
+# make test		# runs all built tests from bin/tests
 # make clean	# remove ALL binaries and object files
 
 .PHONY = compile clean
@@ -41,6 +43,8 @@ bin/tests/%: tests/%.c --dir-bin-tests
 compile: --compile-libs --compile-bins
 
 check: --remove-old-tests --compile-tests --run-tests
+
+test: --run-tests
 
 clean: 
 	rm -rf lib/*.so

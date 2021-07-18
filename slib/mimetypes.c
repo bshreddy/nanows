@@ -9,7 +9,7 @@
 GHashTable *_mime_htab = NULL;
 
 int create_mime_table() {
-    if(_mime_htab != NULL) return 1;
+    if(_mime_htab != NULL) return 2;
 
     FILE *mime_file = NULL;
     char* buf = calloc(MIME_BUF_SIZE, sizeof(char));
@@ -53,7 +53,7 @@ const char* get_mimetype_for_ext(const char *ext, char *mimetype) {
         return _minetype;
     }
 
-    if((_minetype = g_hash_table_lookup(_mime_htab, "*")) != NULL) {
+    if((_minetype = g_hash_table_lookup(_mime_htab, DEFAULT_MIMETYPE_KEY)) != NULL) {
         if(mimetype != NULL) strcpy(mimetype, _minetype);
         return _minetype;
     }
