@@ -13,7 +13,10 @@
 #define RES_HEADER_HTABLE_SIZE 32
 #endif
 
+#include <stdio.h>
 #include <glib.h>
+
+#include "request.h"
 
 typedef struct response {
     int conn_fd;

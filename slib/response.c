@@ -4,7 +4,6 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-#include "request.h"
 #include "response.h"
 
 response *create_response(const int conn_fd) {
@@ -14,8 +13,6 @@ response *create_response(const int conn_fd) {
 
     res->conn_fd = dup(conn_fd);
     return res;
-
-    return NULL;
 }
 
 response *create_response_from_request(const request *req) {
@@ -25,8 +22,6 @@ response *create_response_from_request(const request *req) {
 
     res->http_ver = strdup(req->http_ver);
     return res;
-
-    return NULL;
 }
 
 const char *get_response_header(const response *res, const char *header_key, char *header_val) {
