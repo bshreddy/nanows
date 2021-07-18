@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <errno.h>
 
 #include <unistd.h>
 #include <fcntl.h>
@@ -146,7 +147,7 @@ void* handle_request(void* new_conn_fd) {
 }
 
 void clean_request(FILE *file, request *req, response *res) {
-    if(file != NULL) { close(file); file = NULL; }
+    if(file != NULL) { fclose(file); file = NULL; }
     if(req != NULL) { close_request(req); req = NULL; }
     if(res != NULL) { close_response(res); res = NULL; }
 }
