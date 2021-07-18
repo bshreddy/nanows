@@ -11,15 +11,7 @@ request *get_request(const int conn_fd) {
     if (recv(conn_fd, req_buf, REQ_BUF_SIZE, 0) < 0)
         return NULL;
 
-    request *req = _initialize_request();
-    if (req == NULL)
-        return NULL;
-
-    req->conn_fd = conn_fd;
-    if (!_parse_request(req_buf, req))
-        return NULL;
-
-    return req;
+    return parse_request(req_buf, conn_fd);
 }
 
 request *parse_request(const char *req_buf, const int conn_fd) {
@@ -27,8 +19,10 @@ request *parse_request(const char *req_buf, const int conn_fd) {
     if (req == NULL)
         return NULL;
 
-    if (!_parse_request(req_buf, req))
+    req->conn_fd = conn_fd;
+    if (_parse_request(req_buf, req) == 0)
         return NULL;
+
     return req;
 }
 
@@ -104,14 +98,17 @@ void _free_request(request *req) {
         g_hash_table_destroy(req->header_htab);
         req->header_htab = NULL;
     }
+
     if (req->http_method != NULL) {
         free(req->http_method);
         req->http_method = NULL;
     }
+
     if (req->url != NULL) {
         free(req->url);
         req->url = NULL;
     }
+
     if (req->http_ver != NULL) {
         free(req->http_ver);
         req->http_ver = NULL;

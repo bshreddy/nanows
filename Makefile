@@ -65,8 +65,8 @@ clean:
 
 --run-tests: ${TESTS_BINS}
 	@echo "Starting Tests\n"
-	@for file in $^ ; do $${file} ; done
-	@echo "\nTests Done\n"
+	@for file in $^ ; do $${file}; echo ""; done
+	@echo "Tests Done\n"
 
 --dir-%:
 	mkdir -p $(subst -,/,$(@:--dir-%=%))
