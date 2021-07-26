@@ -1,3 +1,17 @@
+/**
+ * @file include/config.h
+ * @brief Function Prototypes for the configuration manager.
+ *
+ * This file contains function prototypes for loading, retriving configurations from file defined by
+ * `CONF_FILE` macro.
+ *
+ * Implemented in `slib/config.c`.
+ *
+ * @author Sai Hemanth Bheemreddy (@SaiHemanthBR)
+ * @copyright MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy
+ * @bug No known bugs.
+ */
+
 #ifndef _CONFIG_H
 #define _CONFIG_H 1
 

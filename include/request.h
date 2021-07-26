@@ -1,12 +1,23 @@
+/**
+ * @file include/request.h
+ * @brief Function Prototypes for accepting, parsing and handling network requests.
+ *
+ * This file contains the function prototypes to accept and receive requests, parse the request,
+ * and handle network requests. It also contains internal functions to handle request parsing and
+ * memory management.
+ *
+ * Implemented in slib/request.c
+ *
+ * @author Sai Hemanth Bheemreddy (@SaiHemanthBR)
+ * @copyright MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy
+ * @bug No known bugs.
+ */
+
 #ifndef _REQUEST_H
 #define _REQUEST_H 1
 
 #ifndef REQ_BUF_SIZE
 #define REQ_BUF_SIZE 8192
-#endif
-
-#ifndef REQ_HEADER_HTABLE_SIZE
-#define REQ_HEADER_HTABLE_SIZE 32
 #endif
 
 #include <glib.h>

@@ -1,3 +1,18 @@
+/**
+ * @file include/response.h
+ * @brief Function Prototypes for creating, sending and handling network responses.
+ *
+ * This file contains the function prototypes to create response for a network request,
+ * manage response headers and send response back to the client. It also contains prototypes for
+ * internal function to handle response creation and memory management.
+ *
+ * Implemented in slib/response.c
+ *
+ * @author Sai Hemanth Bheemreddy (@SaiHemanthBR)
+ * @copyright MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy
+ * @bug No known bugs.
+ */
+
 #ifndef _RESPONSE_H
 #define _RESPONSE_H 1
 
@@ -9,12 +24,8 @@
 #define RES_HEADER_BUF_SIZE 1024
 #endif
 
-#ifndef RES_HEADER_HTABLE_SIZE
-#define RES_HEADER_HTABLE_SIZE 32
-#endif
-
-#include <stdio.h>
 #include <glib.h>
+#include <stdio.h>
 
 #include "request.h"
 

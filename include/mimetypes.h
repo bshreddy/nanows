@@ -1,3 +1,17 @@
+/**
+ * @file include/mimetypes.h
+ * @brief Function Prototypes for loading and querying MIME types.
+ *
+ * This file contains function prototypes to load MIME types for different file extensions from
+ * etc/mimetypes.conf and retrive MIME type for different file type or url.
+ *
+ * Implemented in slib/mimetypes.c
+ *
+ * @author Sai Hemanth Bheemreddy (@SaiHemanthBR)
+ * @copyright MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy
+ * @bug No known bugs.
+ */
+
 #ifndef _MIMETYPES_H
 #define _MIMETYPES_H 1
 
@@ -7,10 +21,6 @@
 
 #ifndef MIME_BUF_SIZE
 #define MIME_BUF_SIZE 128
-#endif
-
-#ifndef MIME_HTABLE_SIZE
-#define MIME_HTABLE_SIZE 128
 #endif
 
 #ifndef DEFAULT_MIMETYPE_KEY
