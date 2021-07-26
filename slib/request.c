@@ -1,3 +1,26 @@
+/**
+ * @file slib/request.c
+ * @brief Functions for accepting, parsing and handling network requests.
+ *
+ * Implements functions defined in `include/request.h`. Used to accept, parse and handle network
+ * requests.
+ *
+ * The structure of request is defined by `struct request` (defined in `include/request.h`).
+ * This struct contains the following fields: http method, url, request headers and connection
+ * file descriptor. `struct request` can be used to created a response (defined in
+ * `include/response.h`) to send the response back to the client.
+ *
+ * Max size of a request is defined by `REQ_BUF_SIZE` macro (defined in `include/request.h`). This
+ * value can be changed by defining `REQ_BUF_SIZE` before `#include "request.h"`.
+ *
+ * @see typedef struct request
+ * @see typedef struct response
+ *
+ * @author Sai Hemanth Bheemreddy (@SaiHemanthBR)
+ * @copyright MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy
+ * @bug No known bugs.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

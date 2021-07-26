@@ -1,3 +1,27 @@
+/**
+ * @file slib/response.c
+ * @brief Functions for creating, sending and handling network responses.
+ *
+ * Implements functions defined in `include/response.h`. Used to create, send and handle network
+ * responses.
+ *
+ * The structure of response is defined by `struct response` (defined in `include/response.h`).
+ * This struct contains the following fields: http method, status code, response headers and
+ * connection file descriptor. `struct response` is used to send the response back to the
+ * client and can be created by manually calling `create_response()` function and setting the values
+ * or automatically from a request.
+ *
+ * Max size of a response header when formatted as "<key>: <value>\r\n" is defined by
+ * `RES_HEADER_BUF_SIZE` macro (defined in `include/response.h`). This value can be changed by
+ * defining `RES_HEADER_BUF_SIZE` before `#include "response.h"`.
+ *
+ * @see typedef struct request
+ * @see typedef struct response
+ * @author Sai Hemanth Bheemreddy (@SaiHemanthBR)
+ * @copyright MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy
+ * @bug No known bugs.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
