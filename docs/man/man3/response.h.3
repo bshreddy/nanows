@@ -1,0 +1,143 @@
+.TH "include/response.h" 3 "Mon Jul 26 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/response.h \- Function Prototypes for creating, sending and handling network responses\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <glib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include 'request\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBresponse\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBRES_BUF_SIZE\fP   8192"
+.br
+.ti -1c
+.RI "#define \fBRES_HEADER_BUF_SIZE\fP   1024"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct \fBresponse\fP \fBresponse\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBresponse\fP * \fBcreate_response\fP (const int)"
+.br
+.ti -1c
+.RI "\fBresponse\fP * \fBcreate_response_from_request\fP (const \fBrequest\fP *)"
+.br
+.ti -1c
+.RI "const char * \fBget_response_header\fP (const \fBresponse\fP *, const char *, char *)"
+.br
+.ti -1c
+.RI "const char * \fBset_response_header\fP (const \fBresponse\fP *, const char *, const char *)"
+.br
+.ti -1c
+.RI "ssize_t \fBsend_response_header\fP (const \fBresponse\fP *)"
+.br
+.ti -1c
+.RI "ssize_t \fBsend_response_file\fP (const \fBresponse\fP *, FILE *)"
+.br
+.ti -1c
+.RI "ssize_t \fBsend_response\fP (const \fBresponse\fP *, const char *, ssize_t)"
+.br
+.ti -1c
+.RI "void \fBclose_response\fP (\fBresponse\fP *)"
+.br
+.ti -1c
+.RI "\fBresponse\fP * \fB_initialize_response\fP ()"
+.br
+.ti -1c
+.RI "void \fB_free_response\fP (\fBresponse\fP *)"
+.br
+.ti -1c
+.RI "void \fB_res_header_htab_key_destroy\fP (gpointer)"
+.br
+.ti -1c
+.RI "void \fB_res_header_htab_value_destroy\fP (gpointer)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Function Prototypes for creating, sending and handling network responses\&. 
+
+This file contains the function prototypes to create response for a network request, manage response headers and send response back to the client\&. It also contains prototypes for internal function to handle response creation and memory management\&.
+.PP
+Implemented in \fBslib/response\&.c\fP
+.PP
+\fBAuthor\fP
+.RS 4
+Sai Hemanth Bheemreddy (@SaiHemanthBR) 
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy 
+.RE
+.PP
+\fBBug\fP
+.RS 4
+No known bugs\&. 
+.RE
+.PP
+
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define RES_BUF_SIZE   8192"
+
+.SS "#define RES_HEADER_BUF_SIZE   1024"
+
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef struct \fBresponse\fP \fBresponse\fP"
+
+.SH "Function Documentation"
+.PP 
+.SS "void _free_response (\fBresponse\fP * res)"
+
+.SS "\fBresponse\fP* _initialize_response ()"
+
+.SS "void _res_header_htab_key_destroy (gpointer data)"
+
+.SS "void _res_header_htab_value_destroy (gpointer data)"
+
+.SS "void close_response (\fBresponse\fP * res)"
+
+.SS "\fBresponse\fP* create_response (const int conn_fd)"
+
+.SS "\fBresponse\fP* create_response_from_request (const \fBrequest\fP * req)"
+
+.SS "const char* get_response_header (const \fBresponse\fP * res, const char * header_key, char * header_val)"
+
+.SS "ssize_t send_response (const \fBresponse\fP * res, const char * buf, ssize_t buf_size)"
+
+.SS "ssize_t send_response_file (const \fBresponse\fP * res, FILE * file)"
+
+.SS "ssize_t send_response_header (const \fBresponse\fP * res)"
+
+.SS "const char* set_response_header (const \fBresponse\fP * res, const char * header_key, const char * header_val)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for nanows from the source code\&.

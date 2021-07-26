@@ -1,0 +1,101 @@
+.TH "include/mimetypes.h" 3 "Mon Jul 26 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/mimetypes.h \- Function Prototypes for loading and querying MIME types\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <glib\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBMIME_CONF_FILE\fP   '\&./etc/mimetypes\&.conf'"
+.br
+.ti -1c
+.RI "#define \fBMIME_BUF_SIZE\fP   128"
+.br
+.ti -1c
+.RI "#define \fBDEFAULT_MIMETYPE_KEY\fP   '*'"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBcreate_mime_table\fP ()"
+.br
+.ti -1c
+.RI "void \fBdestroy_mime_table\fP ()"
+.br
+.ti -1c
+.RI "const char * \fBget_mimetype_for_ext\fP (const char *, char *)"
+.br
+.ti -1c
+.RI "const char * \fBget_mimetype_for_url\fP (const char *, char *)"
+.br
+.ti -1c
+.RI "char * \fB_get_ext_for_url\fP (const char *)"
+.br
+.ti -1c
+.RI "void \fB_mime_htab_key_destroy\fP (gpointer)"
+.br
+.ti -1c
+.RI "void \fB_mime_htab_value_destroy\fP (gpointer)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Function Prototypes for loading and querying MIME types\&. 
+
+This file contains function prototypes to load MIME types for different file extensions from etc/mimetypes\&.conf and retrive MIME type for different file type or url\&.
+.PP
+Implemented in \fBslib/mimetypes\&.c\fP
+.PP
+\fBAuthor\fP
+.RS 4
+Sai Hemanth Bheemreddy (@SaiHemanthBR) 
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy 
+.RE
+.PP
+\fBBug\fP
+.RS 4
+No known bugs\&. 
+.RE
+.PP
+
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define DEFAULT_MIMETYPE_KEY   '*'"
+
+.SS "#define MIME_BUF_SIZE   128"
+
+.SS "#define MIME_CONF_FILE   '\&./etc/mimetypes\&.conf'"
+
+.SH "Function Documentation"
+.PP 
+.SS "char* _get_ext_for_url (const char * url)"
+
+.SS "void _mime_htab_key_destroy (gpointer data)"
+
+.SS "void _mime_htab_value_destroy (gpointer data)"
+
+.SS "int create_mime_table ()"
+
+.SS "void destroy_mime_table ()"
+
+.SS "const char* get_mimetype_for_ext (const char * ext, char * mimetype)"
+
+.SS "const char* get_mimetype_for_url (const char * url, char * mimetype)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for nanows from the source code\&.

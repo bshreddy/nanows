@@ -1,0 +1,114 @@
+.TH "slib/request.c" 3 "Mon Jul 26 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+slib/request.c \- Functions for accepting, parsing and handling network requests\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <sys/socket\&.h>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+\fC#include 'request\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBrequest\fP * \fBget_request\fP (const int conn_fd)"
+.br
+.ti -1c
+.RI "\fBrequest\fP * \fBparse_request\fP (const char *req_buf, const int conn_fd)"
+.br
+.ti -1c
+.RI "void \fBclose_request\fP (\fBrequest\fP *req)"
+.br
+.ti -1c
+.RI "const char * \fBget_request_header\fP (const \fBrequest\fP *req, const char *header_key, char *header_val)"
+.br
+.ti -1c
+.RI "\fBrequest\fP * \fB_initialize_request\fP ()"
+.br
+.ti -1c
+.RI "int \fB_parse_request\fP (const char *req_buf, \fBrequest\fP *req)"
+.br
+.ti -1c
+.RI "void \fB_free_request\fP (\fBrequest\fP *req)"
+.br
+.ti -1c
+.RI "void \fB_req_header_htab_key_destroy\fP (gpointer data)"
+.br
+.ti -1c
+.RI "void \fB_req_header_htab_value_destroy\fP (gpointer data)"
+.br
+.ti -1c
+.RI "void \fB_print_header\fP (char *key, char *value, gpointer user_data)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Functions for accepting, parsing and handling network requests\&. 
+
+Implements functions defined in \fC\fBinclude/request\&.h\fP\fP\&. Used to accept, parse and handle network requests\&.
+.PP
+The structure of request is defined by \fCstruct request\fP (defined in \fC\fBinclude/request\&.h\fP\fP)\&. This struct contains the following fields: http method, url, request headers and connection file descriptor\&. \fCstruct request\fP can be used to created a response (defined in \fC\fBinclude/response\&.h\fP\fP) to send the response back to the client\&.
+.PP
+Max size of a request is defined by \fCREQ_BUF_SIZE\fP macro (defined in \fC\fBinclude/request\&.h\fP\fP)\&. This value can be changed by defining \fCREQ_BUF_SIZE\fP before \fC#include 'request\&.h'\fP\&.
+.PP
+\fBSee also\fP
+.RS 4
+typedef struct \fBrequest\fP 
+.PP
+typedef struct \fBresponse\fP
+.RE
+.PP
+\fBAuthor\fP
+.RS 4
+Sai Hemanth Bheemreddy (@SaiHemanthBR) 
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy 
+.RE
+.PP
+\fBBug\fP
+.RS 4
+No known bugs\&. 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "void _free_request (\fBrequest\fP * req)"
+
+.SS "\fBrequest\fP* _initialize_request ()"
+
+.SS "int _parse_request (const char * req_buf, \fBrequest\fP * req)"
+
+.SS "void _print_header (char * key, char * value, gpointer user_data)"
+
+.SS "void _req_header_htab_key_destroy (gpointer data)"
+
+.SS "void _req_header_htab_value_destroy (gpointer data)"
+
+.SS "void close_request (\fBrequest\fP * req)"
+
+.SS "\fBrequest\fP* get_request (const int conn_fd)"
+
+.SS "const char* get_request_header (const \fBrequest\fP * req, const char * header_key, char * header_val)"
+
+.SS "\fBrequest\fP* parse_request (const char * req_buf, const int conn_fd)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for nanows from the source code\&.

@@ -1,0 +1,98 @@
+.TH "slib/config.c" 3 "Mon Jul 26 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+slib/config.c \- A configuration manager\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <math\&.h>\fP
+.br
+\fC#include <stdbool\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include 'config\&.h'\fP
+.br
+\fC#include 'helpers\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBload_config\fP ()"
+.br
+.ti -1c
+.RI "char * \fBget_config\fP (const char *key)"
+.br
+.ti -1c
+.RI "char * \fBget_config_str\fP (const char *key)"
+.br
+.ti -1c
+.RI "int \fBget_config_int\fP (const char *key)"
+.br
+.ti -1c
+.RI "void \fBunload_config\fP ()"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "GKeyFile * \fBconfig\fP = NULL"
+.br
+.ti -1c
+.RI "GError * \fBerror\fP = NULL"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+A configuration manager\&. 
+
+Implements functions defined in \fC\fBinclude/config\&.h\fP\fP\&. Used to load, parse and get configurations\&.
+.PP
+Config file is defined by \fCCONF_FILE\fP macro in \fC\fBinclude/config\&.h\fP\fP\&. Custom config file can be specified by defining \fCCONF_FILE\fP macro before \fC#include 'config\&.h'\fP\&.
+.PP
+This configuration manager is based on the INI file format and uses \fIKey-Value file parser\fP available in glib library\&. Not all the configurations are implemented yet but the goal is to have most settings configured through the config file defined by \fCCONF_FILE\fP macro\&.
+.PP
+Keys for few configuration options are defined in \fC\fBinclude/config\&.h\fP\fP and can be used as keys to retrive the configuration values\&. These macros can be changed by defining them before \fC#include 'config\&.h'\fP\&. In which case, the keys for the corresponding configuration options need to be changed accordingly in \fCCONF_FILE\fP file\&.
+.PP
+\fBAuthor\fP
+.RS 4
+Sai Hemanth Bheemreddy (@SaiHemanthBR) 
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy 
+.RE
+.PP
+\fBBug\fP
+.RS 4
+No known bugs\&. 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "char* get_config (const char * key)"
+
+.SS "int get_config_int (const char * key)"
+
+.SS "char* get_config_str (const char * key)"
+
+.SS "int load_config ()"
+
+.SS "void unload_config ()"
+
+.SH "Variable Documentation"
+.PP 
+.SS "GKeyFile* config = NULL"
+
+.SS "GError* error = NULL"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for nanows from the source code\&.

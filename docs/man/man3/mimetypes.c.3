@@ -1,0 +1,105 @@
+.TH "slib/mimetypes.c" 3 "Mon Jul 26 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+slib/mimetypes.c \- Functions for loading and querying mimetypes\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+\fC#include 'helpers\&.h'\fP
+.br
+\fC#include 'mimetypes\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBcreate_mime_table\fP ()"
+.br
+.ti -1c
+.RI "void \fBdestroy_mime_table\fP ()"
+.br
+.ti -1c
+.RI "const char * \fBget_mimetype_for_ext\fP (const char *ext, char *mimetype)"
+.br
+.ti -1c
+.RI "const char * \fBget_mimetype_for_url\fP (const char *url, char *mimetype)"
+.br
+.ti -1c
+.RI "char * \fB_get_ext_for_url\fP (const char *url)"
+.br
+.ti -1c
+.RI "void \fB_mime_htab_key_destroy\fP (gpointer data)"
+.br
+.ti -1c
+.RI "void \fB_mime_htab_value_destroy\fP (gpointer data)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "GHashTable * \fB_mime_htab\fP = NULL"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Functions for loading and querying mimetypes\&. 
+
+Implements functions defined in \fC\fBinclude/mimetypes\&.h\fP\fP\&. Used to load and retrive MIME types for file types\&.
+.PP
+MIME types in \fC\fBmimetypes\&.h\fP\fP are defined as a hash table\&. The hash table is loaded from the file defined by \fCMIME_CONF_FILE\fP macro (defined in \fCinclude/mimetypes/h\fP)\&. MIME types file can be changed by defining \fCCONF_FILE\fP macro before \fC#include 'mimetypes\&.h'\fP\&.
+.PP
+\fCMIME_CONF_FILE\fP can be expected to be a file where each line is a key-value pair with the format <file extension starting with '\&.'>=<mime type>\&. If the line starts with a '#', it is considered a comment\&. Keys in \fCMIME_CONF_FILE\fP must always be file extensions starting with '\&.'\&. With the only exception being \fIdefault\fP case that is used to define the default MIME type for all unknown file extensions\&. And max length of a value is defined by \fCMIME_BUF_SIZE\fP macro (defined in \fCinclude/mimetypes/h\fP)\&.
+.PP
+The default case key is defined by \fCDEFAULT_MIMETYPE_KEY\fP macro (defined in \fCinclude/mimetypes/h\fP)\&. If \fCDEFAULT_MIMETYPE_KEY\fP can be changed by defining \fCCONF_FILE\fP macro before \fC#include 'mimetypes\&.h'\fP\&. In which case, the key for default MIME type must be changed as well\&.
+.PP
+\fBAuthor\fP
+.RS 4
+Sai Hemanth Bheemreddy (@SaiHemanthBR) 
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy 
+.RE
+.PP
+\fBBug\fP
+.RS 4
+No known bugs\&. 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "char* _get_ext_for_url (const char * url)"
+
+.SS "void _mime_htab_key_destroy (gpointer data)"
+
+.SS "void _mime_htab_value_destroy (gpointer data)"
+
+.SS "int create_mime_table ()"
+
+.SS "void destroy_mime_table ()"
+
+.SS "const char* get_mimetype_for_ext (const char * ext, char * mimetype)"
+
+.SS "const char* get_mimetype_for_url (const char * url, char * mimetype)"
+
+.SH "Variable Documentation"
+.PP 
+.SS "GHashTable* _mime_htab = NULL"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for nanows from the source code\&.

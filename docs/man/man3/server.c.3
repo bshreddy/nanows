@@ -1,0 +1,130 @@
+.TH "src/server.c" 3 "Mon Jul 26 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/server.c \- Web Server main source file and entry point\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <errno\&.h>\fP
+.br
+\fC#include <stdbool\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <arpa/inet\&.h>\fP
+.br
+\fC#include <fcntl\&.h>\fP
+.br
+\fC#include <netinet/in\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include <signal\&.h>\fP
+.br
+\fC#include <sys/socket\&.h>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+\fC#include 'config\&.h'\fP
+.br
+\fC#include 'mimetypes\&.h'\fP
+.br
+\fC#include 'request\&.h'\fP
+.br
+\fC#include 'response\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBBACKLOG\fP   16"
+.br
+.ti -1c
+.RI "#define \fBSERVER_NAME\fP   'ElServe/2\&.0'"
+.br
+.ti -1c
+.RI "#define \fBFILE_PATH_BUF_SIZE\fP   1024"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBstop_server\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetup_socket\fP ()"
+.br
+.ti -1c
+.RI "void * \fBhandle_request\fP (void *)"
+.br
+.ti -1c
+.RI "void \fBclean_request\fP (FILE *, \fBrequest\fP *, \fBresponse\fP *)"
+.br
+.ti -1c
+.RI "int \fBmain\fP (int argc, char *argv[])"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBtcp_socket\fP = \-1"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Web Server main source file and entry point\&. 
+
+Implements the main function of \fI\fBNano Web Server\&.\fP\fP It is a simple, multi-threaded, web server written using POSIX Sockets\&. Uses a process-driven approach and creates a new thread for each request\&. This web server can only host simple static webpages with no server-size processing\&. As of v2, it does not conform to any HTTP protocol\&. This is a learning project and is not intended to be used in a production environment\&.
+.PP
+\fBAuthor\fP
+.RS 4
+Sai Hemanth Bheemreddy (@SaiHemanthBR) 
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy 
+.RE
+.PP
+\fBBug\fP
+.RS 4
+No known bugs\&. 
+.RE
+.PP
+
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define BACKLOG   16"
+
+.SS "#define FILE_PATH_BUF_SIZE   1024"
+
+.SS "#define SERVER_NAME   'ElServe/2\&.0'"
+
+.SH "Function Documentation"
+.PP 
+.SS "void clean_request (FILE * file, \fBrequest\fP * req, \fBresponse\fP * res)"
+
+.SS "void * handle_request (void * new_conn_fd)"
+
+.SS "int main (int argc, char * argv[])"
+
+.SS "void setup_socket ()"
+
+.SS "void stop_server ()"
+
+.SH "Variable Documentation"
+.PP 
+.SS "int tcp_socket = \-1"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for nanows from the source code\&.

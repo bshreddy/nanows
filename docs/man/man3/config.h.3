@@ -1,0 +1,106 @@
+.TH "include/config.h" 3 "Mon Jul 26 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/config.h \- Function Prototypes for the configuration manager\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <glib\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCONF_FILE\fP   '\&./etc/nanows\&.conf'"
+.br
+.ti -1c
+.RI "#define \fBGROUP_NAME\fP   'server'"
+.br
+.ti -1c
+.RI "#define \fBHOST_CONF_KEY\fP   'server_host'"
+.br
+.ti -1c
+.RI "#define \fBPORT_CONF_KEY\fP   'server_port'"
+.br
+.ti -1c
+.RI "#define \fBSITE_DIR_CONF_KEY\fP   'site_root_dir'"
+.br
+.ti -1c
+.RI "#define \fBPAGE_CONF_KEY\fP   'default_page'"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBload_config\fP ()"
+.br
+.ti -1c
+.RI "char * \fBget_config\fP (const char *)"
+.br
+.ti -1c
+.RI "char * \fBget_config_str\fP (const char *)"
+.br
+.ti -1c
+.RI "int \fBget_config_int\fP (const char *)"
+.br
+.ti -1c
+.RI "void \fBunload_config\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Function Prototypes for the configuration manager\&. 
+
+This file contains function prototypes for loading, retriving configurations from file defined by \fCCONF_FILE\fP macro\&.
+.PP
+Implemented in \fC\fBslib/config\&.c\fP\fP\&.
+.PP
+\fBAuthor\fP
+.RS 4
+Sai Hemanth Bheemreddy (@SaiHemanthBR) 
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy 
+.RE
+.PP
+\fBBug\fP
+.RS 4
+No known bugs\&. 
+.RE
+.PP
+
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define CONF_FILE   '\&./etc/nanows\&.conf'"
+
+.SS "#define GROUP_NAME   'server'"
+
+.SS "#define HOST_CONF_KEY   'server_host'"
+
+.SS "#define PAGE_CONF_KEY   'default_page'"
+
+.SS "#define PORT_CONF_KEY   'server_port'"
+
+.SS "#define SITE_DIR_CONF_KEY   'site_root_dir'"
+
+.SH "Function Documentation"
+.PP 
+.SS "char* get_config (const char * key)"
+
+.SS "int get_config_int (const char * key)"
+
+.SS "char* get_config_str (const char * key)"
+
+.SS "int load_config ()"
+
+.SS "void unload_config ()"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for nanows from the source code\&.
