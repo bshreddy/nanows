@@ -1,5 +1,5 @@
-.DS_Store
-.vscode
+**/.DS_Store
+**/.vscode
 sites
 bin
 lib
@@ -19,3 +19,4 @@ configure*
 !configure.ac
 .deps
 .dirstamp
+docs
