@@ -46,6 +46,7 @@ int create_mime_table() {
     if ((_mime_htab = g_hash_table_new_full(g_str_hash, g_str_equal, _mime_htab_key_destroy,
                                             _mime_htab_value_destroy)) == NULL)
         return 0;
+
     if ((mime_file = fopen(MIME_CONF_FILE, "r")) == NULL)
         return 0;
 

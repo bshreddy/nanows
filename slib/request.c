@@ -150,32 +150,3 @@ void _req_header_htab_value_destroy(gpointer data) {
     free(data);
     data = NULL;
 }
-
-void _print_header(char *key, char *value, gpointer user_data) {
-    printf(">> %s = %s\n", key, value);
-}
-
-// int main() {
-//     char req_buf[REQ_BUF_SIZE] = "GET / HTTP/1.1\r\nHost: localhost:8080\r\nConnection:
-//     keep-alive"
-//                                 "\r\nCache-Control: max-age=0\r\nUpgrade-Insecure-Requests:
-//                                 1\r\n" "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X
-//                                 11_2_0) " "AppleWebKit/537.36 (KHTML, like Gecko)
-//                                 Chrome/87.0.4280.88 " "Safari/537.36\r\nAccept:
-//                                 text/html,application/xhtml+xml,"
-//                                 "application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,"
-//                                 "application/signed-exchange;v=b3;q=0.9\r\nSec-Fetch-Site: none"
-//                                 "\r\nSec-Fetch-Mode: navigate\r\nSec-Fetch-User: ?1\r"
-//                                 "\nSec-Fetch-Dest: document\r\nAccept-Encoding: gzip, deflate,
-//                                 br"
-//                                 "\r\nAccept-Language: en-US,en;q=0.9\r\n\r\n";
-//     printf("%s\n", req_buf);
-
-//     request *req = NULL;
-//     if((req = parse_request(req_buf, -1)) == NULL) return 1;
-
-//     printf("> %s\t%s\t%s\n", req->http_method, req->url, req->http_ver);
-//     g_hash_table_foreach(req->header_htab, (GHFunc) _print_header, NULL);
-
-//     return 0;
-// }

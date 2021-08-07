@@ -79,7 +79,7 @@ const char *set_response_header(const response *res, const char *header_key,
 }
 
 // TODO: Only 1 send() call
-ssize_t send_response_header(const response *res) {
+ssize_t send_response_head(const response *res) {
     char buf[RES_HEADER_BUF_SIZE];
     ssize_t buf_size = 0, total_buf_size = 0;
 
@@ -125,7 +125,7 @@ ssize_t send_response_file(const response *res, FILE *file) {
     while ((buf_size = fread(buf, 1, RES_BUF_SIZE, file)) > 0) {
         send_size = send(res->conn_fd, buf, buf_size, 0);
         if (send_size != buf_size)
-            return 0;
+            return total_buf_size;
         total_buf_size += send_size;
     }
 
