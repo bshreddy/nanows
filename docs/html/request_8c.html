@@ -102,34 +102,41 @@ $(document).ready(function(){initNavTree('request_8c.html',''); initResizable();
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aca4620740e6b244fea699594851e0e28"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrequest.html">request</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8c.html#aca4620740e6b244fea699594851e0e28">get_request</a> (const int conn_fd)</td></tr>
+<tr class="memdesc:aca4620740e6b244fea699594851e0e28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receives an accepted connection, parses the request, and returns the request.  <a href="request_8c.html#aca4620740e6b244fea699594851e0e28">More...</a><br /></td></tr>
 <tr class="separator:aca4620740e6b244fea699594851e0e28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad595fd811df5f9ceed4b1dd2dc7f681"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrequest.html">request</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8c.html#aad595fd811df5f9ceed4b1dd2dc7f681">parse_request</a> (const char *req_buf, const int conn_fd)</td></tr>
+<tr class="memdesc:aad595fd811df5f9ceed4b1dd2dc7f681"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the request buffer and returns the request struct.  <a href="request_8c.html#aad595fd811df5f9ceed4b1dd2dc7f681">More...</a><br /></td></tr>
 <tr class="separator:aad595fd811df5f9ceed4b1dd2dc7f681"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee96499e88370e463617a24dada68234"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8c.html#aee96499e88370e463617a24dada68234">close_request</a> (<a class="el" href="structrequest.html">request</a> *req)</td></tr>
+<tr class="memdesc:aee96499e88370e463617a24dada68234"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes the request connection and frees the request struct.  <a href="request_8c.html#aee96499e88370e463617a24dada68234">More...</a><br /></td></tr>
 <tr class="separator:aee96499e88370e463617a24dada68234"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a587696bd118becfb2cef30b633ab55ec"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8c.html#a587696bd118becfb2cef30b633ab55ec">get_request_header</a> (const <a class="el" href="structrequest.html">request</a> *req, const char *header_key, char *header_val)</td></tr>
+<tr class="memdesc:a587696bd118becfb2cef30b633ab55ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the value of a request header for a given key.  <a href="request_8c.html#a587696bd118becfb2cef30b633ab55ec">More...</a><br /></td></tr>
 <tr class="separator:a587696bd118becfb2cef30b633ab55ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41ae6b5f88c4977b67efaeb1a66a7a61"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrequest.html">request</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8c.html#a41ae6b5f88c4977b67efaeb1a66a7a61">_initialize_request</a> ()</td></tr>
+<tr class="memdesc:a41ae6b5f88c4977b67efaeb1a66a7a61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates memory for a request struct and initializes it to default values.  <a href="request_8c.html#a41ae6b5f88c4977b67efaeb1a66a7a61">More...</a><br /></td></tr>
 <tr class="separator:a41ae6b5f88c4977b67efaeb1a66a7a61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa723854da2c7ed0fa7af8f176b7bf83d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8c.html#aa723854da2c7ed0fa7af8f176b7bf83d">_parse_request</a> (const char *req_buf, <a class="el" href="structrequest.html">request</a> *req)</td></tr>
+<tr class="memdesc:aa723854da2c7ed0fa7af8f176b7bf83d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to parse the request buffer and populate the request struct.  <a href="request_8c.html#aa723854da2c7ed0fa7af8f176b7bf83d">More...</a><br /></td></tr>
 <tr class="separator:aa723854da2c7ed0fa7af8f176b7bf83d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a598594ff7b4e74d62693708a56c957a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8c.html#a598594ff7b4e74d62693708a56c957a6">_free_request</a> (<a class="el" href="structrequest.html">request</a> *req)</td></tr>
+<tr class="memdesc:a598594ff7b4e74d62693708a56c957a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to free the request struct.  <a href="request_8c.html#a598594ff7b4e74d62693708a56c957a6">More...</a><br /></td></tr>
 <tr class="separator:a598594ff7b4e74d62693708a56c957a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71cb245f536a2e4ce3133a1c4eb9c4f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8c.html#a71cb245f536a2e4ce3133a1c4eb9c4f8">_req_header_htab_key_destroy</a> (gpointer data)</td></tr>
+<tr class="memdesc:a71cb245f536a2e4ce3133a1c4eb9c4f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases the memory allocated for the given key, called automatically by <code>g_hash_table_destroy()</code>.  <a href="request_8c.html#a71cb245f536a2e4ce3133a1c4eb9c4f8">More...</a><br /></td></tr>
 <tr class="separator:a71cb245f536a2e4ce3133a1c4eb9c4f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7d91dc294de17f3332731810447183d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8c.html#ab7d91dc294de17f3332731810447183d">_req_header_htab_value_destroy</a> (gpointer data)</td></tr>
+<tr class="memdesc:ab7d91dc294de17f3332731810447183d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases the memory allocated for the given value, called automatically by <code>g_hash_table_destroy()</code>.  <a href="request_8c.html#ab7d91dc294de17f3332731810447183d">More...</a><br /></td></tr>
 <tr class="separator:ab7d91dc294de17f3332731810447183d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80b4110d6a9ec37150e3b5dcb2662414"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8c.html#a80b4110d6a9ec37150e3b5dcb2662414">_print_header</a> (char *key, char *value, gpointer user_data)</td></tr>
-<tr class="separator:a80b4110d6a9ec37150e3b5dcb2662414"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions for accepting, parsing and handling network requests. </p>
 <p>Implements functions defined in <code><a class="el" href="request_8h.html" title="Function Prototypes for accepting, parsing and handling network requests.">include/request.h</a></code>. Used to accept, parse and handle network requests.</p>
 <p>The structure of request is defined by <code>struct request</code> (defined in <code><a class="el" href="request_8h.html" title="Function Prototypes for accepting, parsing and handling network requests.">include/request.h</a></code>). This struct contains the following fields: http method, url, request headers and connection file descriptor. <code>struct request</code> can be used to created a response (defined in <code><a class="el" href="response_8h.html" title="Function Prototypes for creating, sending and handling network responses.">include/response.h</a></code>) to send the response back to the client.</p>
 <p>Max size of a request is defined by <code>REQ_BUF_SIZE</code> macro (defined in <code><a class="el" href="request_8h.html" title="Function Prototypes for accepting, parsing and handling network requests.">include/request.h</a></code>). This value can be changed by defining <code>REQ_BUF_SIZE</code> before <code>#include "request.h"</code>.</p>
-<dl class="section see"><dt>See also</dt><dd>typedef struct <a class="el" href="structrequest.html">request</a> </dd>
+<dl class="section see"><dt>See also</dt><dd>typedef struct <a class="el" href="structrequest.html" title="Defines a request structure.">request</a> </dd>
 <dd>
-typedef struct <a class="el" href="structresponse.html">response</a></dd></dl>
+typedef struct <a class="el" href="structresponse.html" title="Defines a rresponse structure.">response</a></dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Sai Hemanth Bheemreddy (@SaiHemanthBR) </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy </dd></dl>
 <dl class="bug"><dt><b><a class="el" href="bug.html#_bug000009">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
@@ -150,6 +157,16 @@ typedef struct <a class="el" href="structresponse.html">response</a></dd></dl>
       </table>
 </div><div class="memdoc">
 
+<p>Helper function to free the request struct. </p>
+<p>This function frees the memory allocated for the request struct. This includes freeing the memory allocated for GHashTable using <code>g_hash_table_destroy()</code> and freeing the memory allocated to <code>http_method</code>, <code>url</code>, <code>http_ver</code> using <code>free()</code>. Once the request struct is freed, <code>req</code> parameter is set to <code>NULL</code>. If a <code>NULL</code> pointer is passed to this function, function does nothing.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">req</td><td>The request struct to be freed and set to <code>NULL</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
 </div>
 </div>
 <a id="a41ae6b5f88c4977b67efaeb1a66a7a61"></a>
@@ -166,6 +183,16 @@ typedef struct <a class="el" href="structresponse.html">response</a></dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Allocates memory for a request struct and initializes it to default values. </p>
+<p>Default values are:</p><ul>
+<li>conn_fd = -1</li>
+<li>http_method = <code>NULL</code></li>
+<li>url = <code>NULL</code></li>
+<li>http_ver = <code>NULL</code></li>
+<li>header_htab = pointer to a newly allocated <code>GHashTable</code></li>
+</ul>
+<dl class="section return"><dt>Returns</dt><dd>On success, pointer to a newly allocated request struct is returned. On failure, <code>NULL</code> is returned. </dd></dl>
 
 </div>
 </div>
@@ -195,39 +222,42 @@ typedef struct <a class="el" href="structresponse.html">response</a></dd></dl>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="a80b4110d6a9ec37150e3b5dcb2662414"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80b4110d6a9ec37150e3b5dcb2662414">&#9670;&nbsp;</a></span>_print_header()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void _print_header </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">gpointer&#160;</td>
-          <td class="paramname"><em>user_data</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Helper function to parse the request buffer and populate the request struct. </p>
+<p>Request data is parsed and populated into the request struct. For example, lets take a normal request: </p><div class="fragment"><div class="line">GET /index.html HTTP/1.1</div>
+<div class="line">Host: localhost</div>
+<div class="line">Accept: text/html</div>
+<div class="line">Accept-Encoding: gzip</div>
+<div class="line">Accept-Language: en-US</div>
+<div class="line">User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36</div>
+<div class="line">    (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36</div>
+<div class="line">Connection: keep-alive</div>
+<div class="line">Upgrade-Insecure-Requests: 1</div>
+<div class="line">Cache-Control: max-age=0</div>
+</div><!-- fragment --><p>The request struct will be populated as follows:</p><ul>
+<li>conn_fd = <code>file descriptor of accepted connection, set in <a class="el" href="request_8h.html#ae5427aea398067bfe4a2399c0ccf1ab4" title="Parses the request buffer and returns the request struct.">parse_request()</a></code></li>
+<li>http_method = <code>GET</code></li>
+<li>url = <code>/index.html</code></li>
+<li>http_ver = <code>HTTP/1.1</code></li>
+<li>header_htab = <code>GHashTable</code> containing the following key-value pairs:<ul>
+<li><code>Host</code>: <code>localhost</code></li>
+<li><code>Accept</code>: <code>text/html</code></li>
+<li><code>Accept-Encoding</code>: <code>gzip</code></li>
+<li><code>Accept-Language</code>: <code>en-US</code></li>
+<li><code>User-Agent</code>: <code>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36</code></li>
+<li><code>Connection</code>: <code>keep-alive</code></li>
+<li><code>Upgrade-Insecure-Requests</code>: <code>1</code></li>
+<li><code>Cache-Control</code>: <code>max-age=0</code></li>
+</ul>
+</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">req_buf</td><td>The buffer containing the request data (read using <code>recv()</code>). </td></tr>
+    <tr><td class="paramname">req</td><td>The request struct to store the parsed request data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>On success, <code>1</code> is returned. On failure, <code>0</code> is returned. </dd></dl>
 
 </div>
 </div>
@@ -247,6 +277,15 @@ typedef struct <a class="el" href="structresponse.html">response</a></dd></dl>
       </table>
 </div><div class="memdoc">
 
+<p>Releases the memory allocated for the given key, called automatically by <code>g_hash_table_destroy()</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Pointer to key in the hash table. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
 </div>
 </div>
 <a id="ab7d91dc294de17f3332731810447183d"></a>
@@ -264,6 +303,15 @@ typedef struct <a class="el" href="structresponse.html">response</a></dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Releases the memory allocated for the given value, called automatically by <code>g_hash_table_destroy()</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Pointer to value in the hash table. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
 </div>
 </div>
@@ -283,6 +331,19 @@ typedef struct <a class="el" href="structresponse.html">response</a></dd></dl>
       </table>
 </div><div class="memdoc">
 
+<p>Closes the request connection and frees the request struct. </p>
+<p>All accepted request connections need to be closed to complete the response. Even if the response connection is closed, the browser will still be waiting for a response, if request is not closed. Therefore, this function, along with <code>close_response</code>, must be called to complete the request-response cycle. This function calls <code>_free_request</code> to free the request struct.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">req</td><td>The request to be closed and freed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="response_8c.html#a8ff953f6c5c1845c681a54abb2b9d31a" title="Closes the response connection and frees the response struct.">close_response</a> </dd>
+<dd>
+<a class="el" href="request_8h.html#a1118cfa118dbad0843faff011401a33a" title="Helper function to free the request struct.">_free_request</a> </dd></dl>
+
 </div>
 </div>
 <a id="aca4620740e6b244fea699594851e0e28"></a>
@@ -300,6 +361,18 @@ typedef struct <a class="el" href="structresponse.html">response</a></dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Receives an accepted connection, parses the request, and returns the request. </p>
+<p>This function receives (reads) an accepted connection and calls <code>parse_request</code> to parse the request. The request struct returned by <code>parse_request</code> is then returned. This function must be called after a connection is accepted, i.e. after <code>accept</code> is called. Therefore, the file descriptor returned from <code>accept</code> must be passed to this function and not the file descriptor used to accept the connection, i.e. file descriptor passed to <code>accept</code>.</p>
+<p>For, more info about <code>accept()</code>, see POSIX socket function docs.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">conn_fd</td><td>The file descriptor of the accepted connection, i.e the file descriptor returned by <code>accept</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>On success, pointer to a request struct is returned. On failure, <code>NULL</code> is returned.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="request_8h.html#ae5427aea398067bfe4a2399c0ccf1ab4" title="Parses the request buffer and returns the request struct.">parse_request</a> </dd></dl>
 
 </div>
 </div>
@@ -335,6 +408,19 @@ typedef struct <a class="el" href="structresponse.html">response</a></dd></dl>
       </table>
 </div><div class="memdoc">
 
+<p>Gets the value of a request header for a given key. </p>
+<p>If <code>header_key</code> is found in header table, the value is copied into <code>header_val</code> and the same is returned. If the key is not found or an error occurs, <code>NULL</code> is returned and <code>header_val</code> is not modified.</p>
+<p><code>header_val</code> can be <code>NULL</code>, in which case, the function simply returns the value.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">req</td><td>The request struct. </td></tr>
+    <tr><td class="paramname">header_key</td><td>The key of the header. </td></tr>
+    <tr><td class="paramname">header_val</td><td>Pointer to a string to store the value of the header. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>On success, returns a pointer to the header value. On failure, returns <code>NULL</code>. </dd></dl>
+
 </div>
 </div>
 <a id="aad595fd811df5f9ceed4b1dd2dc7f681"></a>
@@ -362,6 +448,20 @@ typedef struct <a class="el" href="structresponse.html">response</a></dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Parses the request buffer and returns the request struct. </p>
+<p>This function accepts request data and file descriptor of the accepted connection, and parses the request. Initially, <code>_initialize_request</code> is called to initialize the request struct. Then <code>_parse_request</code> is called to parse the request. The request struct is then populated with the data parsed from the request. The same request struct is returned. If an error occurs, <code>NULL</code> is returned.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">req_buf</td><td>The buffer containing the request data (read using <code>recv()</code>). </td></tr>
+    <tr><td class="paramname">conn_fd</td><td>The file descriptor of the accepted connection, i.e the file descriptor returned by <code>accept</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>On success, pointer to a request struct is returned. On failure, <code>NULL</code> is returned.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="request_8h.html#a41ae6b5f88c4977b67efaeb1a66a7a61" title="Allocates memory for a request struct and initializes it to default values.">_initialize_request</a> </dd>
+<dd>
+<a class="el" href="request_8h.html#ac22ba03c6210da5fd4acff4ad992e93c" title="Helper function to parse the request buffer and populate the request struct.">_parse_request</a> </dd></dl>
 
 </div>
 </div>

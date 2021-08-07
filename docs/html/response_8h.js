@@ -14,6 +14,6 @@ var response_8h =
     [ "get_response_header", "response_8h.html#ae5a84d9d72182671650daaba141e6302", null ],
     [ "send_response", "response_8h.html#a08ce63484bd17225366035db410023ae", null ],
     [ "send_response_file", "response_8h.html#a464c917b026297025ed5c6c448816244", null ],
-    [ "send_response_header", "response_8h.html#a0ec235b75a330373392f246faee7dac8", null ],
+    [ "send_response_head", "response_8h.html#a1ed14fa621c53ee6752a37e2a6ed341c", null ],
     [ "set_response_header", "response_8h.html#a372420553e067b4101ac1f7f80c4ed53", null ]
 ];

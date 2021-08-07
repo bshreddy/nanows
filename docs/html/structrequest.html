@@ -91,22 +91,40 @@ $(document).ready(function(){initNavTree('structrequest.html',''); initResizable
 </div><!--header-->
 <div class="contents">
 
+<p>Defines a request structure.  
+ <a href="structrequest.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="request_8h_source.html">request.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a799618ac21a4ad60df03ba8e64c3b093"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrequest.html#a799618ac21a4ad60df03ba8e64c3b093">conn_fd</a></td></tr>
+<tr class="memdesc:a799618ac21a4ad60df03ba8e64c3b093"><td class="mdescLeft">&#160;</td><td class="mdescRight">The file descriptor of the connection used to receive data from the connection.  <a href="structrequest.html#a799618ac21a4ad60df03ba8e64c3b093">More...</a><br /></td></tr>
 <tr class="separator:a799618ac21a4ad60df03ba8e64c3b093"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b2cb8a3bc60036ed07b2c4433d359c9"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrequest.html#a9b2cb8a3bc60036ed07b2c4433d359c9">http_method</a></td></tr>
-<tr class="separator:a9b2cb8a3bc60036ed07b2c4433d359c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a260111ec24b9a0767ffe7e8feafad59e"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrequest.html#a260111ec24b9a0767ffe7e8feafad59e">url</a></td></tr>
-<tr class="separator:a260111ec24b9a0767ffe7e8feafad59e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1721c96e2de1d2cb38ea487eff3edfcd"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrequest.html#a1721c96e2de1d2cb38ea487eff3edfcd">http_ver</a></td></tr>
-<tr class="separator:a1721c96e2de1d2cb38ea487eff3edfcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86a772e6c415e00e0fa79d736c351d24"><td class="memItemLeft" align="right" valign="top">GHashTable *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrequest.html#a86a772e6c415e00e0fa79d736c351d24">header_htab</a></td></tr>
-<tr class="separator:a86a772e6c415e00e0fa79d736c351d24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1013f4d80a618b2767f38f83a1894bb2"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrequest.html#a1013f4d80a618b2767f38f83a1894bb2">http_method</a></td></tr>
+<tr class="memdesc:a1013f4d80a618b2767f38f83a1894bb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The HTTP method of the request, supports only <code>GET</code> for now.  <a href="structrequest.html#a1013f4d80a618b2767f38f83a1894bb2">More...</a><br /></td></tr>
+<tr class="separator:a1013f4d80a618b2767f38f83a1894bb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1c827351315d8bc70024ec82146f600"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrequest.html#ad1c827351315d8bc70024ec82146f600">url</a></td></tr>
+<tr class="memdesc:ad1c827351315d8bc70024ec82146f600"><td class="mdescLeft">&#160;</td><td class="mdescRight">The URL of the request, doesn't include the protocol and domain.  <a href="structrequest.html#ad1c827351315d8bc70024ec82146f600">More...</a><br /></td></tr>
+<tr class="separator:ad1c827351315d8bc70024ec82146f600"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf4ee36ab1861c9919bbb63a5abc6bb4"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrequest.html#aaf4ee36ab1861c9919bbb63a5abc6bb4">http_ver</a></td></tr>
+<tr class="memdesc:aaf4ee36ab1861c9919bbb63a5abc6bb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The HTTP version of the request.  <a href="structrequest.html#aaf4ee36ab1861c9919bbb63a5abc6bb4">More...</a><br /></td></tr>
+<tr class="separator:aaf4ee36ab1861c9919bbb63a5abc6bb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b7f16ed8d2b56d288d25ec497e9edfe"><td class="memItemLeft" align="right" valign="top">GHashTable *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrequest.html#a9b7f16ed8d2b56d288d25ec497e9edfe">header_htab</a></td></tr>
+<tr class="memdesc:a9b7f16ed8d2b56d288d25ec497e9edfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">The hash table of the request headers.  <a href="structrequest.html#a9b7f16ed8d2b56d288d25ec497e9edfe">More...</a><br /></td></tr>
+<tr class="separator:a9b7f16ed8d2b56d288d25ec497e9edfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Data Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Defines a request structure. </p>
+<p>This structure defines a request structure. It is used to store the connection file descriptor, HTTP Method, URL, HTTP Version, and the request headers.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="request_8c.html#aca4620740e6b244fea699594851e0e28" title="Receives an accepted connection, parses the request, and returns the request.">get_request</a> </dd>
+<dd>
+<a class="el" href="request_8c.html#aad595fd811df5f9ceed4b1dd2dc7f681" title="Parses the request buffer and returns the request struct.">parse_request</a> </dd>
+<dd>
+<a class="el" href="request_8c.html#a587696bd118becfb2cef30b633ab55ec" title="Gets the value of a request header for a given key.">get_request_header</a> </dd>
+<dd>
+<a class="el" href="request_8c.html#aee96499e88370e463617a24dada68234" title="Closes the request connection and frees the request struct.">close_request</a> </dd></dl>
+</div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a799618ac21a4ad60df03ba8e64c3b093"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a799618ac21a4ad60df03ba8e64c3b093">&#9670;&nbsp;</a></span>conn_fd</h2>
 
@@ -119,61 +137,73 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>The file descriptor of the connection used to receive data from the connection. </p>
+
 </div>
 </div>
-<a id="a86a772e6c415e00e0fa79d736c351d24"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a86a772e6c415e00e0fa79d736c351d24">&#9670;&nbsp;</a></span>header_htab</h2>
+<a id="a9b7f16ed8d2b56d288d25ec497e9edfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b7f16ed8d2b56d288d25ec497e9edfe">&#9670;&nbsp;</a></span>header_htab</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">GHashTable* request::header_htab</td>
+          <td class="memname">GHashTable * request::header_htab</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>The hash table of the request headers. </p>
+
 </div>
 </div>
-<a id="a9b2cb8a3bc60036ed07b2c4433d359c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b2cb8a3bc60036ed07b2c4433d359c9">&#9670;&nbsp;</a></span>http_method</h2>
+<a id="a1013f4d80a618b2767f38f83a1894bb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1013f4d80a618b2767f38f83a1894bb2">&#9670;&nbsp;</a></span>http_method</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* request::http_method</td>
+          <td class="memname">char * request::http_method</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>The HTTP method of the request, supports only <code>GET</code> for now. </p>
+
 </div>
 </div>
-<a id="a1721c96e2de1d2cb38ea487eff3edfcd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1721c96e2de1d2cb38ea487eff3edfcd">&#9670;&nbsp;</a></span>http_ver</h2>
+<a id="aaf4ee36ab1861c9919bbb63a5abc6bb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf4ee36ab1861c9919bbb63a5abc6bb4">&#9670;&nbsp;</a></span>http_ver</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* request::http_ver</td>
+          <td class="memname">char * request::http_ver</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>The HTTP version of the request. </p>
+<p>(e.g. <code>HTTP/1.1</code>) </p>
+
 </div>
 </div>
-<a id="a260111ec24b9a0767ffe7e8feafad59e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a260111ec24b9a0767ffe7e8feafad59e">&#9670;&nbsp;</a></span>url</h2>
+<a id="ad1c827351315d8bc70024ec82146f600"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1c827351315d8bc70024ec82146f600">&#9670;&nbsp;</a></span>url</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* request::url</td>
+          <td class="memname">char * request::url</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>The URL of the request, doesn't include the protocol and domain. </p>
+<p>(e.g. <code>/index.html</code>) </p>
 
 </div>
 </div>

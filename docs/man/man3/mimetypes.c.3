@@ -1,4 +1,4 @@
-.TH "slib/mimetypes.c" 3 "Mon Jul 26 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.TH "slib/mimetypes.c" 3 "Sat Aug 7 2021" "Version 2.0" "nanows" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -26,24 +26,31 @@ slib/mimetypes.c \- Functions for loading and querying mimetypes\&.
 .ti -1c
 .RI "int \fBcreate_mime_table\fP ()"
 .br
+.RI "Loads MIME types from \fCMIME_CONF_FILE\fP and stores them in a hash table\&. "
 .ti -1c
 .RI "void \fBdestroy_mime_table\fP ()"
 .br
+.RI "Destroys the MIME types hash table and releases memory allocated for it\&. "
 .ti -1c
 .RI "const char * \fBget_mimetype_for_ext\fP (const char *ext, char *mimetype)"
 .br
+.RI "Gets the MIME type for the given file extension\&. "
 .ti -1c
 .RI "const char * \fBget_mimetype_for_url\fP (const char *url, char *mimetype)"
 .br
+.RI "Gets the MIME type for the given URL\&. "
 .ti -1c
 .RI "char * \fB_get_ext_for_url\fP (const char *url)"
 .br
+.RI "Extracts the file extension from the given URL path\&. "
 .ti -1c
 .RI "void \fB_mime_htab_key_destroy\fP (gpointer data)"
 .br
+.RI "Releases the memory allocated for the given key, called automatically by \fCg_hash_table_destroy()\fP\&. "
 .ti -1c
 .RI "void \fB_mime_htab_value_destroy\fP (gpointer data)"
 .br
+.RI "Releases the memory allocated for the given value, called automatically by \fCg_hash_table_destroy()\fP\&. "
 .in -1c
 .SS "Variables"
 
@@ -84,17 +91,120 @@ No known bugs\&.
 .PP 
 .SS "char* _get_ext_for_url (const char * url)"
 
+.PP
+Extracts the file extension from the given URL path\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIurl\fP The URL path\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+On success, returns a pointer to string containing extension for the given URL\&. On failure, returns \fCNULL\fP\&. 
+.RE
+.PP
+
 .SS "void _mime_htab_key_destroy (gpointer data)"
+
+.PP
+Releases the memory allocated for the given key, called automatically by \fCg_hash_table_destroy()\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP Pointer to key in the hash table\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
 
 .SS "void _mime_htab_value_destroy (gpointer data)"
 
+.PP
+Releases the memory allocated for the given value, called automatically by \fCg_hash_table_destroy()\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP Pointer to value in the hash table\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
 .SS "int create_mime_table ()"
+
+.PP
+Loads MIME types from \fCMIME_CONF_FILE\fP and stores them in a hash table\&. MIME types are stored in \fCMIME_CONF_FILE\fP as a series of records\&. Each record is a key-value pair in the format `<file extension starting with '\&.'>=<mime type>`\&. If the line starts with a '#', it is considered a comment\&. Each line is parsed to extract the key and value and stored in a hash table\&. If the MIME type already exists in the hash table, the value is overwritten\&. Hash tables provided by \fCglib\fP are used to store MIME types\&. \fCg_hash_table_new_full()\fP is used to create the hash table\&.
+.PP
+If the MIME types are loaded successfully, the function returns \fC1\fP and the MIME types are stored in the \fC_mime_htab\fP variable\&. If the MIME types are already loaded (i\&.e\&. \fC_mime_htab\fP is not \fCNULL\fP), the function returns \fC2\fP without performing any action\&. If the MIME types are not loaded successfully, the function returns \fC0\fP\&.
+.PP
+\fBReturns\fP
+.RS 4
+On success, returns a non-zero value\&. On failure, returns 0\&. 
+.RE
+.PP
 
 .SS "void destroy_mime_table ()"
 
+.PP
+Destroys the MIME types hash table and releases memory allocated for it\&. 
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
 .SS "const char* get_mimetype_for_ext (const char * ext, char * mimetype)"
 
+.PP
+Gets the MIME type for the given file extension\&. If the MIME type is found in the hash table, the value is copied into \fCmimetype\fP and the same is returned\&. If the MIME type is not found in the hash table, default MIME type (defined by \fCDEFAULT_MIMETYPE_KEY\fP) is copied into \fCmimetype\fP and the same is returned\&.
+.PP
+\fCmimetype\fP can be \fCNULL\fP, in this case, the function simply returns the MIME type\&.
+.PP
+If any error occurs, the function returns NULL and \fCmimetype\fP is not modified\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIext\fP The file extension with a leading '\&.'\&. 
+.br
+\fImimetype\fP Pointer to a string where the MIME type should be copied\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+On success, returns a pointer to string with the MIME type\&. On failure, returns \fCNULL\fP\&. 
+.RE
+.PP
+
 .SS "const char* get_mimetype_for_url (const char * url, char * mimetype)"
+
+.PP
+Gets the MIME type for the given URL\&. Similar to \fC\fBget_mimetype_for_ext()\fP\fP, except it accpets a URL as input\&. The MIME type is extracted from the url and returned\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fBget_mimetype_for_ext()\fP 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIurl\fP The URL path\&. 
+.br
+\fImimetype\fP Pointer to a string where the MIME type should be copied\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+On success, returns a pointer to string with the MIME type\&. On failure, returns \fCNULL\fP\&. 
+.RE
+.PP
 
 .SH "Variable Documentation"
 .PP 

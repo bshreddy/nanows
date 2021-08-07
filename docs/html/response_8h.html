@@ -96,7 +96,6 @@ $(document).ready(function(){initNavTree('response_8h.html',''); initResizable()
 <p>Function Prototypes for creating, sending and handling network responses.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;glib.h&gt;</code><br />
-<code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="request_8h_source.html">request.h</a>&quot;</code><br />
 </div>
 <p><a href="response_8h_source.html">Go to the source code of this file.</a></p>
@@ -104,13 +103,16 @@ $(document).ready(function(){initNavTree('response_8h.html',''); initResizable()
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structresponse.html">response</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a rresponse structure.  <a href="structresponse.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:ae0908a7c8ba00e65776439da93cc1cf5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="response_8h.html#ae0908a7c8ba00e65776439da93cc1cf5">RES_BUF_SIZE</a>&#160;&#160;&#160;8192</td></tr>
+<tr class="memdesc:ae0908a7c8ba00e65776439da93cc1cf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the max size of a response buffer.  <a href="response_8h.html#ae0908a7c8ba00e65776439da93cc1cf5">More...</a><br /></td></tr>
 <tr class="separator:ae0908a7c8ba00e65776439da93cc1cf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc611d51b68bbcd98f8ab7ad2990617e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="response_8h.html#acc611d51b68bbcd98f8ab7ad2990617e">RES_HEADER_BUF_SIZE</a>&#160;&#160;&#160;1024</td></tr>
+<tr class="memdesc:acc611d51b68bbcd98f8ab7ad2990617e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the max size of buffer for individual response headers.  <a href="response_8h.html#acc611d51b68bbcd98f8ab7ad2990617e">More...</a><br /></td></tr>
 <tr class="separator:acc611d51b68bbcd98f8ab7ad2990617e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
@@ -121,28 +123,40 @@ Typedefs</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ae7d74802599dbf4ec67da54b727cf48f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structresponse.html">response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="response_8h.html#ae7d74802599dbf4ec67da54b727cf48f">create_response</a> (const int)</td></tr>
+<tr class="memdesc:ae7d74802599dbf4ec67da54b727cf48f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a response struct, duplicates <code>conn_fd</code> and returns a pointer to the response struct.  <a href="response_8h.html#ae7d74802599dbf4ec67da54b727cf48f">More...</a><br /></td></tr>
 <tr class="separator:ae7d74802599dbf4ec67da54b727cf48f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68ec837897bd5779f1ba5dd7cfd457a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structresponse.html">response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="response_8h.html#a68ec837897bd5779f1ba5dd7cfd457a3">create_response_from_request</a> (const <a class="el" href="structrequest.html">request</a> *)</td></tr>
+<tr class="memdesc:a68ec837897bd5779f1ba5dd7cfd457a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Similar to <code><a class="el" href="response_8h.html#ae7d74802599dbf4ec67da54b727cf48f" title="Creates a response struct, duplicates conn_fd and returns a pointer to the response struct.">create_response()</a></code>, but takes a request struct as an argument and copies <code>http_ver</code> from the request struct.  <a href="response_8h.html#a68ec837897bd5779f1ba5dd7cfd457a3">More...</a><br /></td></tr>
 <tr class="separator:a68ec837897bd5779f1ba5dd7cfd457a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5a84d9d72182671650daaba141e6302"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="response_8h.html#ae5a84d9d72182671650daaba141e6302">get_response_header</a> (const <a class="el" href="structresponse.html">response</a> *, const char *, char *)</td></tr>
+<tr class="memdesc:ae5a84d9d72182671650daaba141e6302"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the value of the response header for the given key.  <a href="response_8h.html#ae5a84d9d72182671650daaba141e6302">More...</a><br /></td></tr>
 <tr class="separator:ae5a84d9d72182671650daaba141e6302"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a372420553e067b4101ac1f7f80c4ed53"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="response_8h.html#a372420553e067b4101ac1f7f80c4ed53">set_response_header</a> (const <a class="el" href="structresponse.html">response</a> *, const char *, const char *)</td></tr>
+<tr class="memdesc:a372420553e067b4101ac1f7f80c4ed53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the value of the response header for the given key.  <a href="response_8h.html#a372420553e067b4101ac1f7f80c4ed53">More...</a><br /></td></tr>
 <tr class="separator:a372420553e067b4101ac1f7f80c4ed53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ec235b75a330373392f246faee7dac8"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="response_8h.html#a0ec235b75a330373392f246faee7dac8">send_response_header</a> (const <a class="el" href="structresponse.html">response</a> *)</td></tr>
-<tr class="separator:a0ec235b75a330373392f246faee7dac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ed14fa621c53ee6752a37e2a6ed341c"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="response_8h.html#a1ed14fa621c53ee6752a37e2a6ed341c">send_response_head</a> (const <a class="el" href="structresponse.html">response</a> *)</td></tr>
+<tr class="memdesc:a1ed14fa621c53ee6752a37e2a6ed341c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the response head (Start line and headers) to the client.  <a href="response_8h.html#a1ed14fa621c53ee6752a37e2a6ed341c">More...</a><br /></td></tr>
+<tr class="separator:a1ed14fa621c53ee6752a37e2a6ed341c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a464c917b026297025ed5c6c448816244"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="response_8h.html#a464c917b026297025ed5c6c448816244">send_response_file</a> (const <a class="el" href="structresponse.html">response</a> *, FILE *)</td></tr>
+<tr class="memdesc:a464c917b026297025ed5c6c448816244"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends data in a <code>FILE</code> stream to the client as response body.  <a href="response_8h.html#a464c917b026297025ed5c6c448816244">More...</a><br /></td></tr>
 <tr class="separator:a464c917b026297025ed5c6c448816244"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08ce63484bd17225366035db410023ae"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="response_8h.html#a08ce63484bd17225366035db410023ae">send_response</a> (const <a class="el" href="structresponse.html">response</a> *, const char *, ssize_t)</td></tr>
+<tr class="memdesc:a08ce63484bd17225366035db410023ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends first <code>buf_size</code> bytes in <code>buf</code> to the client as response body.  <a href="response_8h.html#a08ce63484bd17225366035db410023ae">More...</a><br /></td></tr>
 <tr class="separator:a08ce63484bd17225366035db410023ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97ecd7f0485831ee361f99f85e525bb5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="response_8h.html#a97ecd7f0485831ee361f99f85e525bb5">close_response</a> (<a class="el" href="structresponse.html">response</a> *)</td></tr>
+<tr class="memdesc:a97ecd7f0485831ee361f99f85e525bb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes the response connection and frees the response struct.  <a href="response_8h.html#a97ecd7f0485831ee361f99f85e525bb5">More...</a><br /></td></tr>
 <tr class="separator:a97ecd7f0485831ee361f99f85e525bb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78e28d1f68111539fbffaee3cb9a9446"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structresponse.html">response</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="response_8h.html#a78e28d1f68111539fbffaee3cb9a9446">_initialize_response</a> ()</td></tr>
+<tr class="memdesc:a78e28d1f68111539fbffaee3cb9a9446"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates memory for a response struct and initializes it to default values.  <a href="response_8h.html#a78e28d1f68111539fbffaee3cb9a9446">More...</a><br /></td></tr>
 <tr class="separator:a78e28d1f68111539fbffaee3cb9a9446"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aafdf3df2439747917aa7a21658678cea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="response_8h.html#aafdf3df2439747917aa7a21658678cea">_free_response</a> (<a class="el" href="structresponse.html">response</a> *)</td></tr>
+<tr class="memdesc:aafdf3df2439747917aa7a21658678cea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to free the response struct.  <a href="response_8h.html#aafdf3df2439747917aa7a21658678cea">More...</a><br /></td></tr>
 <tr class="separator:aafdf3df2439747917aa7a21658678cea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ebe44edb06526d5debef65f24301b8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="response_8h.html#a9ebe44edb06526d5debef65f24301b8b">_res_header_htab_key_destroy</a> (gpointer)</td></tr>
+<tr class="memdesc:a9ebe44edb06526d5debef65f24301b8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases the memory allocated for the given key, called automatically by <code>g_hash_table_destroy()</code>.  <a href="response_8h.html#a9ebe44edb06526d5debef65f24301b8b">More...</a><br /></td></tr>
 <tr class="separator:a9ebe44edb06526d5debef65f24301b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75eeb68b3060344bf958c6d7e28124df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="response_8h.html#a75eeb68b3060344bf958c6d7e28124df">_res_header_htab_value_destroy</a> (gpointer)</td></tr>
+<tr class="memdesc:a75eeb68b3060344bf958c6d7e28124df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases the memory allocated for the given value, called automatically by <code>g_hash_table_destroy()</code>.  <a href="response_8h.html#a75eeb68b3060344bf958c6d7e28124df">More...</a><br /></td></tr>
 <tr class="separator:a75eeb68b3060344bf958c6d7e28124df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -150,8 +164,11 @@ Functions</h2></td></tr>
 <p>This file contains the function prototypes to create response for a network request, manage response headers and send response back to the client. It also contains prototypes for internal function to handle response creation and memory management.</p>
 <p>Implemented in <a class="el" href="response_8c.html" title="Functions for creating, sending and handling network responses.">slib/response.c</a></p>
 <dl class="section author"><dt>Author</dt><dd>Sai Hemanth Bheemreddy (@SaiHemanthBR) </dd></dl>
-<dl class="section copyright"><dt>Copyright</dt><dd>MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy </dd></dl>
-<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000005">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy</dd></dl>
+<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000005">Bug:</a></b></dt><dd><p class="startdd">Respose headers cannot be modified or removed as of now. This is a known issue and will be fixed in the future. </p>
+<p class="interdd"><code><a class="el" href="response_8h.html#a1ed14fa621c53ee6752a37e2a6ed341c" title="Sends the response head (Start line and headers) to the client.">send_response_head()</a></code>: Function doesn't return error code. </p>
+<p class="enddd"><code><a class="el" href="response_8h.html#a464c917b026297025ed5c6c448816244" title="Sends data in a FILE stream to the client as response body.">send_response_file()</a></code>: No easy way to confirm that the file was sent sucessfully. Known issue and will be fixed in the future. </p>
+</dd></dl>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="ae0908a7c8ba00e65776439da93cc1cf5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae0908a7c8ba00e65776439da93cc1cf5">&#9670;&nbsp;</a></span>RES_BUF_SIZE</h2>
@@ -164,6 +181,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Defines the max size of a response buffer. </p>
 
 </div>
 </div>
@@ -178,6 +197,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Defines the max size of buffer for individual response headers. </p>
 
 </div>
 </div>
@@ -213,6 +234,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Helper function to free the response struct. </p>
+<p>This function frees the memory allocated for the response struct. This includes freeing the memory allocated for GHashTable using <code>g_hash_table_destroy()</code> and freeing the memory allocated to <code>http_ver</code> and <code>status_code</code> using <code>free()</code>. Once the request struct is freed, <code>res</code> parameter is set to <code>NULL</code>. If a <code>NULL</code> pointer is passed to this function, function does nothing.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">res</td><td>The response struct to be freed and set to <code>NULL</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
 </div>
 </div>
 <a id="a78e28d1f68111539fbffaee3cb9a9446"></a>
@@ -229,6 +260,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Allocates memory for a response struct and initializes it to default values. </p>
+<p>Default values are:</p><ul>
+<li>conn_fd = -1</li>
+<li>http_ver = <code>NULL</code></li>
+<li>status_code = <code>NULL</code></li>
+<li>header_htab = pointer to a newly allocated <code>GHashTable</code></li>
+</ul>
+<dl class="section return"><dt>Returns</dt><dd>On success, pointer to a newly allocated request struct is returned. On failure, <code>NULL</code> is returned. </dd></dl>
 
 </div>
 </div>
@@ -248,6 +288,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Releases the memory allocated for the given key, called automatically by <code>g_hash_table_destroy()</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Pointer to key in the hash table. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
 </div>
 </div>
 <a id="a75eeb68b3060344bf958c6d7e28124df"></a>
@@ -265,6 +314,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Releases the memory allocated for the given value, called automatically by <code>g_hash_table_destroy()</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Pointer to value in the hash table. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
 </div>
 </div>
@@ -284,6 +342,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Closes the response connection and frees the response struct. </p>
+<p>All response connections needed to be closed after sending the response. Even if the response connection is closed, the browser will still wait for resquest connection to be closed. Therefore, this function, along with <code>close_request</code>, must be called to complete the request-response cycle. This function calls <code>_free_response</code> to free the request struct.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">req</td><td>The response to be closed and freed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="request_8c.html#aee96499e88370e463617a24dada68234" title="Closes the request connection and frees the request struct.">close_request</a> </dd>
+<dd>
+<a class="el" href="response_8h.html#aafdf3df2439747917aa7a21658678cea" title="Helper function to free the response struct.">_free_response</a> </dd></dl>
+
 </div>
 </div>
 <a id="ae7d74802599dbf4ec67da54b727cf48f"></a>
@@ -302,6 +373,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates a response struct, duplicates <code>conn_fd</code> and returns a pointer to the response struct. </p>
+<p>This function allocates memory for a response struct by calling <code>_initialize_response</code>, duplicates <code>conn_fd</code> using <code>dup()</code> and returns a pointer to the response struct. <code>conn_fd</code> is duplicated to prevent from user closing the original connection file descriptor and leaving the response struct in an invalid state. (e.g. <code>conn_fd</code> is closed, but the response struct is still in use by the user, this causes errors when the user tries to send the response back to the client).</p>
+<p>For, more info about <code>dup()</code>, see docs/man pages for <code>unistd.h</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">conn_fd</td><td>The file descriptor of the connection that will be used to send the response. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>On success, a pointer to the response struct is returned. On failure, <code>NULL</code> is returned.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="response_8h.html#a78e28d1f68111539fbffaee3cb9a9446" title="Allocates memory for a response struct and initializes it to default values.">_initialize_response</a> </dd></dl>
+
 </div>
 </div>
 <a id="a68ec837897bd5779f1ba5dd7cfd457a3"></a>
@@ -319,6 +402,17 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Similar to <code><a class="el" href="response_8h.html#ae7d74802599dbf4ec67da54b727cf48f" title="Creates a response struct, duplicates conn_fd and returns a pointer to the response struct.">create_response()</a></code>, but takes a request struct as an argument and copies <code>http_ver</code> from the request struct. </p>
+<p>This function is similar to <code><a class="el" href="response_8h.html#ae7d74802599dbf4ec67da54b727cf48f" title="Creates a response struct, duplicates conn_fd and returns a pointer to the response struct.">create_response()</a></code>, and uses <code><a class="el" href="response_8h.html#ae7d74802599dbf4ec67da54b727cf48f" title="Creates a response struct, duplicates conn_fd and returns a pointer to the response struct.">create_response()</a></code> internally, except that it takes a request struct as an argument and also copies <code>http_ver</code> from the request struct. <code>http_ver</code> is a freshly allocated string and is independent of <code>request:http_ver</code>. It is adviced to use <code><a class="el" href="response_8h.html#a68ec837897bd5779f1ba5dd7cfd457a3" title="Similar to create_response(), but takes a request struct as an argument and copies http_ver from the ...">create_response_from_request()</a></code> instead of <code><a class="el" href="response_8h.html#ae7d74802599dbf4ec67da54b727cf48f" title="Creates a response struct, duplicates conn_fd and returns a pointer to the response struct.">create_response()</a></code> if you are using a request struct.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">req</td><td>The request struct that will be used to create the response. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>On success, a pointer to the response struct is returned. On failure, <code>NULL</code> is returned.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="response_8h.html#ae7d74802599dbf4ec67da54b727cf48f" title="Creates a response struct, duplicates conn_fd and returns a pointer to the response struct.">create_response</a> </dd></dl>
 
 </div>
 </div>
@@ -354,6 +448,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Gets the value of the response header for the given key. </p>
+<p>If <code>header_key</code> is found in header table, the value is copied into <code>header_val</code> and the same is returned. If the key is not found or an error occurs, <code>NULL</code> is returned and <code>header_val</code> is not modified.</p>
+<p><code>header_val</code> can be <code>NULL</code>, in which case, the function simply returns the value.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">res</td><td>The response struct. </td></tr>
+    <tr><td class="paramname">header_key</td><td>The key of the header. </td></tr>
+    <tr><td class="paramname">header_val</td><td>Pointer to a string to store the value of the header. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>On success, returns a pointer to the header value. On failure, returns <code>NULL</code>. </dd></dl>
+
 </div>
 </div>
 <a id="a08ce63484bd17225366035db410023ae"></a>
@@ -388,6 +495,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Sends first <code>buf_size</code> bytes in <code>buf</code> to the client as response body. </p>
+<p>If <code>buf_size</code> is given as '-1', the function sends the entire buffer <code>buf</code> to the client as response body (i.e. until <code>\0</code> is reached). On success, the function returns the number of bytes sent. On failure, returns <code>-1</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">res</td><td>The response struct. </td></tr>
+    <tr><td class="paramname">buf</td><td>The buffer to be sent as response body to the client. </td></tr>
+    <tr><td class="paramname">buf_size</td><td>The number of bytes to be sent (-1 if the entire buffer <code>buf</code> is to be sent). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>On success, returns the number of bytes sent. On failure, returns <code>-1</code>. </dd></dl>
+
 </div>
 </div>
 <a id="a464c917b026297025ed5c6c448816244"></a>
@@ -416,16 +535,29 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Sends data in a <code>FILE</code> stream to the client as response body. </p>
+<p>This function sends the response body from the <code>FILE</code> stream <code>file</code> to the client. The file is read using (<code>fread()</code> as chunks of size <code>RES_BUF_SIZE</code> and sent to the client. If the number of bytes read from the file doesn't match the number of bytes sent to the client, it is considered an error and the function returns total number of bytes that were sent before the error occurred.</p>
+<p>The function doesn't send response head (Start line and headers) to the client, it is assumed that the client has already received the response head. The file stream is assumed to be opened in <code>"rb"</code> mode and is not closed by this function after sending the response.</p>
+<p>For now, the only way to make sure the file has been sucessfully sent to the client is to check the returned number of bytes with the actual byte size of the file. This is a known limitation and will be fixed in the future.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">res</td><td>The response struct. </td></tr>
+    <tr><td class="paramname">file</td><td>The <code>FILE</code> stream to be sent as response body to the client. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the number of bytes sent. If an error occurs, returns the number of bytes that were sent before the error occurred. </dd></dl>
+
 </div>
 </div>
-<a id="a0ec235b75a330373392f246faee7dac8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0ec235b75a330373392f246faee7dac8">&#9670;&nbsp;</a></span>send_response_header()</h2>
+<a id="a1ed14fa621c53ee6752a37e2a6ed341c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ed14fa621c53ee6752a37e2a6ed341c">&#9670;&nbsp;</a></span>send_response_head()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ssize_t send_response_header </td>
+          <td class="memname">ssize_t send_response_head </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structresponse.html">response</a> *&#160;</td>
           <td class="paramname"><em>res</em></td><td>)</td>
@@ -433,6 +565,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sends the response head (Start line and headers) to the client. </p>
+<p>This function sends the response start line, followed by the all the response headers set in header table for the response <code>res</code> and an empty line to separate the response head from the response body. This function must be called before sending the response body (i.e., <code><a class="el" href="response_8h.html#a464c917b026297025ed5c6c448816244" title="Sends data in a FILE stream to the client as response body.">send_response_file()</a></code> or <code><a class="el" href="response_8h.html#a08ce63484bd17225366035db410023ae" title="Sends first buf_size bytes in buf to the client as response body.">send_response()</a></code>).)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">res</td><td>The response struct. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the number of bytes sent. If an error occurs, returns the number of bytes that were sent before the error occurred. </dd></dl>
 
 </div>
 </div>
@@ -467,6 +609,19 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sets the value of the response header for the given key. </p>
+<p>If <code>header_key</code> is not found in header table, <code>header_key</code> is added to the header table with value <code>header_val</code>. If <code>header_key</code> is found in header table, <code>NULL</code> is returned and value in header table is not modified. If an error occurs, <code>NULL</code> is returned and header table is not modified.</p>
+<p><code>header_key</code> and <code>header_val</code> are duplicated using <code>strdup()</code> before storing in header table, this is done to prevent from user freeing the original values and leaving dandling pointers in the header table. The freshly allocated strings are freed interally and the user should not free them.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">res</td><td>The response struct. </td></tr>
+    <tr><td class="paramname">header_key</td><td>The key for the header. </td></tr>
+    <tr><td class="paramname">header_val</td><td>Header value to be set. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>On success, returns <code>header_val</code> that was stored. On failure, returns <code>NULL</code>. </dd></dl>
 
 </div>
 </div>

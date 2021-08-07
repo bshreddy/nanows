@@ -10,6 +10,6 @@ var response_8c =
     [ "get_response_header", "response_8c.html#a2da660d38d8430c6d33f62609671459c", null ],
     [ "send_response", "response_8c.html#a0ed3d9fb684e7e66caf2d360b07d21c9", null ],
     [ "send_response_file", "response_8c.html#a1a5c10ccac66fcf379900cc82afc0603", null ],
-    [ "send_response_header", "response_8c.html#ae59f960b91f0fb64257a8454dc8beaba", null ],
+    [ "send_response_head", "response_8c.html#a0cddc23bfce5a8c91a3bcb08a32a5404", null ],
     [ "set_response_header", "response_8c.html#a134a5b65399e2c4eabf8b08b976beade", null ]
 ];

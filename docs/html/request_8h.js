@@ -6,7 +6,6 @@ var request_8h =
     [ "_free_request", "request_8h.html#a1118cfa118dbad0843faff011401a33a", null ],
     [ "_initialize_request", "request_8h.html#a41ae6b5f88c4977b67efaeb1a66a7a61", null ],
     [ "_parse_request", "request_8h.html#ac22ba03c6210da5fd4acff4ad992e93c", null ],
-    [ "_print_header", "request_8h.html#aa939b4d920dc32088b8688e4ce69ee8b", null ],
     [ "_req_header_htab_key_destroy", "request_8h.html#ac79fa913e0bfbd8f072576cda45d7f7c", null ],
     [ "_req_header_htab_value_destroy", "request_8h.html#afa188e085b028d2e7b534bda50b13891", null ],
     [ "close_request", "request_8h.html#a93a1a13d895909169b52caa6eb259b8a", null ],

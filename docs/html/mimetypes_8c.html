@@ -103,18 +103,25 @@ $(document).ready(function(){initNavTree('mimetypes_8c.html',''); initResizable(
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a03febfa18116911cb243a5ee1c23de8a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mimetypes_8c.html#a03febfa18116911cb243a5ee1c23de8a">create_mime_table</a> ()</td></tr>
+<tr class="memdesc:a03febfa18116911cb243a5ee1c23de8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads MIME types from <code>MIME_CONF_FILE</code> and stores them in a hash table.  <a href="mimetypes_8c.html#a03febfa18116911cb243a5ee1c23de8a">More...</a><br /></td></tr>
 <tr class="separator:a03febfa18116911cb243a5ee1c23de8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12873a124950435066c201782cce3f0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mimetypes_8c.html#a12873a124950435066c201782cce3f0d">destroy_mime_table</a> ()</td></tr>
+<tr class="memdesc:a12873a124950435066c201782cce3f0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the MIME types hash table and releases memory allocated for it.  <a href="mimetypes_8c.html#a12873a124950435066c201782cce3f0d">More...</a><br /></td></tr>
 <tr class="separator:a12873a124950435066c201782cce3f0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa09bbbdd43983275574e50cc85e46f94"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mimetypes_8c.html#aa09bbbdd43983275574e50cc85e46f94">get_mimetype_for_ext</a> (const char *ext, char *mimetype)</td></tr>
+<tr class="memdesc:aa09bbbdd43983275574e50cc85e46f94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the MIME type for the given file extension.  <a href="mimetypes_8c.html#aa09bbbdd43983275574e50cc85e46f94">More...</a><br /></td></tr>
 <tr class="separator:aa09bbbdd43983275574e50cc85e46f94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a592c1a69eee439ec96919965a3f3a132"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mimetypes_8c.html#a592c1a69eee439ec96919965a3f3a132">get_mimetype_for_url</a> (const char *url, char *mimetype)</td></tr>
+<tr class="memdesc:a592c1a69eee439ec96919965a3f3a132"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the MIME type for the given URL.  <a href="mimetypes_8c.html#a592c1a69eee439ec96919965a3f3a132">More...</a><br /></td></tr>
 <tr class="separator:a592c1a69eee439ec96919965a3f3a132"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8a5fbfc609edb3f11e6ad38fadbcfff"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mimetypes_8c.html#ae8a5fbfc609edb3f11e6ad38fadbcfff">_get_ext_for_url</a> (const char *url)</td></tr>
+<tr class="memdesc:ae8a5fbfc609edb3f11e6ad38fadbcfff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extracts the file extension from the given URL path.  <a href="mimetypes_8c.html#ae8a5fbfc609edb3f11e6ad38fadbcfff">More...</a><br /></td></tr>
 <tr class="separator:ae8a5fbfc609edb3f11e6ad38fadbcfff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21c56c72d320ce0ac22c2032f41008fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mimetypes_8c.html#a21c56c72d320ce0ac22c2032f41008fa">_mime_htab_key_destroy</a> (gpointer data)</td></tr>
+<tr class="memdesc:a21c56c72d320ce0ac22c2032f41008fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases the memory allocated for the given key, called automatically by <code>g_hash_table_destroy()</code>.  <a href="mimetypes_8c.html#a21c56c72d320ce0ac22c2032f41008fa">More...</a><br /></td></tr>
 <tr class="separator:a21c56c72d320ce0ac22c2032f41008fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7bb11f01675c0f1295c59bdd0efc63d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mimetypes_8c.html#ab7bb11f01675c0f1295c59bdd0efc63d">_mime_htab_value_destroy</a> (gpointer data)</td></tr>
+<tr class="memdesc:ab7bb11f01675c0f1295c59bdd0efc63d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases the memory allocated for the given value, called automatically by <code>g_hash_table_destroy()</code>.  <a href="mimetypes_8c.html#ab7bb11f01675c0f1295c59bdd0efc63d">More...</a><br /></td></tr>
 <tr class="separator:ab7bb11f01675c0f1295c59bdd0efc63d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -148,6 +155,15 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Extracts the file extension from the given URL path. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">url</td><td>The URL path. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>On success, returns a pointer to string containing extension for the given URL. On failure, returns <code>NULL</code>. </dd></dl>
+
 </div>
 </div>
 <a id="a21c56c72d320ce0ac22c2032f41008fa"></a>
@@ -165,6 +181,15 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Releases the memory allocated for the given key, called automatically by <code>g_hash_table_destroy()</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Pointer to key in the hash table. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
 </div>
 </div>
@@ -184,6 +209,15 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Releases the memory allocated for the given value, called automatically by <code>g_hash_table_destroy()</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Pointer to value in the hash table. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
 </div>
 </div>
 <a id="a03febfa18116911cb243a5ee1c23de8a"></a>
@@ -201,6 +235,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Loads MIME types from <code>MIME_CONF_FILE</code> and stores them in a hash table. </p>
+<p>MIME types are stored in <code>MIME_CONF_FILE</code> as a series of records. Each record is a key-value pair in the format &lsquo;&lt;file extension starting with &rsquo;.'&gt;=&lt;mime type&gt;&lsquo;. If the line starts with a &rsquo;#', it is considered a comment. Each line is parsed to extract the key and value and stored in a hash table. If the MIME type already exists in the hash table, the value is overwritten. Hash tables provided by <code>glib</code> are used to store MIME types. <code>g_hash_table_new_full()</code> is used to create the hash table.</p>
+<p>If the MIME types are loaded successfully, the function returns <code>1</code> and the MIME types are stored in the <code>_mime_htab</code> variable. If the MIME types are already loaded (i.e. <code>_mime_htab</code> is not <code>NULL</code>), the function returns <code>2</code> without performing any action. If the MIME types are not loaded successfully, the function returns <code>0</code>.</p>
+<dl class="section return"><dt>Returns</dt><dd>On success, returns a non-zero value. On failure, returns 0. </dd></dl>
+
 </div>
 </div>
 <a id="a12873a124950435066c201782cce3f0d"></a>
@@ -217,6 +256,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Destroys the MIME types hash table and releases memory allocated for it. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
 </div>
 </div>
@@ -246,6 +288,19 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Gets the MIME type for the given file extension. </p>
+<p>If the MIME type is found in the hash table, the value is copied into <code>mimetype</code> and the same is returned. If the MIME type is not found in the hash table, default MIME type (defined by <code>DEFAULT_MIMETYPE_KEY</code>) is copied into <code>mimetype</code> and the same is returned.</p>
+<p><code>mimetype</code> can be <code>NULL</code>, in this case, the function simply returns the MIME type.</p>
+<p>If any error occurs, the function returns NULL and <code>mimetype</code> is not modified.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ext</td><td>The file extension with a leading '.'. </td></tr>
+    <tr><td class="paramname">mimetype</td><td>Pointer to a string where the MIME type should be copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>On success, returns a pointer to string with the MIME type. On failure, returns <code>NULL</code>. </dd></dl>
+
 </div>
 </div>
 <a id="a592c1a69eee439ec96919965a3f3a132"></a>
@@ -273,6 +328,18 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Gets the MIME type for the given URL. </p>
+<p>Similar to <code><a class="el" href="mimetypes_8h.html#afed51f08ada99eed362ea10d23b2e147" title="Gets the MIME type for the given file extension.">get_mimetype_for_ext()</a></code>, except it accpets a URL as input. The MIME type is extracted from the url and returned.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="mimetypes_8h.html#afed51f08ada99eed362ea10d23b2e147" title="Gets the MIME type for the given file extension.">get_mimetype_for_ext()</a> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">url</td><td>The URL path. </td></tr>
+    <tr><td class="paramname">mimetype</td><td>Pointer to a string where the MIME type should be copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>On success, returns a pointer to string with the MIME type. On failure, returns <code>NULL</code>. </dd></dl>
 
 </div>
 </div>

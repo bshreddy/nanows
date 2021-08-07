@@ -102,14 +102,19 @@ $(document).ready(function(){initNavTree('config_8c.html',''); initResizable(); 
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a6fda06c1ea81b05506f0dc132cf6217e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8c.html#a6fda06c1ea81b05506f0dc132cf6217e">load_config</a> ()</td></tr>
+<tr class="memdesc:a6fda06c1ea81b05506f0dc132cf6217e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads and parses the configuration file and returns an int value to indicate success or failure.  <a href="config_8c.html#a6fda06c1ea81b05506f0dc132cf6217e">More...</a><br /></td></tr>
 <tr class="separator:a6fda06c1ea81b05506f0dc132cf6217e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1135df810ff4009145971a6ceb87064d"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8c.html#a1135df810ff4009145971a6ceb87064d">get_config</a> (const char *key)</td></tr>
+<tr class="memdesc:a1135df810ff4009145971a6ceb87064d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value for the corresponding configuration key.  <a href="config_8c.html#a1135df810ff4009145971a6ceb87064d">More...</a><br /></td></tr>
 <tr class="separator:a1135df810ff4009145971a6ceb87064d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a349a97d60e078b39e45db8839b29d5ec"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8c.html#a349a97d60e078b39e45db8839b29d5ec">get_config_str</a> (const char *key)</td></tr>
+<tr class="memdesc:a349a97d60e078b39e45db8839b29d5ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value for the corresponding configuration key.  <a href="config_8c.html#a349a97d60e078b39e45db8839b29d5ec">More...</a><br /></td></tr>
 <tr class="separator:a349a97d60e078b39e45db8839b29d5ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a493dc78584ebbdcddbd50ed7279a357a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8c.html#a493dc78584ebbdcddbd50ed7279a357a">get_config_int</a> (const char *key)</td></tr>
+<tr class="memdesc:a493dc78584ebbdcddbd50ed7279a357a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the int value for the corresponding configuration key.  <a href="config_8c.html#a493dc78584ebbdcddbd50ed7279a357a">More...</a><br /></td></tr>
 <tr class="separator:a493dc78584ebbdcddbd50ed7279a357a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3cbf45177b67fe61034482d20466a0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8c.html#aa3cbf45177b67fe61034482d20466a0a">unload_config</a> ()</td></tr>
+<tr class="memdesc:aa3cbf45177b67fe61034482d20466a0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unloads configuration and frees memory allocated for configuration and any errors.  <a href="config_8c.html#aa3cbf45177b67fe61034482d20466a0a">More...</a><br /></td></tr>
 <tr class="separator:aa3cbf45177b67fe61034482d20466a0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -145,6 +150,16 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the value for the corresponding configuration key. </p>
+<p>Key is retrived using the <code>g_key_file_get_value()</code> function. The key is expected to valid key defined in configuration file. Default keys have macros defined in <code><a class="el" href="config_8h.html" title="Function Prototypes for the configuration manager.">include/config.h</a></code> like <code>HOST_CONF_KEY</code>, <code>PORT_CONF_KEY</code>, etc.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The configuration key. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a newly allocated string or <code>NULL</code>, if the specified key cannot be found. </dd></dl>
+
 </div>
 </div>
 <a id="a493dc78584ebbdcddbd50ed7279a357a"></a>
@@ -162,6 +177,16 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the int value for the corresponding configuration key. </p>
+<p>Key is retrived using the <code>g_key_file_get_integer()</code> function. This function is similar to <code><a class="el" href="config_8h.html#a297569c97cdfddab844fd40e370ec571" title="Returns the value for the corresponding configuration key.">get_config()</a></code> except it returns an integer value.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The configuration key. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The value associated with the key as an integer, or <code>INT_MIN</code>, if the key was not found. </dd></dl>
 
 </div>
 </div>
@@ -181,6 +206,16 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the value for the corresponding configuration key. </p>
+<p>Key is retrived using the <code>g_key_file_get_string()</code> function. This function is similar to <code><a class="el" href="config_8h.html#a297569c97cdfddab844fd40e370ec571" title="Returns the value for the corresponding configuration key.">get_config()</a></code> except that it handles escape sequences like <code>\s</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The configuration key. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a newly allocated string or <code>NULL</code>, if the specified key cannot be found. </dd></dl>
+
 </div>
 </div>
 <a id="a6fda06c1ea81b05506f0dc132cf6217e"></a>
@@ -198,6 +233,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Loads and parses the configuration file and returns an int value to indicate success or failure. </p>
+<p>Parsing the configuration file is done using the <code>g_key_file_load_from_file()</code> function. The config file is loaded from the <code>CONF_FILE</code> macro. Cofiguration file is expected to be in INI format.</p>
+<p>If the configuration file is loaded successfully, the function returns <code>1</code> and the parsed config is stored in the <code>config</code> variable. If the configuration file is already loaded (i.e. <code>config</code> is not <code>NULL</code>), the function returns <code>2</code> without performing any action. If the configuration file is not loaded successfully, the function returns <code>0</code>.</p>
+<dl class="section return"><dt>Returns</dt><dd>On success, returns a non-zero value. On failure, returns 0. </dd></dl>
+
 </div>
 </div>
 <a id="aa3cbf45177b67fe61034482d20466a0a"></a>
@@ -214,6 +254,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Unloads configuration and frees memory allocated for configuration and any errors. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
 </div>
 </div>

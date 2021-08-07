@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['header_5fhtab_148',['header_htab',['../structrequest.html#a86a772e6c415e00e0fa79d736c351d24',1,'request::header_htab()'],['../structresponse.html#a852abce95adf45b9457efc38f30a7cf0',1,'response::header_htab()']]],
-  ['http_5fmethod_149',['http_method',['../structrequest.html#a9b2cb8a3bc60036ed07b2c4433d359c9',1,'request']]],
-  ['http_5fver_150',['http_ver',['../structrequest.html#a1721c96e2de1d2cb38ea487eff3edfcd',1,'request::http_ver()'],['../structresponse.html#a6bd1d75c419d1863c41e526b9a7318a1',1,'response::http_ver()']]]
+  ['header_5fhtab_146',['header_htab',['../structrequest.html#a9b7f16ed8d2b56d288d25ec497e9edfe',1,'request::header_htab()'],['../structresponse.html#a6e49a6ef74db009eb77464585a3e1526',1,'response::header_htab()']]],
+  ['http_5fmethod_147',['http_method',['../structrequest.html#a1013f4d80a618b2767f38f83a1894bb2',1,'request']]],
+  ['http_5fver_148',['http_ver',['../structrequest.html#aaf4ee36ab1861c9919bbb63a5abc6bb4',1,'request::http_ver()'],['../structresponse.html#a600f873e6d09619bdc0686d3b44ce7ae',1,'response::http_ver()']]]
 ];

@@ -1,4 +1,4 @@
-.TH "slib/config.c" 3 "Mon Jul 26 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.TH "slib/config.c" 3 "Sat Aug 7 2021" "Version 2.0" "nanows" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -24,18 +24,23 @@ slib/config.c \- A configuration manager\&.
 .ti -1c
 .RI "int \fBload_config\fP ()"
 .br
+.RI "Loads and parses the configuration file and returns an int value to indicate success or failure\&. "
 .ti -1c
 .RI "char * \fBget_config\fP (const char *key)"
 .br
+.RI "Returns the value for the corresponding configuration key\&. "
 .ti -1c
 .RI "char * \fBget_config_str\fP (const char *key)"
 .br
+.RI "Returns the value for the corresponding configuration key\&. "
 .ti -1c
 .RI "int \fBget_config_int\fP (const char *key)"
 .br
+.RI "Returns the int value for the corresponding configuration key\&. "
 .ti -1c
 .RI "void \fBunload_config\fP ()"
 .br
+.RI "Unloads configuration and frees memory allocated for configuration and any errors\&. "
 .in -1c
 .SS "Variables"
 
@@ -79,13 +84,75 @@ No known bugs\&.
 .PP 
 .SS "char* get_config (const char * key)"
 
+.PP
+Returns the value for the corresponding configuration key\&. Key is retrived using the \fCg_key_file_get_value()\fP function\&. The key is expected to valid key defined in configuration file\&. Default keys have macros defined in \fC\fBinclude/config\&.h\fP\fP like \fCHOST_CONF_KEY\fP, \fCPORT_CONF_KEY\fP, etc\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP The configuration key\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a newly allocated string or \fCNULL\fP, if the specified key cannot be found\&. 
+.RE
+.PP
+
 .SS "int get_config_int (const char * key)"
+
+.PP
+Returns the int value for the corresponding configuration key\&. Key is retrived using the \fCg_key_file_get_integer()\fP function\&. This function is similar to \fC\fBget_config()\fP\fP except it returns an integer value\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP The configuration key\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The value associated with the key as an integer, or \fCINT_MIN\fP, if the key was not found\&. 
+.RE
+.PP
 
 .SS "char* get_config_str (const char * key)"
 
+.PP
+Returns the value for the corresponding configuration key\&. Key is retrived using the \fCg_key_file_get_string()\fP function\&. This function is similar to \fC\fBget_config()\fP\fP except that it handles escape sequences like \fC\\s\fP\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP The configuration key\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a newly allocated string or \fCNULL\fP, if the specified key cannot be found\&. 
+.RE
+.PP
+
 .SS "int load_config ()"
 
+.PP
+Loads and parses the configuration file and returns an int value to indicate success or failure\&. Parsing the configuration file is done using the \fCg_key_file_load_from_file()\fP function\&. The config file is loaded from the \fCCONF_FILE\fP macro\&. Cofiguration file is expected to be in INI format\&.
+.PP
+If the configuration file is loaded successfully, the function returns \fC1\fP and the parsed config is stored in the \fCconfig\fP variable\&. If the configuration file is already loaded (i\&.e\&. \fCconfig\fP is not \fCNULL\fP), the function returns \fC2\fP without performing any action\&. If the configuration file is not loaded successfully, the function returns \fC0\fP\&.
+.PP
+\fBReturns\fP
+.RS 4
+On success, returns a non-zero value\&. On failure, returns 0\&. 
+.RE
+.PP
+
 .SS "void unload_config ()"
+
+.PP
+Unloads configuration and frees memory allocated for configuration and any errors\&. 
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
 
 .SH "Variable Documentation"
 .PP 

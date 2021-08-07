@@ -1,8 +1,9 @@
-.TH "request" 3 "Mon Jul 26 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.TH "request" 3 "Sat Aug 7 2021" "Version 2.0" "nanows" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-request
+request \- Defines a request structure\&.  
+
 .SH SYNOPSIS
 .br
 .PP
@@ -14,31 +15,64 @@ request
 .ti -1c
 .RI "int \fBconn_fd\fP"
 .br
+.RI "The file descriptor of the connection used to receive data from the connection\&. "
 .ti -1c
 .RI "char * \fBhttp_method\fP"
 .br
+.RI "The HTTP method of the request, supports only \fCGET\fP for now\&. "
 .ti -1c
 .RI "char * \fBurl\fP"
 .br
+.RI "The URL of the request, doesn't include the protocol and domain\&. "
 .ti -1c
 .RI "char * \fBhttp_ver\fP"
 .br
+.RI "The HTTP version of the request\&. "
 .ti -1c
 .RI "GHashTable * \fBheader_htab\fP"
 .br
+.RI "The hash table of the request headers\&. "
 .in -1c
+.SH "Detailed Description"
+.PP 
+Defines a request structure\&. 
+
+This structure defines a request structure\&. It is used to store the connection file descriptor, HTTP Method, URL, HTTP Version, and the request headers\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fBget_request\fP 
+.PP
+\fBparse_request\fP 
+.PP
+\fBget_request_header\fP 
+.PP
+\fBclose_request\fP 
+.RE
+.PP
+
 .SH "Member Data Documentation"
 .PP 
 .SS "int request::conn_fd"
 
-.SS "GHashTable* request::header_htab"
+.PP
+The file descriptor of the connection used to receive data from the connection\&. 
+.SS "GHashTable * request::header_htab"
 
-.SS "char* request::http_method"
+.PP
+The hash table of the request headers\&. 
+.SS "char * request::http_method"
 
-.SS "char* request::http_ver"
+.PP
+The HTTP method of the request, supports only \fCGET\fP for now\&. 
+.SS "char * request::http_ver"
 
-.SS "char* request::url"
+.PP
+The HTTP version of the request\&. (e\&.g\&. \fCHTTP/1\&.1\fP) 
+.SS "char * request::url"
 
+.PP
+The URL of the request, doesn't include the protocol and domain\&. (e\&.g\&. \fC/index\&.html\fP) 
 
 .SH "Author"
 .PP 

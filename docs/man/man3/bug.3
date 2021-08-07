@@ -1,4 +1,4 @@
-.TH "bug" 3 "Mon Jul 26 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.TH "bug" 3 "Sat Aug 7 2021" "Version 2.0" "nanows" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -23,7 +23,11 @@ No known bugs\&.
 .IP "\fBFile \fBresponse\&.c\fP \fP" 1c
 No known bugs\&.  
 .IP "\fBFile \fBresponse\&.h\fP \fP" 1c
-No known bugs\&.  
+Respose headers cannot be modified or removed as of now\&. This is a known issue and will be fixed in the future\&. 
+.PP
+\fC\fBsend_response_head()\fP\fP: Function doesn't return error code\&. 
+.PP
+\fC\fBsend_response_file()\fP\fP: No easy way to confirm that the file was sent sucessfully\&. Known issue and will be fixed in the future\&.  
 .IP "\fBFile \fBserver\&.c\fP \fP" 1c
 No known bugs\&. 
 .PP

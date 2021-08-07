@@ -99,12 +99,16 @@ $(document).ready(function(){initNavTree('helpers_8c.html',''); initResizable();
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a897834a6ab83257290ce165e99366d43"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="helpers_8c.html#a897834a6ab83257290ce165e99366d43">ltrim</a> (char *s)</td></tr>
+<tr class="memdesc:a897834a6ab83257290ce165e99366d43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string whose value is this string, with all leading space removed.  <a href="helpers_8c.html#a897834a6ab83257290ce165e99366d43">More...</a><br /></td></tr>
 <tr class="separator:a897834a6ab83257290ce165e99366d43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdfc0f8ee81107535c88f945cbfeb305"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="helpers_8c.html#acdfc0f8ee81107535c88f945cbfeb305">rtrim</a> (char *s)</td></tr>
+<tr class="memdesc:acdfc0f8ee81107535c88f945cbfeb305"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string whose value is this string, with all trailing space removed.  <a href="helpers_8c.html#acdfc0f8ee81107535c88f945cbfeb305">More...</a><br /></td></tr>
 <tr class="separator:acdfc0f8ee81107535c88f945cbfeb305"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8bd9dd70049fb4e00071d0d73bb8d2a0"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="helpers_8c.html#a8bd9dd70049fb4e00071d0d73bb8d2a0">trim</a> (char *s)</td></tr>
+<tr class="memdesc:a8bd9dd70049fb4e00071d0d73bb8d2a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string whose value is this string, with all leading and trailing space removed.  <a href="helpers_8c.html#a8bd9dd70049fb4e00071d0d73bb8d2a0">More...</a><br /></td></tr>
 <tr class="separator:a8bd9dd70049fb4e00071d0d73bb8d2a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae04170f6fc90ee843d1deb4b91e8d49e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="helpers_8c.html#ae04170f6fc90ee843d1deb4b91e8d49e">free_gerror</a> (GError **<a class="el" href="config_8c.html#abc39a4bba3587c275762137dee2c3fc1">error</a>)</td></tr>
+<tr class="memdesc:ae04170f6fc90ee843d1deb4b91e8d49e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to free GError.  <a href="helpers_8c.html#ae04170f6fc90ee843d1deb4b91e8d49e">More...</a><br /></td></tr>
 <tr class="separator:ae04170f6fc90ee843d1deb4b91e8d49e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -130,6 +134,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Helper function to free GError. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">error</td><td>Pointer to GError to be freed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
 </div>
 </div>
 <a id="a897834a6ab83257290ce165e99366d43"></a>
@@ -147,6 +160,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns a string whose value is this string, with all leading space removed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>The string to be trimmed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a string whose value is this string, with all leading space removed, or this string if it has no leading space. </dd></dl>
 
 </div>
 </div>
@@ -166,6 +188,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns a string whose value is this string, with all trailing space removed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>The string to be trimmed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a string whose value is this string, with all trailing space removed, or this string if it has no trailing space. </dd></dl>
+
 </div>
 </div>
 <a id="a8bd9dd70049fb4e00071d0d73bb8d2a0"></a>
@@ -183,6 +214,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns a string whose value is this string, with all leading and trailing space removed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>The string to be trimmed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a string whose value is this string, with all leading and trailing space removed, or this string if it has no leading or trailing space. </dd></dl>
 
 </div>
 </div>

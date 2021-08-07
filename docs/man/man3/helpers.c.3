@@ -1,4 +1,4 @@
-.TH "slib/helpers.c" 3 "Mon Jul 26 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.TH "slib/helpers.c" 3 "Sat Aug 7 2021" "Version 2.0" "nanows" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -20,15 +20,19 @@ slib/helpers.c \- Collection of commonly used helper functions\&.
 .ti -1c
 .RI "char * \fBltrim\fP (char *s)"
 .br
+.RI "Returns a string whose value is this string, with all leading space removed\&. "
 .ti -1c
 .RI "char * \fBrtrim\fP (char *s)"
 .br
+.RI "Returns a string whose value is this string, with all trailing space removed\&. "
 .ti -1c
 .RI "char * \fBtrim\fP (char *s)"
 .br
+.RI "Returns a string whose value is this string, with all leading and trailing space removed\&. "
 .ti -1c
 .RI "void \fBfree_gerror\fP (GError **\fBerror\fP)"
 .br
+.RI "Helper function to free GError\&. "
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -56,11 +60,67 @@ No known bugs\&.
 .PP 
 .SS "void free_gerror (GError ** error)"
 
+.PP
+Helper function to free GError\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIerror\fP Pointer to GError to be freed\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
 .SS "char* ltrim (char * s)"
+
+.PP
+Returns a string whose value is this string, with all leading space removed\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIs\fP The string to be trimmed\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a string whose value is this string, with all leading space removed, or this string if it has no leading space\&. 
+.RE
+.PP
 
 .SS "char* rtrim (char * s)"
 
+.PP
+Returns a string whose value is this string, with all trailing space removed\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIs\fP The string to be trimmed\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a string whose value is this string, with all trailing space removed, or this string if it has no trailing space\&. 
+.RE
+.PP
+
 .SS "char* trim (char * s)"
+
+.PP
+Returns a string whose value is this string, with all leading and trailing space removed\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIs\fP The string to be trimmed\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a string whose value is this string, with all leading and trailing space removed, or this string if it has no leading or trailing space\&. 
+.RE
+.PP
 
 .SH "Author"
 .PP 

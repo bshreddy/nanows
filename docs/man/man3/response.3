@@ -1,8 +1,9 @@
-.TH "response" 3 "Mon Jul 26 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.TH "response" 3 "Sat Aug 7 2021" "Version 2.0" "nanows" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-response
+response \- Defines a rresponse structure\&.  
+
 .SH SYNOPSIS
 .br
 .PP
@@ -14,26 +15,64 @@ response
 .ti -1c
 .RI "int \fBconn_fd\fP"
 .br
+.RI "The file descriptor of the connection that will be used to send the response\&. "
 .ti -1c
 .RI "char * \fBhttp_ver\fP"
 .br
+.RI "The HTTP version of the response\&. "
 .ti -1c
 .RI "char * \fBstatus_code\fP"
 .br
+.RI "The status code of the response\&. "
 .ti -1c
 .RI "GHashTable * \fBheader_htab\fP"
 .br
+.RI "The hash table of the response headers\&. "
 .in -1c
+.SH "Detailed Description"
+.PP 
+Defines a rresponse structure\&. 
+
+This structure defines a response structure\&. It is used to store the connection file descriptor, HTTP Version, Status Code, and the response headers\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fBcreate_response\fP 
+.PP
+\fBcreate_response_from_request\fP 
+.PP
+\fBget_response_header\fP 
+.PP
+\fBset_response_header\fP 
+.PP
+\fBsend_response_head\fP 
+.PP
+\fBsend_response_file\fP 
+.PP
+\fBsend_response\fP 
+.PP
+\fBclose_response\fP 
+.RE
+.PP
+
 .SH "Member Data Documentation"
 .PP 
 .SS "int response::conn_fd"
 
-.SS "GHashTable* response::header_htab"
+.PP
+The file descriptor of the connection that will be used to send the response\&. 
+.SS "GHashTable * response::header_htab"
 
-.SS "char* response::http_ver"
+.PP
+The hash table of the response headers\&. 
+.SS "char * response::http_ver"
 
-.SS "char* response::status_code"
+.PP
+The HTTP version of the response\&. (e\&.g\&. \fCHTTP/1\&.1\fP) 
+.SS "char * response::status_code"
 
+.PP
+The status code of the response\&. (e\&.g\&. \fC200 OK\fP) 
 
 .SH "Author"
 .PP 

@@ -91,20 +91,45 @@ $(document).ready(function(){initNavTree('structresponse.html',''); initResizabl
 </div><!--header-->
 <div class="contents">
 
+<p>Defines a rresponse structure.  
+ <a href="structresponse.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="response_8h_source.html">response.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a09b00d1fde1174d74778459f56ce70ca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structresponse.html#a09b00d1fde1174d74778459f56ce70ca">conn_fd</a></td></tr>
+<tr class="memdesc:a09b00d1fde1174d74778459f56ce70ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">The file descriptor of the connection that will be used to send the response.  <a href="structresponse.html#a09b00d1fde1174d74778459f56ce70ca">More...</a><br /></td></tr>
 <tr class="separator:a09b00d1fde1174d74778459f56ce70ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bd1d75c419d1863c41e526b9a7318a1"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structresponse.html#a6bd1d75c419d1863c41e526b9a7318a1">http_ver</a></td></tr>
-<tr class="separator:a6bd1d75c419d1863c41e526b9a7318a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50ca5f127cd6c061c950302e5dfdae02"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structresponse.html#a50ca5f127cd6c061c950302e5dfdae02">status_code</a></td></tr>
-<tr class="separator:a50ca5f127cd6c061c950302e5dfdae02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a852abce95adf45b9457efc38f30a7cf0"><td class="memItemLeft" align="right" valign="top">GHashTable *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structresponse.html#a852abce95adf45b9457efc38f30a7cf0">header_htab</a></td></tr>
-<tr class="separator:a852abce95adf45b9457efc38f30a7cf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a600f873e6d09619bdc0686d3b44ce7ae"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structresponse.html#a600f873e6d09619bdc0686d3b44ce7ae">http_ver</a></td></tr>
+<tr class="memdesc:a600f873e6d09619bdc0686d3b44ce7ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">The HTTP version of the response.  <a href="structresponse.html#a600f873e6d09619bdc0686d3b44ce7ae">More...</a><br /></td></tr>
+<tr class="separator:a600f873e6d09619bdc0686d3b44ce7ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40c7e365038db6bfdf88035cd0d7daa9"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structresponse.html#a40c7e365038db6bfdf88035cd0d7daa9">status_code</a></td></tr>
+<tr class="memdesc:a40c7e365038db6bfdf88035cd0d7daa9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The status code of the response.  <a href="structresponse.html#a40c7e365038db6bfdf88035cd0d7daa9">More...</a><br /></td></tr>
+<tr class="separator:a40c7e365038db6bfdf88035cd0d7daa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e49a6ef74db009eb77464585a3e1526"><td class="memItemLeft" align="right" valign="top">GHashTable *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structresponse.html#a6e49a6ef74db009eb77464585a3e1526">header_htab</a></td></tr>
+<tr class="memdesc:a6e49a6ef74db009eb77464585a3e1526"><td class="mdescLeft">&#160;</td><td class="mdescRight">The hash table of the response headers.  <a href="structresponse.html#a6e49a6ef74db009eb77464585a3e1526">More...</a><br /></td></tr>
+<tr class="separator:a6e49a6ef74db009eb77464585a3e1526"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Data Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Defines a rresponse structure. </p>
+<p>This structure defines a response structure. It is used to store the connection file descriptor, HTTP Version, Status Code, and the response headers.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="response_8c.html#aa544d3cb48f8783239a33b61ca362208" title="Creates a response struct, duplicates conn_fd and returns a pointer to the response struct.">create_response</a> </dd>
+<dd>
+<a class="el" href="response_8c.html#a741ba120c3816e5c141f443498fb7a53" title="Similar to create_response(), but takes a request struct as an argument and copies http_ver from the ...">create_response_from_request</a> </dd>
+<dd>
+<a class="el" href="response_8c.html#a2da660d38d8430c6d33f62609671459c" title="Gets the value of the response header for the given key.">get_response_header</a> </dd>
+<dd>
+<a class="el" href="response_8c.html#a134a5b65399e2c4eabf8b08b976beade" title="Sets the value of the response header for the given key.">set_response_header</a> </dd>
+<dd>
+<a class="el" href="response_8c.html#a0cddc23bfce5a8c91a3bcb08a32a5404" title="Sends the response head (Start line and headers) to the client.">send_response_head</a> </dd>
+<dd>
+<a class="el" href="response_8c.html#a1a5c10ccac66fcf379900cc82afc0603" title="Sends data in a FILE stream to the client as response body.">send_response_file</a> </dd>
+<dd>
+<a class="el" href="response_8c.html#a0ed3d9fb684e7e66caf2d360b07d21c9" title="Sends first buf_size bytes in buf to the client as response body.">send_response</a> </dd>
+<dd>
+<a class="el" href="response_8c.html#a8ff953f6c5c1845c681a54abb2b9d31a" title="Closes the response connection and frees the response struct.">close_response</a> </dd></dl>
+</div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a09b00d1fde1174d74778459f56ce70ca"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a09b00d1fde1174d74778459f56ce70ca">&#9670;&nbsp;</a></span>conn_fd</h2>
 
@@ -117,47 +142,57 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>The file descriptor of the connection that will be used to send the response. </p>
+
 </div>
 </div>
-<a id="a852abce95adf45b9457efc38f30a7cf0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a852abce95adf45b9457efc38f30a7cf0">&#9670;&nbsp;</a></span>header_htab</h2>
+<a id="a6e49a6ef74db009eb77464585a3e1526"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e49a6ef74db009eb77464585a3e1526">&#9670;&nbsp;</a></span>header_htab</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">GHashTable* response::header_htab</td>
+          <td class="memname">GHashTable * response::header_htab</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>The hash table of the response headers. </p>
+
 </div>
 </div>
-<a id="a6bd1d75c419d1863c41e526b9a7318a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6bd1d75c419d1863c41e526b9a7318a1">&#9670;&nbsp;</a></span>http_ver</h2>
+<a id="a600f873e6d09619bdc0686d3b44ce7ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a600f873e6d09619bdc0686d3b44ce7ae">&#9670;&nbsp;</a></span>http_ver</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* response::http_ver</td>
+          <td class="memname">char * response::http_ver</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>The HTTP version of the response. </p>
+<p>(e.g. <code>HTTP/1.1</code>) </p>
+
 </div>
 </div>
-<a id="a50ca5f127cd6c061c950302e5dfdae02"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a50ca5f127cd6c061c950302e5dfdae02">&#9670;&nbsp;</a></span>status_code</h2>
+<a id="a40c7e365038db6bfdf88035cd0d7daa9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40c7e365038db6bfdf88035cd0d7daa9">&#9670;&nbsp;</a></span>status_code</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* response::status_code</td>
+          <td class="memname">char * response::status_code</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>The status code of the response. </p>
+<p>(e.g. <code>200 OK</code>) </p>
 
 </div>
 </div>
