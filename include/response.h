@@ -35,6 +35,7 @@
 #define RES_HEADER_BUF_SIZE 1024
 #endif
 
+#include <stdio.h>
 #include <glib.h>
 
 #include "request.h"
