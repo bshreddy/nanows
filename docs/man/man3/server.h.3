@@ -1,39 +1,37 @@
-.TH "slib/server.c" 3 "Sun Aug 8 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.TH "include/server.h" 3 "Sun Aug 8 2021" "Version 2.0" "nanows" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-slib/server.c \- Functions for loading configuration, starting and stopping the server, memory management and for handling the server's main loop\&.  
+include/server.h \- Function prototypes for the server functions\&.  
 
 .SH SYNOPSIS
 .br
 .PP
-\fC#include <errno\&.h>\fP
+\fC#include 'config\&.h'\fP
 .br
-\fC#include <stdbool\&.h>\fP
+\fC#include 'mimetypes\&.h'\fP
 .br
-\fC#include <stdio\&.h>\fP
+\fC#include 'request\&.h'\fP
 .br
-\fC#include <stdlib\&.h>\fP
-.br
-\fC#include <string\&.h>\fP
-.br
-\fC#include <arpa/inet\&.h>\fP
-.br
-\fC#include <fcntl\&.h>\fP
-.br
-\fC#include <netinet/in\&.h>\fP
-.br
-\fC#include <pthread\&.h>\fP
-.br
-\fC#include <signal\&.h>\fP
-.br
-\fC#include <sys/socket\&.h>\fP
-.br
-\fC#include <unistd\&.h>\fP
-.br
-\fC#include 'server\&.h'\fP
+\fC#include 'response\&.h'\fP
 .br
 
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBBACKLOG\fP   16"
+.br
+.RI "Defines the maximum legnth for the queue of pending connnections, passed to \fClisten()\fP function\&. "
+.ti -1c
+.RI "#define \fBSERVER_NAME\fP   'ElServe/2\&.0'"
+.br
+.RI "Defines the value for value for \fCServer\fP response header\&. "
+.ti -1c
+.RI "#define \fBFILE_PATH_BUF_SIZE\fP   1024"
+.br
+.RI "Defines the maximum length of path for website root directory\&. "
+.in -1c
 .SS "Functions"
 
 .in +1c
@@ -50,27 +48,19 @@ slib/server.c \- Functions for loading configuration, starting and stopping the 
 .br
 .RI "Sets up the server's POSIX socket\&. "
 .ti -1c
-.RI "void * \fBhandle_request\fP (void *new_conn_fd)"
+.RI "void * \fBhandle_request\fP (void *)"
 .br
 .RI "Handles the client requests\&. "
 .ti -1c
-.RI "void \fBclean_request\fP (FILE *file, \fBrequest\fP *req, \fBresponse\fP *res)"
+.RI "void \fBclean_request\fP (FILE *, \fBrequest\fP *, \fBresponse\fP *)"
 .br
 .RI "Closes file stream, requests and response objects and free memory allocated for them\&. "
 .in -1c
-.SS "Variables"
-
-.in +1c
-.ti -1c
-.RI "int \fBtcp_socket\fP = \-1"
-.br
-.RI "File descriptor for the server socket used to listen for incoming connections\&. "
-.in -1c
 .SH "Detailed Description"
 .PP 
-Functions for loading configuration, starting and stopping the server, memory management and for handling the server's main loop\&. 
+Function prototypes for the server functions\&. 
 
-Implements functions defined in \fC\fBinclude/server\&.h\fP\fP\&. Used to load configuration, start and stop the server, memory management and for handling the server's main loop\&.
+This file contains function prototypes for loading configuration, starting and stopping the server, memory management and for handling the server's main loop\&.
 .PP
 \fBAuthor\fP
 .RS 4
@@ -85,6 +75,34 @@ MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy
 \fBBug\fP
 .RS 4
 No known bugs\&. 
+.RE
+.PP
+
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define BACKLOG   16"
+
+.PP
+Defines the maximum legnth for the queue of pending connnections, passed to \fClisten()\fP function\&. For more Info about \fCbacklog\fP parameter in \fClisten()\fP function, please refer to POSIX Sockets Docs\&. 
+.SS "#define FILE_PATH_BUF_SIZE   1024"
+
+.PP
+Defines the maximum length of path for website root directory\&. In config file, the length of value for key defined by \fCSITE_DIR_CONF_KEY\fP macro (default: \fCsite_root_dir\fP) should not exceed this value\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fBSITE_DIR_CONF_KEY\fP 
+.RE
+.PP
+
+.SS "#define SERVER_NAME   'ElServe/2\&.0'"
+
+.PP
+Defines the value for value for \fCServer\fP response header\&. 
+.PP
+\fBSee also\fP
+.RS 4
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Server 
 .RE
 .PP
 
@@ -169,14 +187,6 @@ void
 .RE
 .PP
 
-.SH "Variable Documentation"
-.PP 
-.SS "int tcp_socket = \-1\fC [private]\fP"
-
-.PP
-File descriptor for the server socket used to listen for incoming connections\&. Initially set to -1\&. Once the server is started and a socket is created, this file descriptor is set to the socket's file descriptor\&.
-.PP
-This is a private object and should not be accessed directly\&. 
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for nanows from the source code\&.

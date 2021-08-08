@@ -1,4 +1,4 @@
-.TH "slib/mimetypes.c" 3 "Sat Aug 7 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.TH "slib/mimetypes.c" 3 "Sun Aug 8 2021" "Version 2.0" "nanows" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -58,6 +58,7 @@ slib/mimetypes.c \- Functions for loading and querying mimetypes\&.
 .ti -1c
 .RI "GHashTable * \fB_mime_htab\fP = NULL"
 .br
+.RI "Hash table for MIME types\&. "
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -208,8 +209,10 @@ On success, returns a pointer to string with the MIME type\&. On failure, return
 
 .SH "Variable Documentation"
 .PP 
-.SS "GHashTable* _mime_htab = NULL"
+.SS "GHashTable* _mime_htab = NULL\fC [private]\fP"
 
+.PP
+Hash table for MIME types\&. This is a private object and should not be accessed directly\&. 
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for nanows from the source code\&.

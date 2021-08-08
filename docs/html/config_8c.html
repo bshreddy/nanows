@@ -120,8 +120,10 @@ Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:ae8fbfc9e5cf06344b4d746c645451d28"><td class="memItemLeft" align="right" valign="top">GKeyFile *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8c.html#ae8fbfc9e5cf06344b4d746c645451d28">config</a> = NULL</td></tr>
+<tr class="memdesc:ae8fbfc9e5cf06344b4d746c645451d28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Key file object to read and store the configuration key-value pairs.  <a href="config_8c.html#ae8fbfc9e5cf06344b4d746c645451d28">More...</a><br /></td></tr>
 <tr class="separator:ae8fbfc9e5cf06344b4d746c645451d28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc39a4bba3587c275762137dee2c3fc1"><td class="memItemLeft" align="right" valign="top">GError *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8c.html#abc39a4bba3587c275762137dee2c3fc1">error</a> = NULL</td></tr>
+<tr class="memdesc:abc39a4bba3587c275762137dee2c3fc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">GError object to store the error.  <a href="config_8c.html#abc39a4bba3587c275762137dee2c3fc1">More...</a><br /></td></tr>
 <tr class="separator:abc39a4bba3587c275762137dee2c3fc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -132,7 +134,7 @@ Variables</h2></td></tr>
 <p>Keys for few configuration options are defined in <code><a class="el" href="config_8h.html" title="Function Prototypes for the configuration manager.">include/config.h</a></code> and can be used as keys to retrive the configuration values. These macros can be changed by defining them before <code>#include "config.h"</code>. In which case, the keys for the corresponding configuration options need to be changed accordingly in <code>CONF_FILE</code> file.</p>
 <dl class="section author"><dt>Author</dt><dd>Sai Hemanth Bheemreddy (@SaiHemanthBR) </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy </dd></dl>
-<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000006">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
+<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000007">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="a1135df810ff4009145971a6ceb87064d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1135df810ff4009145971a6ceb87064d">&#9670;&nbsp;</a></span>get_config()</h2>
@@ -266,12 +268,23 @@ Variables</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">GKeyFile* config = NULL</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+
+<p>Key file object to read and store the configuration key-value pairs. </p>
+<p>This is a private object and should not be accessed directly. </p>
 
 </div>
 </div>
@@ -280,12 +293,23 @@ Variables</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">GError* error = NULL</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+
+<p>GError object to store the error. </p>
+<p>This is a private object and should not be accessed directly. </p>
 
 </div>
 </div>

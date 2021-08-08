@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['clean_5frequest_15',['clean_request',['../server_8c.html#a0dac82030da7779c7b2b20d6bbe6b748',1,'server.c']]],
+  ['clean_5frequest_15',['clean_request',['../server_8h.html#a0dac82030da7779c7b2b20d6bbe6b748',1,'clean_request(FILE *, request *, response *):&#160;server.c'],['../server_8c.html#aea07360538c7459f258ca63bde7a5767',1,'clean_request(FILE *file, request *req, response *res):&#160;server.c']]],
   ['close_5frequest_16',['close_request',['../request_8h.html#a93a1a13d895909169b52caa6eb259b8a',1,'close_request(request *):&#160;request.c'],['../request_8c.html#aee96499e88370e463617a24dada68234',1,'close_request(request *req):&#160;request.c']]],
   ['close_5fresponse_17',['close_response',['../response_8h.html#a97ecd7f0485831ee361f99f85e525bb5',1,'close_response(response *):&#160;response.c'],['../response_8c.html#a8ff953f6c5c1845c681a54abb2b9d31a',1,'close_response(response *res):&#160;response.c']]],
   ['conf_5ffile_18',['CONF_FILE',['../config_8h.html#a2b53ff59ad6fe7d737de442d3dfe0634',1,'config.h']]],

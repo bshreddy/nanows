@@ -1,4 +1,4 @@
-.TH "include/mimetypes.h" 3 "Sat Aug 7 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.TH "include/mimetypes.h" 3 "Sun Aug 8 2021" "Version 2.0" "nanows" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -98,7 +98,7 @@ Defines max size of each record in MIME_CONF_FILE\&.
 Defines the default MIME types file\&. 
 .SH "Function Documentation"
 .PP 
-.SS "char* _get_ext_for_url (const char * url)"
+.SS "char* _get_ext_for_url (const char * url)\fC [private]\fP"
 
 .PP
 Extracts the file extension from the given URL path\&. 
@@ -114,7 +114,7 @@ On success, returns a pointer to string containing extension for the given URL\&
 .RE
 .PP
 
-.SS "void _mime_htab_key_destroy (gpointer data)"
+.SS "void _mime_htab_key_destroy (gpointer data)\fC [private]\fP"
 
 .PP
 Releases the memory allocated for the given key, called automatically by \fCg_hash_table_destroy()\fP\&. 
@@ -130,7 +130,7 @@ void
 .RE
 .PP
 
-.SS "void _mime_htab_value_destroy (gpointer data)"
+.SS "void _mime_htab_value_destroy (gpointer data)\fC [private]\fP"
 
 .PP
 Releases the memory allocated for the given value, called automatically by \fCg_hash_table_destroy()\fP\&. 

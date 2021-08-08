@@ -1,4 +1,4 @@
-.TH "include/request.h" 3 "Sat Aug 7 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.TH "include/request.h" 3 "Sun Aug 8 2021" "Version 2.0" "nanows" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -109,7 +109,7 @@ Defines the max size of a request buffer\&.
 
 .SH "Function Documentation"
 .PP 
-.SS "void _free_request (\fBrequest\fP * req)"
+.SS "void _free_request (\fBrequest\fP * req)\fC [private]\fP"
 
 .PP
 Helper function to free the request struct\&. This function frees the memory allocated for the request struct\&. This includes freeing the memory allocated for GHashTable using \fCg_hash_table_destroy()\fP and freeing the memory allocated to \fChttp_method\fP, \fCurl\fP, \fChttp_ver\fP using \fCfree()\fP\&. Once the request struct is freed, \fCreq\fP parameter is set to \fCNULL\fP\&. If a \fCNULL\fP pointer is passed to this function, function does nothing\&.
@@ -125,7 +125,7 @@ void
 .RE
 .PP
 
-.SS "\fBrequest\fP* _initialize_request ()"
+.SS "\fBrequest\fP* _initialize_request ()\fC [private]\fP"
 
 .PP
 Allocates memory for a request struct and initializes it to default values\&. Default values are:
@@ -147,7 +147,7 @@ On success, pointer to a newly allocated request struct is returned\&. On failur
 .RE
 .PP
 
-.SS "int _parse_request (const char * req_buf, \fBrequest\fP * req)"
+.SS "int _parse_request (const char * req_buf, \fBrequest\fP * req)\fC [private]\fP"
 
 .PP
 Helper function to parse the request buffer and populate the request struct\&. Request data is parsed and populated into the request struct\&. For example, lets take a normal request: 
@@ -211,7 +211,7 @@ On success, \fC1\fP is returned\&. On failure, \fC0\fP is returned\&.
 .RE
 .PP
 
-.SS "void _req_header_htab_key_destroy (gpointer data)"
+.SS "void _req_header_htab_key_destroy (gpointer data)\fC [private]\fP"
 
 .PP
 Releases the memory allocated for the given key, called automatically by \fCg_hash_table_destroy()\fP\&. 
@@ -227,7 +227,7 @@ void
 .RE
 .PP
 
-.SS "void _req_header_htab_value_destroy (gpointer data)"
+.SS "void _req_header_htab_value_destroy (gpointer data)\fC [private]\fP"
 
 .PP
 Releases the memory allocated for the given value, called automatically by \fCg_hash_table_destroy()\fP\&. 

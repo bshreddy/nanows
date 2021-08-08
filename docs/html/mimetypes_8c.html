@@ -127,6 +127,7 @@ Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a06c585107d9a96af09d5f28dea1e8baf"><td class="memItemLeft" align="right" valign="top">GHashTable *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mimetypes_8c.html#a06c585107d9a96af09d5f28dea1e8baf">_mime_htab</a> = NULL</td></tr>
+<tr class="memdesc:a06c585107d9a96af09d5f28dea1e8baf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hash table for MIME types.  <a href="mimetypes_8c.html#a06c585107d9a96af09d5f28dea1e8baf">More...</a><br /></td></tr>
 <tr class="separator:a06c585107d9a96af09d5f28dea1e8baf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -137,7 +138,7 @@ Variables</h2></td></tr>
 <p>The default case key is defined by <code>DEFAULT_MIMETYPE_KEY</code> macro (defined in <code>include/mimetypes/h</code>). If <code>DEFAULT_MIMETYPE_KEY</code> can be changed by defining <code>CONF_FILE</code> macro before <code>#include "mimetypes.h"</code>. In which case, the key for default MIME type must be changed as well.</p>
 <dl class="section author"><dt>Author</dt><dd>Sai Hemanth Bheemreddy (@SaiHemanthBR) </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy </dd></dl>
-<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000008">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
+<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000009">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="ae8a5fbfc609edb3f11e6ad38fadbcfff"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae8a5fbfc609edb3f11e6ad38fadbcfff">&#9670;&nbsp;</a></span>_get_ext_for_url()</h2>
@@ -349,12 +350,23 @@ Variables</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">GHashTable* _mime_htab = NULL</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+
+<p>Hash table for MIME types. </p>
+<p>This is a private object and should not be accessed directly. </p>
 
 </div>
 </div>

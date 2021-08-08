@@ -95,7 +95,8 @@ $(document).ready(function(){initNavTree('response_8h.html',''); initResizable()
 
 <p>Function Prototypes for creating, sending and handling network responses.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;glib.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;glib.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="request_8h_source.html">request.h</a>&quot;</code><br />
 </div>
 <p><a href="response_8h_source.html">Go to the source code of this file.</a></p>
@@ -223,6 +224,9 @@ Functions</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void _free_response </td>
@@ -232,6 +236,11 @@ Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Helper function to free the response struct. </p>
@@ -251,6 +260,9 @@ Functions</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="structresponse.html">response</a>* _initialize_response </td>
@@ -259,6 +271,11 @@ Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Allocates memory for a response struct and initializes it to default values. </p>
@@ -277,6 +294,9 @@ Functions</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void _res_header_htab_key_destroy </td>
@@ -286,6 +306,11 @@ Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Releases the memory allocated for the given key, called automatically by <code>g_hash_table_destroy()</code>. </p>
@@ -304,6 +329,9 @@ Functions</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void _res_header_htab_value_destroy </td>
@@ -313,6 +341,11 @@ Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Releases the memory allocated for the given value, called automatically by <code>g_hash_table_destroy()</code>. </p>

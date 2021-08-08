@@ -1,4 +1,4 @@
-.TH "slib/config.c" 3 "Sat Aug 7 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.TH "slib/config.c" 3 "Sun Aug 8 2021" "Version 2.0" "nanows" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -48,9 +48,11 @@ slib/config.c \- A configuration manager\&.
 .ti -1c
 .RI "GKeyFile * \fBconfig\fP = NULL"
 .br
+.RI "Key file object to read and store the configuration key-value pairs\&. "
 .ti -1c
 .RI "GError * \fBerror\fP = NULL"
 .br
+.RI "GError object to store the error\&. "
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -156,10 +158,14 @@ void
 
 .SH "Variable Documentation"
 .PP 
-.SS "GKeyFile* config = NULL"
+.SS "GKeyFile* config = NULL\fC [private]\fP"
 
-.SS "GError* error = NULL"
+.PP
+Key file object to read and store the configuration key-value pairs\&. This is a private object and should not be accessed directly\&. 
+.SS "GError* error = NULL\fC [private]\fP"
 
+.PP
+GError object to store the error\&. This is a private object and should not be accessed directly\&. 
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for nanows from the source code\&.
