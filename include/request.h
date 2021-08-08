@@ -135,6 +135,7 @@ void close_request(request *);
 // ==============================
 
 /**
+ * @private
  * @brief Allocates memory for a request struct and initializes it to default values.
  *
  * Default values are:
@@ -150,6 +151,7 @@ void close_request(request *);
 request *_initialize_request();
 
 /**
+ * @private
  * @brief Helper function to parse the request buffer and populate the request struct.
  *
  * Request data is parsed and populated into the request struct. For example, lets take a normal
@@ -190,6 +192,7 @@ request *_initialize_request();
 int _parse_request(const char *, request *);
 
 /**
+ * @private
  * @brief Helper function to free the request struct.
  *
  * This function frees the memory allocated for the request struct. This includes freeing the
@@ -204,6 +207,7 @@ int _parse_request(const char *, request *);
 void _free_request(request *);
 
 /**
+ * @private
  * @brief Releases the memory allocated for the given key, called automatically by
  * `g_hash_table_destroy()`.
  *
@@ -213,6 +217,7 @@ void _free_request(request *);
 void _req_header_htab_key_destroy(gpointer);
 
 /**
+ * @private
  * @brief Releases the memory allocated for the given value, called automatically by
  * `g_hash_table_destroy()`.
  *

@@ -28,7 +28,20 @@
 #include "config.h"
 #include "helpers.h"
 
+/**
+ * @private
+ * @brief Key file object to read and store the configuration key-value pairs.
+ *
+ * This is a private object and should not be accessed directly.
+ */
 GKeyFile *config = NULL;
+
+/**
+ * @private
+ * @brief GError object to store the error.
+ *
+ * This is a private object and should not be accessed directly.
+ */
 GError *error = NULL;
 
 int load_config() {

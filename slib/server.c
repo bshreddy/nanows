@@ -27,6 +27,15 @@
 
 #include "server.h"
 
+/**
+ * @private
+ * @brief File descriptor for the server socket used to listen for incoming connections.
+ *
+ * Initially set to -1. Once the server is started and a socket is created, this file descriptor
+ * is set to the socket's file descriptor.
+ *
+ * This is a private object and should not be accessed directly.
+ */
 int tcp_socket = -1;
 
 void start_server() {

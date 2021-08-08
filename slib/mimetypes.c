@@ -34,6 +34,12 @@
 #include "helpers.h"
 #include "mimetypes.h"
 
+/**
+ * @private
+ * @brief Hash table for MIME types.
+ *
+ * This is a private object and should not be accessed directly.
+ */
 GHashTable *_mime_htab = NULL;
 
 int create_mime_table() {

@@ -221,6 +221,7 @@ void close_response(response *);
 // ==============================
 
 /**
+ * @private
  * @brief Allocates memory for a response struct and initializes it to default values.
  *
  * Default values are:
@@ -235,6 +236,7 @@ void close_response(response *);
 response *_initialize_response();
 
 /**
+ * @private
  * @brief Helper function to free the response struct.
  *
  * This function frees the memory allocated for the response struct. This includes freeing the
@@ -248,6 +250,7 @@ response *_initialize_response();
 void _free_response(response *);
 
 /**
+ * @private
  * @brief Releases the memory allocated for the given key, called automatically by
  * `g_hash_table_destroy()`.
  *
@@ -257,6 +260,7 @@ void _free_response(response *);
 void _res_header_htab_key_destroy(gpointer);
 
 /**
+ * @private
  * @brief Releases the memory allocated for the given value, called automatically by
  * `g_hash_table_destroy()`.
  *

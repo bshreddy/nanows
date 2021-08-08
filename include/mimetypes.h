@@ -99,6 +99,7 @@ const char *get_mimetype_for_url(const char *, char *);
 // ==============================
 
 /**
+ * @private
  * @brief Extracts the file extension from the given URL path.
  *
  * @param url The URL path.
@@ -108,6 +109,7 @@ const char *get_mimetype_for_url(const char *, char *);
 char *_get_ext_for_url(const char *);
 
 /**
+ * @private
  * @brief Releases the memory allocated for the given key, called automatically by
  * `g_hash_table_destroy()`.
  *
@@ -117,6 +119,7 @@ char *_get_ext_for_url(const char *);
 void _mime_htab_key_destroy(gpointer);
 
 /**
+ * @private
  * @brief Releases the memory allocated for the given value, called automatically by
  * `g_hash_table_destroy()`.
  *
