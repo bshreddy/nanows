@@ -1,6 +1,10 @@
 /**
- * @file
- * @brief
+ * @file slib/server.c
+ * @brief Functions for loading configuration, starting and stopping the server, memory management
+ * and for handling the server's main loop.
+ *
+ * Implements functions defined in `include/server.h`. Used to load configuration, start and
+ * stop the server, memory management and for handling the server's main loop.
  *
  * @author Sai Hemanth Bheemreddy (@SaiHemanthBR)
  * @copyright MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy
@@ -114,7 +118,7 @@ void *handle_request(void *new_conn_fd) {
     file = NULL;
     if ((file = fopen(file_path, "rb")) == NULL) {
         clean_request(file, req, res);
-        return 0;
+        return 1;
     }
 
     res = create_response_from_request(req);
@@ -124,13 +128,13 @@ void *handle_request(void *new_conn_fd) {
 
     if (send_response_head(res) == 0) {
         clean_request(file, req, res);
-        return 0;
+        return 2;
     };
 
     if (send_response_file(res, file) == 0) {
         printf("Error Sending File: %s for URL: %s. %s\n", file_path, req->url, strerror(errno));
         clean_request(file, req, res);
-        return 0;
+        return 3;
     }
 
     clean_request(file, req, res);
@@ -142,10 +146,12 @@ void clean_request(FILE *file, request *req, response *res) {
         fclose(file);
         file = NULL;
     }
+
     if (req != NULL) {
         close_request(req);
         req = NULL;
     }
+
     if (res != NULL) {
         close_response(res);
         res = NULL;
