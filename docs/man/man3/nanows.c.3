@@ -1,0 +1,57 @@
+.TH "src/nanows.c" 3 "Sun Aug 8 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/nanows.c \- Web Server main source file and entry point\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include <signal\&.h>\fP
+.br
+\fC#include 'server\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBmain\fP (int argc, char *argv[])"
+.br
+.RI "The main function of the web server\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Web Server main source file and entry point\&. 
+
+Implements the main function of \fI\fBNano Web Server\&.\fP\fP It is a simple, multi-threaded, web server written using POSIX Sockets\&. Uses a process-driven approach and creates a new thread for each request\&. This web server can only host simple static webpages with no server-size processing\&. As of v2, it does not conform to any HTTP protocol\&. This is a learning project and is not intended to be used in a production environment\&.
+.PP
+\fBAuthor\fP
+.RS 4
+Sai Hemanth Bheemreddy (@SaiHemanthBR) 
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy 
+.RE
+.PP
+\fBBug\fP
+.RS 4
+No known bugs\&. 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "int main (int argc, char * argv[])"
+
+.PP
+The main function of the web server\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for nanows from the source code\&.

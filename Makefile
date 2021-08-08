@@ -51,6 +51,10 @@ clean:
 	rm -rf bin/*
 	@echo "Cleaned Library Files and Binaries\n"
 
+docs: --force
+	doxygen
+	@echo "Documentation built\n"
+
 --compile-libs: ${LIBS}
 	@echo "Compiled Library Files\n"
 
@@ -71,3 +75,5 @@ clean:
 --dir-%:
 	mkdir -p $(subst -,/,$(@:--dir-%=%))
 	@echo "Created Dir: $(subst -,/,$(@:--dir-%=%))\n"
+
+--force: ;

@@ -1,0 +1,347 @@
+.TH "slib/response.c" 3 "Sun Aug 8 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+slib/response.c \- Functions for creating, sending and handling network responses\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <sys/socket\&.h>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+\fC#include 'response\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBresponse\fP * \fBcreate_response\fP (const int conn_fd)"
+.br
+.RI "Creates a response struct, duplicates \fCconn_fd\fP and returns a pointer to the response struct\&. "
+.ti -1c
+.RI "\fBresponse\fP * \fBcreate_response_from_request\fP (const \fBrequest\fP *req)"
+.br
+.RI "Similar to \fC\fBcreate_response()\fP\fP, but takes a request struct as an argument and copies \fChttp_ver\fP from the request struct\&. "
+.ti -1c
+.RI "const char * \fBget_response_header\fP (const \fBresponse\fP *res, const char *header_key, char *header_val)"
+.br
+.RI "Gets the value of the response header for the given key\&. "
+.ti -1c
+.RI "const char * \fBset_response_header\fP (const \fBresponse\fP *res, const char *header_key, const char *header_val)"
+.br
+.RI "Sets the value of the response header for the given key\&. "
+.ti -1c
+.RI "ssize_t \fBsend_response_head\fP (const \fBresponse\fP *res)"
+.br
+.RI "Sends the response head (Start line and headers) to the client\&. "
+.ti -1c
+.RI "ssize_t \fBsend_response_file\fP (const \fBresponse\fP *res, FILE *file)"
+.br
+.RI "Sends data in a \fCFILE\fP stream to the client as response body\&. "
+.ti -1c
+.RI "ssize_t \fBsend_response\fP (const \fBresponse\fP *res, const char *buf, ssize_t buf_size)"
+.br
+.RI "Sends first \fCbuf_size\fP bytes in \fCbuf\fP to the client as response body\&. "
+.ti -1c
+.RI "void \fBclose_response\fP (\fBresponse\fP *res)"
+.br
+.RI "Closes the response connection and frees the response struct\&. "
+.ti -1c
+.RI "\fBresponse\fP * \fB_initialize_response\fP ()"
+.br
+.RI "Allocates memory for a response struct and initializes it to default values\&. "
+.ti -1c
+.RI "void \fB_free_response\fP (\fBresponse\fP *res)"
+.br
+.RI "Helper function to free the response struct\&. "
+.ti -1c
+.RI "void \fB_res_header_htab_key_destroy\fP (gpointer data)"
+.br
+.RI "Releases the memory allocated for the given key, called automatically by \fCg_hash_table_destroy()\fP\&. "
+.ti -1c
+.RI "void \fB_res_header_htab_value_destroy\fP (gpointer data)"
+.br
+.RI "Releases the memory allocated for the given value, called automatically by \fCg_hash_table_destroy()\fP\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Functions for creating, sending and handling network responses\&. 
+
+Implements functions defined in \fC\fBinclude/response\&.h\fP\fP\&. Used to create, send and handle network responses\&.
+.PP
+The structure of response is defined by \fCstruct response\fP (defined in \fC\fBinclude/response\&.h\fP\fP)\&. This struct contains the following fields: http method, status code, response headers and connection file descriptor\&. \fCstruct response\fP is used to send the response back to the client and can be created by manually calling \fC\fBcreate_response()\fP\fP function and setting the values or automatically from a request\&.
+.PP
+Max size of a response header when formatted as '<key>: <value>\\r\\n' is defined by \fCRES_HEADER_BUF_SIZE\fP macro (defined in \fC\fBinclude/response\&.h\fP\fP)\&. This value can be changed by defining \fCRES_HEADER_BUF_SIZE\fP before \fC#include 'response\&.h'\fP\&.
+.PP
+\fBSee also\fP
+.RS 4
+typedef struct \fBrequest\fP 
+.PP
+typedef struct \fBresponse\fP 
+.RE
+.PP
+\fBAuthor\fP
+.RS 4
+Sai Hemanth Bheemreddy (@SaiHemanthBR) 
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy 
+.RE
+.PP
+\fBBug\fP
+.RS 4
+No known bugs\&. 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "void _free_response (\fBresponse\fP * res)"
+
+.PP
+Helper function to free the response struct\&. This function frees the memory allocated for the response struct\&. This includes freeing the memory allocated for GHashTable using \fCg_hash_table_destroy()\fP and freeing the memory allocated to \fChttp_ver\fP and \fCstatus_code\fP using \fCfree()\fP\&. Once the request struct is freed, \fCres\fP parameter is set to \fCNULL\fP\&. If a \fCNULL\fP pointer is passed to this function, function does nothing\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIres\fP The response struct to be freed and set to \fCNULL\fP\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
+.SS "\fBresponse\fP* _initialize_response ()"
+
+.PP
+Allocates memory for a response struct and initializes it to default values\&. Default values are:
+.IP "\(bu" 2
+conn_fd = -1
+.IP "\(bu" 2
+http_ver = \fCNULL\fP
+.IP "\(bu" 2
+status_code = \fCNULL\fP
+.IP "\(bu" 2
+header_htab = pointer to a newly allocated \fCGHashTable\fP
+.PP
+.PP
+\fBReturns\fP
+.RS 4
+On success, pointer to a newly allocated request struct is returned\&. On failure, \fCNULL\fP is returned\&. 
+.RE
+.PP
+
+.SS "void _res_header_htab_key_destroy (gpointer data)"
+
+.PP
+Releases the memory allocated for the given key, called automatically by \fCg_hash_table_destroy()\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP Pointer to key in the hash table\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
+.SS "void _res_header_htab_value_destroy (gpointer data)"
+
+.PP
+Releases the memory allocated for the given value, called automatically by \fCg_hash_table_destroy()\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP Pointer to value in the hash table\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
+.SS "void close_response (\fBresponse\fP * res)"
+
+.PP
+Closes the response connection and frees the response struct\&. All response connections needed to be closed after sending the response\&. Even if the response connection is closed, the browser will still wait for resquest connection to be closed\&. Therefore, this function, along with \fCclose_request\fP, must be called to complete the request-response cycle\&. This function calls \fC_free_response\fP to free the request struct\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIreq\fP The response to be closed and freed\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBclose_request\fP 
+.PP
+\fB_free_response\fP 
+.RE
+.PP
+
+.SS "\fBresponse\fP* create_response (const int conn_fd)"
+
+.PP
+Creates a response struct, duplicates \fCconn_fd\fP and returns a pointer to the response struct\&. This function allocates memory for a response struct by calling \fC_initialize_response\fP, duplicates \fCconn_fd\fP using \fCdup()\fP and returns a pointer to the response struct\&. \fCconn_fd\fP is duplicated to prevent from user closing the original connection file descriptor and leaving the response struct in an invalid state\&. (e\&.g\&. \fCconn_fd\fP is closed, but the response struct is still in use by the user, this causes errors when the user tries to send the response back to the client)\&.
+.PP
+For, more info about \fCdup()\fP, see docs/man pages for \fCunistd\&.h\fP\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIconn_fd\fP The file descriptor of the connection that will be used to send the response\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+On success, a pointer to the response struct is returned\&. On failure, \fCNULL\fP is returned\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fB_initialize_response\fP 
+.RE
+.PP
+
+.SS "\fBresponse\fP* create_response_from_request (const \fBrequest\fP * req)"
+
+.PP
+Similar to \fC\fBcreate_response()\fP\fP, but takes a request struct as an argument and copies \fChttp_ver\fP from the request struct\&. This function is similar to \fC\fBcreate_response()\fP\fP, and uses \fC\fBcreate_response()\fP\fP internally, except that it takes a request struct as an argument and also copies \fChttp_ver\fP from the request struct\&. \fChttp_ver\fP is a freshly allocated string and is independent of \fCrequest:http_ver\fP\&. It is adviced to use \fC\fBcreate_response_from_request()\fP\fP instead of \fC\fBcreate_response()\fP\fP if you are using a request struct\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIreq\fP The request struct that will be used to create the response\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+On success, a pointer to the response struct is returned\&. On failure, \fCNULL\fP is returned\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBcreate_response\fP 
+.RE
+.PP
+
+.SS "const char* get_response_header (const \fBresponse\fP * res, const char * header_key, char * header_val)"
+
+.PP
+Gets the value of the response header for the given key\&. If \fCheader_key\fP is found in header table, the value is copied into \fCheader_val\fP and the same is returned\&. If the key is not found or an error occurs, \fCNULL\fP is returned and \fCheader_val\fP is not modified\&.
+.PP
+\fCheader_val\fP can be \fCNULL\fP, in which case, the function simply returns the value\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIres\fP The response struct\&. 
+.br
+\fIheader_key\fP The key of the header\&. 
+.br
+\fIheader_val\fP Pointer to a string to store the value of the header\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+On success, returns a pointer to the header value\&. On failure, returns \fCNULL\fP\&. 
+.RE
+.PP
+
+.SS "ssize_t send_response (const \fBresponse\fP * res, const char * buf, ssize_t buf_size)"
+
+.PP
+Sends first \fCbuf_size\fP bytes in \fCbuf\fP to the client as response body\&. If \fCbuf_size\fP is given as '-1', the function sends the entire buffer \fCbuf\fP to the client as response body (i\&.e\&. until \fC\\0\fP is reached)\&. On success, the function returns the number of bytes sent\&. On failure, returns \fC-1\fP\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIres\fP The response struct\&. 
+.br
+\fIbuf\fP The buffer to be sent as response body to the client\&. 
+.br
+\fIbuf_size\fP The number of bytes to be sent (-1 if the entire buffer \fCbuf\fP is to be sent)\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+On success, returns the number of bytes sent\&. On failure, returns \fC-1\fP\&. 
+.RE
+.PP
+
+.SS "ssize_t send_response_file (const \fBresponse\fP * res, FILE * file)"
+
+.PP
+Sends data in a \fCFILE\fP stream to the client as response body\&. This function sends the response body from the \fCFILE\fP stream \fCfile\fP to the client\&. The file is read using (\fCfread()\fP as chunks of size \fCRES_BUF_SIZE\fP and sent to the client\&. If the number of bytes read from the file doesn't match the number of bytes sent to the client, it is considered an error and the function returns total number of bytes that were sent before the error occurred\&.
+.PP
+The function doesn't send response head (Start line and headers) to the client, it is assumed that the client has already received the response head\&. The file stream is assumed to be opened in \fC'rb'\fP mode and is not closed by this function after sending the response\&.
+.PP
+For now, the only way to make sure the file has been sucessfully sent to the client is to check the returned number of bytes with the actual byte size of the file\&. This is a known limitation and will be fixed in the future\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIres\fP The response struct\&. 
+.br
+\fIfile\fP The \fCFILE\fP stream to be sent as response body to the client\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Returns the number of bytes sent\&. If an error occurs, returns the number of bytes that were sent before the error occurred\&. 
+.RE
+.PP
+
+.SS "ssize_t send_response_head (const \fBresponse\fP * res)"
+
+.PP
+Sends the response head (Start line and headers) to the client\&. This function sends the response start line, followed by the all the response headers set in header table for the response \fCres\fP and an empty line to separate the response head from the response body\&. This function must be called before sending the response body (i\&.e\&., \fC\fBsend_response_file()\fP\fP or \fC\fBsend_response()\fP\fP)\&.)
+.PP
+\fBParameters\fP
+.RS 4
+\fIres\fP The response struct\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Returns the number of bytes sent\&. If an error occurs, returns the number of bytes that were sent before the error occurred\&. 
+.RE
+.PP
+
+.SS "const char* set_response_header (const \fBresponse\fP * res, const char * header_key, const char * header_val)"
+
+.PP
+Sets the value of the response header for the given key\&. If \fCheader_key\fP is not found in header table, \fCheader_key\fP is added to the header table with value \fCheader_val\fP\&. If \fCheader_key\fP is found in header table, \fCNULL\fP is returned and value in header table is not modified\&. If an error occurs, \fCNULL\fP is returned and header table is not modified\&.
+.PP
+\fCheader_key\fP and \fCheader_val\fP are duplicated using \fCstrdup()\fP before storing in header table, this is done to prevent from user freeing the original values and leaving dandling pointers in the header table\&. The freshly allocated strings are freed interally and the user should not free them\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIres\fP The response struct\&. 
+.br
+\fIheader_key\fP The key for the header\&. 
+.br
+\fIheader_val\fP Header value to be set\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+On success, returns \fCheader_val\fP that was stored\&. On failure, returns \fCNULL\fP\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for nanows from the source code\&.

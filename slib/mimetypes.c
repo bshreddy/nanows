@@ -1,3 +1,31 @@
+/**
+ * @file slib/mimetypes.c
+ * @brief Functions for loading and querying mimetypes.
+ *
+ * Implements functions defined in `include/mimetypes.h`. Used to load and retrive MIME types for
+ * file types.
+ *
+ * MIME types in `mimetypes.h` are defined as a hash table. The hash table is loaded from the file
+ * defined by `MIME_CONF_FILE` macro (defined in `include/mimetypes/h`). MIME types file can be
+ * changed by defining `CONF_FILE` macro before `#include "mimetypes.h"`.
+ *
+ * `MIME_CONF_FILE` can be expected to be a file where each line is a key-value pair with the format
+ * <file extension starting with '.'>=<mime type>. If the line starts with a '#', it is considered a
+ *  comment. Keys in `MIME_CONF_FILE` must always be file extensions starting with '.'. With the
+ * only exception being *default* case that is used to define the default MIME type for all unknown
+ * file extensions. And max length of a value is defined by `MIME_BUF_SIZE` macro (defined in
+ * `include/mimetypes/h`).
+ *
+ * The default case key is defined by `DEFAULT_MIMETYPE_KEY` macro (defined in
+ * `include/mimetypes/h`). If `DEFAULT_MIMETYPE_KEY` can be changed by defining `CONF_FILE` macro
+ * before `#include "mimetypes.h"`. In which case, the key for default MIME type must be changed as
+ * well.
+ *
+ * @author Sai Hemanth Bheemreddy (@SaiHemanthBR)
+ * @copyright MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy
+ * @bug No known bugs.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,6 +34,12 @@
 #include "helpers.h"
 #include "mimetypes.h"
 
+/**
+ * @private
+ * @brief Hash table for MIME types.
+ *
+ * This is a private object and should not be accessed directly.
+ */
 GHashTable *_mime_htab = NULL;
 
 int create_mime_table() {
@@ -18,6 +52,7 @@ int create_mime_table() {
     if ((_mime_htab = g_hash_table_new_full(g_str_hash, g_str_equal, _mime_htab_key_destroy,
                                             _mime_htab_value_destroy)) == NULL)
         return 0;
+
     if ((mime_file = fopen(MIME_CONF_FILE, "r")) == NULL)
         return 0;
 
@@ -90,18 +125,3 @@ void _mime_htab_value_destroy(gpointer data) {
     free(data);
     data = NULL;
 }
-
-// int main() {
-//     if(create_mime_table() == 0) return 1;
-//     printf("Created Table\n");
-
-//     const char *val = get_mimetype_for_ext(".html", NULL);
-//     printf(".html = %s\n", val);
-//     printf(".html = %s\n", get_mimetype_for_url("/hello.world/index.html", NULL));
-//     printf(".png = %s\n", get_mimetype_for_ext(".png", NULL));
-//     printf(".png = %s\n", get_mimetype_for_url("/hello.world/index.png", NULL));
-
-//     destroy_mime_table();
-
-//     return 0;
-// }

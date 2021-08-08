@@ -1,0 +1,125 @@
+.TH "include/helpers.h" 3 "Sun Aug 8 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/helpers.h \- Function Prototypes for commonly used helper functions\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <glib\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "char * \fBltrim\fP (char *)"
+.br
+.RI "Returns a string whose value is this string, with all leading space removed\&. "
+.ti -1c
+.RI "char * \fBrtrim\fP (char *)"
+.br
+.RI "Returns a string whose value is this string, with all trailing space removed\&. "
+.ti -1c
+.RI "char * \fBtrim\fP (char *)"
+.br
+.RI "Returns a string whose value is this string, with all leading and trailing space removed\&. "
+.ti -1c
+.RI "void \fBfree_gerror\fP (GError **)"
+.br
+.RI "Helper function to free GError\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Function Prototypes for commonly used helper functions\&. 
+
+This file contains prototypes for commonly used helper functions and eventually any common helper macros, constants, etc\&.
+.PP
+Implemented in \fC\fBslib/helpers\&.c\fP\fP\&.
+.PP
+\fBAuthor\fP
+.RS 4
+Sai Hemanth Bheemreddy (@SaiHemanthBR) 
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy 
+.RE
+.PP
+\fBBug\fP
+.RS 4
+No known bugs\&. 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "void free_gerror (GError ** error)"
+
+.PP
+Helper function to free GError\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIerror\fP Pointer to GError to be freed\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
+.SS "char* ltrim (char * s)"
+
+.PP
+Returns a string whose value is this string, with all leading space removed\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIs\fP The string to be trimmed\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a string whose value is this string, with all leading space removed, or this string if it has no leading space\&. 
+.RE
+.PP
+
+.SS "char* rtrim (char * s)"
+
+.PP
+Returns a string whose value is this string, with all trailing space removed\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIs\fP The string to be trimmed\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a string whose value is this string, with all trailing space removed, or this string if it has no trailing space\&. 
+.RE
+.PP
+
+.SS "char* trim (char * s)"
+
+.PP
+Returns a string whose value is this string, with all leading and trailing space removed\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIs\fP The string to be trimmed\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a string whose value is this string, with all leading and trailing space removed, or this string if it has no leading or trailing space\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for nanows from the source code\&.

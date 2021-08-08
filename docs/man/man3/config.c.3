@@ -1,0 +1,171 @@
+.TH "slib/config.c" 3 "Sun Aug 8 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+slib/config.c \- A configuration manager\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <math\&.h>\fP
+.br
+\fC#include <stdbool\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include 'config\&.h'\fP
+.br
+\fC#include 'helpers\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBload_config\fP ()"
+.br
+.RI "Loads and parses the configuration file and returns an int value to indicate success or failure\&. "
+.ti -1c
+.RI "char * \fBget_config\fP (const char *key)"
+.br
+.RI "Returns the value for the corresponding configuration key\&. "
+.ti -1c
+.RI "char * \fBget_config_str\fP (const char *key)"
+.br
+.RI "Returns the value for the corresponding configuration key\&. "
+.ti -1c
+.RI "int \fBget_config_int\fP (const char *key)"
+.br
+.RI "Returns the int value for the corresponding configuration key\&. "
+.ti -1c
+.RI "void \fBunload_config\fP ()"
+.br
+.RI "Unloads configuration and frees memory allocated for configuration and any errors\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "GKeyFile * \fBconfig\fP = NULL"
+.br
+.RI "Key file object to read and store the configuration key-value pairs\&. "
+.ti -1c
+.RI "GError * \fBerror\fP = NULL"
+.br
+.RI "GError object to store the error\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+A configuration manager\&. 
+
+Implements functions defined in \fC\fBinclude/config\&.h\fP\fP\&. Used to load, parse and get configurations\&.
+.PP
+Config file is defined by \fCCONF_FILE\fP macro in \fC\fBinclude/config\&.h\fP\fP\&. Custom config file can be specified by defining \fCCONF_FILE\fP macro before \fC#include 'config\&.h'\fP\&.
+.PP
+This configuration manager is based on the INI file format and uses \fIKey-Value file parser\fP available in glib library\&. Not all the configurations are implemented yet but the goal is to have most settings configured through the config file defined by \fCCONF_FILE\fP macro\&.
+.PP
+Keys for few configuration options are defined in \fC\fBinclude/config\&.h\fP\fP and can be used as keys to retrive the configuration values\&. These macros can be changed by defining them before \fC#include 'config\&.h'\fP\&. In which case, the keys for the corresponding configuration options need to be changed accordingly in \fCCONF_FILE\fP file\&.
+.PP
+\fBAuthor\fP
+.RS 4
+Sai Hemanth Bheemreddy (@SaiHemanthBR) 
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy 
+.RE
+.PP
+\fBBug\fP
+.RS 4
+No known bugs\&. 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "char* get_config (const char * key)"
+
+.PP
+Returns the value for the corresponding configuration key\&. Key is retrived using the \fCg_key_file_get_value()\fP function\&. The key is expected to valid key defined in configuration file\&. Default keys have macros defined in \fC\fBinclude/config\&.h\fP\fP like \fCHOST_CONF_KEY\fP, \fCPORT_CONF_KEY\fP, etc\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP The configuration key\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a newly allocated string or \fCNULL\fP, if the specified key cannot be found\&. 
+.RE
+.PP
+
+.SS "int get_config_int (const char * key)"
+
+.PP
+Returns the int value for the corresponding configuration key\&. Key is retrived using the \fCg_key_file_get_integer()\fP function\&. This function is similar to \fC\fBget_config()\fP\fP except it returns an integer value\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP The configuration key\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The value associated with the key as an integer, or \fCINT_MIN\fP, if the key was not found\&. 
+.RE
+.PP
+
+.SS "char* get_config_str (const char * key)"
+
+.PP
+Returns the value for the corresponding configuration key\&. Key is retrived using the \fCg_key_file_get_string()\fP function\&. This function is similar to \fC\fBget_config()\fP\fP except that it handles escape sequences like \fC\\s\fP\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP The configuration key\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a newly allocated string or \fCNULL\fP, if the specified key cannot be found\&. 
+.RE
+.PP
+
+.SS "int load_config ()"
+
+.PP
+Loads and parses the configuration file and returns an int value to indicate success or failure\&. Parsing the configuration file is done using the \fCg_key_file_load_from_file()\fP function\&. The config file is loaded from the \fCCONF_FILE\fP macro\&. Cofiguration file is expected to be in INI format\&.
+.PP
+If the configuration file is loaded successfully, the function returns \fC1\fP and the parsed config is stored in the \fCconfig\fP variable\&. If the configuration file is already loaded (i\&.e\&. \fCconfig\fP is not \fCNULL\fP), the function returns \fC2\fP without performing any action\&. If the configuration file is not loaded successfully, the function returns \fC0\fP\&.
+.PP
+\fBReturns\fP
+.RS 4
+On success, returns a non-zero value\&. On failure, returns 0\&. 
+.RE
+.PP
+
+.SS "void unload_config ()"
+
+.PP
+Unloads configuration and frees memory allocated for configuration and any errors\&. 
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "GKeyFile* config = NULL\fC [private]\fP"
+
+.PP
+Key file object to read and store the configuration key-value pairs\&. This is a private object and should not be accessed directly\&. 
+.SS "GError* error = NULL\fC [private]\fP"
+
+.PP
+GError object to store the error\&. This is a private object and should not be accessed directly\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for nanows from the source code\&.

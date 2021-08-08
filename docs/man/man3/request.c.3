@@ -1,0 +1,327 @@
+.TH "slib/request.c" 3 "Sun Aug 8 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+slib/request.c \- Functions for accepting, parsing and handling network requests\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <sys/socket\&.h>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+\fC#include 'request\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBrequest\fP * \fBget_request\fP (const int conn_fd)"
+.br
+.RI "Receives an accepted connection, parses the request, and returns the request\&. "
+.ti -1c
+.RI "\fBrequest\fP * \fBparse_request\fP (const char *req_buf, const int conn_fd)"
+.br
+.RI "Parses the request buffer and returns the request struct\&. "
+.ti -1c
+.RI "void \fBclose_request\fP (\fBrequest\fP *req)"
+.br
+.RI "Closes the request connection and frees the request struct\&. "
+.ti -1c
+.RI "const char * \fBget_request_header\fP (const \fBrequest\fP *req, const char *header_key, char *header_val)"
+.br
+.RI "Gets the value of a request header for a given key\&. "
+.ti -1c
+.RI "\fBrequest\fP * \fB_initialize_request\fP ()"
+.br
+.RI "Allocates memory for a request struct and initializes it to default values\&. "
+.ti -1c
+.RI "int \fB_parse_request\fP (const char *req_buf, \fBrequest\fP *req)"
+.br
+.RI "Helper function to parse the request buffer and populate the request struct\&. "
+.ti -1c
+.RI "void \fB_free_request\fP (\fBrequest\fP *req)"
+.br
+.RI "Helper function to free the request struct\&. "
+.ti -1c
+.RI "void \fB_req_header_htab_key_destroy\fP (gpointer data)"
+.br
+.RI "Releases the memory allocated for the given key, called automatically by \fCg_hash_table_destroy()\fP\&. "
+.ti -1c
+.RI "void \fB_req_header_htab_value_destroy\fP (gpointer data)"
+.br
+.RI "Releases the memory allocated for the given value, called automatically by \fCg_hash_table_destroy()\fP\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Functions for accepting, parsing and handling network requests\&. 
+
+Implements functions defined in \fC\fBinclude/request\&.h\fP\fP\&. Used to accept, parse and handle network requests\&.
+.PP
+The structure of request is defined by \fCstruct request\fP (defined in \fC\fBinclude/request\&.h\fP\fP)\&. This struct contains the following fields: http method, url, request headers and connection file descriptor\&. \fCstruct request\fP can be used to created a response (defined in \fC\fBinclude/response\&.h\fP\fP) to send the response back to the client\&.
+.PP
+Max size of a request is defined by \fCREQ_BUF_SIZE\fP macro (defined in \fC\fBinclude/request\&.h\fP\fP)\&. This value can be changed by defining \fCREQ_BUF_SIZE\fP before \fC#include 'request\&.h'\fP\&.
+.PP
+\fBSee also\fP
+.RS 4
+typedef struct \fBrequest\fP 
+.PP
+typedef struct \fBresponse\fP
+.RE
+.PP
+\fBAuthor\fP
+.RS 4
+Sai Hemanth Bheemreddy (@SaiHemanthBR) 
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy 
+.RE
+.PP
+\fBBug\fP
+.RS 4
+No known bugs\&. 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "void _free_request (\fBrequest\fP * req)"
+
+.PP
+Helper function to free the request struct\&. This function frees the memory allocated for the request struct\&. This includes freeing the memory allocated for GHashTable using \fCg_hash_table_destroy()\fP and freeing the memory allocated to \fChttp_method\fP, \fCurl\fP, \fChttp_ver\fP using \fCfree()\fP\&. Once the request struct is freed, \fCreq\fP parameter is set to \fCNULL\fP\&. If a \fCNULL\fP pointer is passed to this function, function does nothing\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIreq\fP The request struct to be freed and set to \fCNULL\fP\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
+.SS "\fBrequest\fP* _initialize_request ()"
+
+.PP
+Allocates memory for a request struct and initializes it to default values\&. Default values are:
+.IP "\(bu" 2
+conn_fd = -1
+.IP "\(bu" 2
+http_method = \fCNULL\fP
+.IP "\(bu" 2
+url = \fCNULL\fP
+.IP "\(bu" 2
+http_ver = \fCNULL\fP
+.IP "\(bu" 2
+header_htab = pointer to a newly allocated \fCGHashTable\fP
+.PP
+.PP
+\fBReturns\fP
+.RS 4
+On success, pointer to a newly allocated request struct is returned\&. On failure, \fCNULL\fP is returned\&. 
+.RE
+.PP
+
+.SS "int _parse_request (const char * req_buf, \fBrequest\fP * req)"
+
+.PP
+Helper function to parse the request buffer and populate the request struct\&. Request data is parsed and populated into the request struct\&. For example, lets take a normal request: 
+.PP
+.nf
+GET /index\&.html HTTP/1\&.1
+Host: localhost
+Accept: text/html
+Accept-Encoding: gzip
+Accept-Language: en-US
+User-Agent: Mozilla/5\&.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537\&.36
+    (KHTML, like Gecko) Chrome/92\&.0\&.4515\&.131 Safari/537\&.36
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+.fi
+.PP
+.PP
+The request struct will be populated as follows:
+.IP "\(bu" 2
+conn_fd = \fCfile descriptor of accepted connection, set in \fBparse_request()\fP\fP
+.IP "\(bu" 2
+http_method = \fCGET\fP
+.IP "\(bu" 2
+url = \fC/index\&.html\fP
+.IP "\(bu" 2
+http_ver = \fCHTTP/1\&.1\fP
+.IP "\(bu" 2
+header_htab = \fCGHashTable\fP containing the following key-value pairs:
+.IP "  \(bu" 4
+\fCHost\fP: \fClocalhost\fP
+.IP "  \(bu" 4
+\fCAccept\fP: \fCtext/html\fP
+.IP "  \(bu" 4
+\fCAccept-Encoding\fP: \fCgzip\fP
+.IP "  \(bu" 4
+\fCAccept-Language\fP: \fCen-US\fP
+.IP "  \(bu" 4
+\fCUser-Agent\fP: \fCMozilla/5\&.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537\&.36 (KHTML, like Gecko) Chrome/92\&.0\&.4515\&.131 Safari/537\&.36\fP
+.IP "  \(bu" 4
+\fCConnection\fP: \fCkeep-alive\fP
+.IP "  \(bu" 4
+\fCUpgrade-Insecure-Requests\fP: \fC1\fP
+.IP "  \(bu" 4
+\fCCache-Control\fP: \fCmax-age=0\fP
+.PP
+
+.PP
+.PP
+\fBParameters\fP
+.RS 4
+\fIreq_buf\fP The buffer containing the request data (read using \fCrecv()\fP)\&. 
+.br
+\fIreq\fP The request struct to store the parsed request data\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+On success, \fC1\fP is returned\&. On failure, \fC0\fP is returned\&. 
+.RE
+.PP
+
+.SS "void _req_header_htab_key_destroy (gpointer data)"
+
+.PP
+Releases the memory allocated for the given key, called automatically by \fCg_hash_table_destroy()\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP Pointer to key in the hash table\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
+.SS "void _req_header_htab_value_destroy (gpointer data)"
+
+.PP
+Releases the memory allocated for the given value, called automatically by \fCg_hash_table_destroy()\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP Pointer to value in the hash table\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
+.SS "void close_request (\fBrequest\fP * req)"
+
+.PP
+Closes the request connection and frees the request struct\&. All accepted request connections need to be closed to complete the response\&. Even if the response connection is closed, the browser will still be waiting for a response, if request is not closed\&. Therefore, this function, along with \fCclose_response\fP, must be called to complete the request-response cycle\&. This function calls \fC_free_request\fP to free the request struct\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIreq\fP The request to be closed and freed\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBclose_response\fP 
+.PP
+\fB_free_request\fP 
+.RE
+.PP
+
+.SS "\fBrequest\fP* get_request (const int conn_fd)"
+
+.PP
+Receives an accepted connection, parses the request, and returns the request\&. This function receives (reads) an accepted connection and calls \fCparse_request\fP to parse the request\&. The request struct returned by \fCparse_request\fP is then returned\&. This function must be called after a connection is accepted, i\&.e\&. after \fCaccept\fP is called\&. Therefore, the file descriptor returned from \fCaccept\fP must be passed to this function and not the file descriptor used to accept the connection, i\&.e\&. file descriptor passed to \fCaccept\fP\&.
+.PP
+For, more info about \fCaccept()\fP, see POSIX socket function docs\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIconn_fd\fP The file descriptor of the accepted connection, i\&.e the file descriptor returned by \fCaccept\fP\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+On success, pointer to a request struct is returned\&. On failure, \fCNULL\fP is returned\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBparse_request\fP 
+.RE
+.PP
+
+.SS "const char* get_request_header (const \fBrequest\fP * req, const char * header_key, char * header_val)"
+
+.PP
+Gets the value of a request header for a given key\&. If \fCheader_key\fP is found in header table, the value is copied into \fCheader_val\fP and the same is returned\&. If the key is not found or an error occurs, \fCNULL\fP is returned and \fCheader_val\fP is not modified\&.
+.PP
+\fCheader_val\fP can be \fCNULL\fP, in which case, the function simply returns the value\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIreq\fP The request struct\&. 
+.br
+\fIheader_key\fP The key of the header\&. 
+.br
+\fIheader_val\fP Pointer to a string to store the value of the header\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+On success, returns a pointer to the header value\&. On failure, returns \fCNULL\fP\&. 
+.RE
+.PP
+
+.SS "\fBrequest\fP* parse_request (const char * req_buf, const int conn_fd)"
+
+.PP
+Parses the request buffer and returns the request struct\&. This function accepts request data and file descriptor of the accepted connection, and parses the request\&. Initially, \fC_initialize_request\fP is called to initialize the request struct\&. Then \fC_parse_request\fP is called to parse the request\&. The request struct is then populated with the data parsed from the request\&. The same request struct is returned\&. If an error occurs, \fCNULL\fP is returned\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIreq_buf\fP The buffer containing the request data (read using \fCrecv()\fP)\&. 
+.br
+\fIconn_fd\fP The file descriptor of the accepted connection, i\&.e the file descriptor returned by \fCaccept\fP\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+On success, pointer to a request struct is returned\&. On failure, \fCNULL\fP is returned\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fB_initialize_request\fP 
+.PP
+\fB_parse_request\fP 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for nanows from the source code\&.

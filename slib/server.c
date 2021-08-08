@@ -1,3 +1,16 @@
+/**
+ * @file slib/server.c
+ * @brief Functions for loading configuration, starting and stopping the server, memory management
+ * and for handling the server's main loop.
+ *
+ * Implements functions defined in `include/server.h`. Used to load configuration, start and
+ * stop the server, memory management and for handling the server's main loop.
+ *
+ * @author Sai Hemanth Bheemreddy (@SaiHemanthBR)
+ * @copyright MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy
+ * @bug No known bugs.
+ */
+
 #include <errno.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -12,30 +25,22 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-#include "config.h"
-#include "mimetypes.h"
-#include "request.h"
-#include "response.h"
+#include "server.h"
 
-#define BACKLOG 16
-#define SERVER_NAME "ElServe/2.0"
-#define FILE_PATH_BUF_SIZE 1024
-
-void stop_server();
-void setup_socket();
-void *handle_request(void *);
-void clean_request(FILE *, request *, response *);
-
+/**
+ * @private
+ * @brief File descriptor for the server socket used to listen for incoming connections.
+ *
+ * Initially set to -1. Once the server is started and a socket is created, this file descriptor
+ * is set to the socket's file descriptor.
+ *
+ * This is a private object and should not be accessed directly.
+ */
 int tcp_socket = -1;
 
-int main(int argc, char *argv[]) {
+void start_server() {
     int conn_fd = -1;
     pthread_t tid;
-
-    // Managing Process Lifecycle
-    atexit(stop_server);
-    signal(SIGINT, exit);
-    signal(SIGTSTP, exit);
 
     // Setup
     load_config();
@@ -65,8 +70,6 @@ int main(int argc, char *argv[]) {
             continue;
         }
     }
-
-    return 0;
 }
 
 void stop_server() {
@@ -122,9 +125,9 @@ void *handle_request(void *new_conn_fd) {
     sprintf(file_path, "%s%s", get_config_str(SITE_DIR_CONF_KEY), req->url);
 
     file = NULL;
-    if ((file = fopen(file_path, "r")) == NULL) {
+    if ((file = fopen(file_path, "rb")) == NULL) {
         clean_request(file, req, res);
-        return 0;
+        return 1;
     }
 
     res = create_response_from_request(req);
@@ -132,15 +135,15 @@ void *handle_request(void *new_conn_fd) {
     set_response_header(res, "content-type", get_mimetype_for_url(req->url, NULL));
     set_response_header(res, "server", SERVER_NAME);
 
-    if (send_response_header(res) == 0) {
+    if (send_response_head(res) == 0) {
         clean_request(file, req, res);
-        return 0;
+        return 2;
     };
 
     if (send_response_file(res, file) == 0) {
         printf("Error Sending File: %s for URL: %s. %s\n", file_path, req->url, strerror(errno));
         clean_request(file, req, res);
-        return 0;
+        return 3;
     }
 
     clean_request(file, req, res);
@@ -152,10 +155,12 @@ void clean_request(FILE *file, request *req, response *res) {
         fclose(file);
         file = NULL;
     }
+
     if (req != NULL) {
         close_request(req);
         req = NULL;
     }
+
     if (res != NULL) {
         close_response(res);
         res = NULL;

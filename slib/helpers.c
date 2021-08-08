@@ -1,3 +1,14 @@
+/**
+ * @file slib/helpers.c
+ * @brief Collection of commonly used helper functions.
+ *
+ * Implements collection of helper functions defined in `include/helpers.h`.
+ *
+ * @author Sai Hemanth Bheemreddy (@SaiHemanthBR)
+ * @copyright MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy
+ * @bug No known bugs.
+ */
+
 #include <ctype.h>
 #include <string.h>
 

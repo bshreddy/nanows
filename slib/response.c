@@ -1,4 +1,27 @@
-#include <stdio.h>
+/**
+ * @file slib/response.c
+ * @brief Functions for creating, sending and handling network responses.
+ *
+ * Implements functions defined in `include/response.h`. Used to create, send and handle network
+ * responses.
+ *
+ * The structure of response is defined by `struct response` (defined in `include/response.h`).
+ * This struct contains the following fields: http method, status code, response headers and
+ * connection file descriptor. `struct response` is used to send the response back to the
+ * client and can be created by manually calling `create_response()` function and setting the values
+ * or automatically from a request.
+ *
+ * Max size of a response header when formatted as "<key>: <value>\r\n" is defined by
+ * `RES_HEADER_BUF_SIZE` macro (defined in `include/response.h`). This value can be changed by
+ * defining `RES_HEADER_BUF_SIZE` before `#include "response.h"`.
+ *
+ * @see typedef struct request
+ * @see typedef struct response
+ * @author Sai Hemanth Bheemreddy (@SaiHemanthBR)
+ * @copyright MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy
+ * @bug No known bugs.
+ */
+
 #include <stdlib.h>
 #include <string.h>
 #include <sys/socket.h>
@@ -55,7 +78,7 @@ const char *set_response_header(const response *res, const char *header_key,
 }
 
 // TODO: Only 1 send() call
-ssize_t send_response_header(const response *res) {
+ssize_t send_response_head(const response *res) {
     char buf[RES_HEADER_BUF_SIZE];
     ssize_t buf_size = 0, total_buf_size = 0;
 
@@ -101,7 +124,7 @@ ssize_t send_response_file(const response *res, FILE *file) {
     while ((buf_size = fread(buf, 1, RES_BUF_SIZE, file)) > 0) {
         send_size = send(res->conn_fd, buf, buf_size, 0);
         if (send_size != buf_size)
-            return 0;
+            return total_buf_size;
         total_buf_size += send_size;
     }
 

@@ -1,3 +1,26 @@
+/**
+ * @file slib/config.c
+ * @brief A configuration manager.
+ *
+ * Implements functions defined in `include/config.h`. Used to load, parse and get configurations.
+ *
+ * Config file is defined by `CONF_FILE` macro in `include/config.h`. Custom config file can be
+ * specified by defining `CONF_FILE` macro before `#include "config.h"`.
+ *
+ * This configuration manager is based on the INI file format and uses *Key-Value file parser*
+ * available in glib library. Not all the configurations are implemented yet but the goal is to
+ * have most settings configured through the config file defined by `CONF_FILE` macro.
+ *
+ * Keys for few configuration options are defined in `include/config.h` and can be used as keys
+ * to retrive the configuration values. These macros can be changed by defining them before
+ * `#include "config.h"`. In which case, the keys for the corresponding configuration options need to
+ * be changed accordingly in `CONF_FILE` file.
+ *
+ * @author Sai Hemanth Bheemreddy (@SaiHemanthBR)
+ * @copyright MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy
+ * @bug No known bugs.
+ */
+
 #include <math.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -5,7 +28,20 @@
 #include "config.h"
 #include "helpers.h"
 
+/**
+ * @private
+ * @brief Key file object to read and store the configuration key-value pairs.
+ *
+ * This is a private object and should not be accessed directly.
+ */
 GKeyFile *config = NULL;
+
+/**
+ * @private
+ * @brief GError object to store the error.
+ *
+ * This is a private object and should not be accessed directly.
+ */
 GError *error = NULL;
 
 int load_config() {
@@ -78,13 +114,3 @@ void unload_config() {
     if (error != NULL)
         free_gerror(&error);
 }
-
-// int main () {
-//     if(!load_config()) return 1;
-//     printf("Loaded\n");
-
-//     printf("%s\n", get_config_str("server_host"));
-//     printf("%d\n", get_config_int("server_port"));
-
-//     return 0;
-// }

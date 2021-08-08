@@ -1,0 +1,192 @@
+.TH "include/server.h" 3 "Sun Aug 8 2021" "Version 2.0" "nanows" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/server.h \- Function prototypes for the server functions\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'config\&.h'\fP
+.br
+\fC#include 'mimetypes\&.h'\fP
+.br
+\fC#include 'request\&.h'\fP
+.br
+\fC#include 'response\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBBACKLOG\fP   16"
+.br
+.RI "Defines the maximum legnth for the queue of pending connnections, passed to \fClisten()\fP function\&. "
+.ti -1c
+.RI "#define \fBSERVER_NAME\fP   'ElServe/2\&.0'"
+.br
+.RI "Defines the value for value for \fCServer\fP response header\&. "
+.ti -1c
+.RI "#define \fBFILE_PATH_BUF_SIZE\fP   1024"
+.br
+.RI "Defines the maximum length of path for website root directory\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBstart_server\fP ()"
+.br
+.RI "Loads the config, sets up the server and starts the main loop\&. "
+.ti -1c
+.RI "void \fBstop_server\fP ()"
+.br
+.RI "Stops the server and free all the resources\&. "
+.ti -1c
+.RI "void \fBsetup_socket\fP ()"
+.br
+.RI "Sets up the server's POSIX socket\&. "
+.ti -1c
+.RI "void * \fBhandle_request\fP (void *)"
+.br
+.RI "Handles the client requests\&. "
+.ti -1c
+.RI "void \fBclean_request\fP (FILE *, \fBrequest\fP *, \fBresponse\fP *)"
+.br
+.RI "Closes file stream, requests and response objects and free memory allocated for them\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Function prototypes for the server functions\&. 
+
+This file contains function prototypes for loading configuration, starting and stopping the server, memory management and for handling the server's main loop\&.
+.PP
+\fBAuthor\fP
+.RS 4
+Sai Hemanth Bheemreddy (@SaiHemanthBR) 
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+MIT License; Copyright (c) 2021 Sai Hemanth Bheemreddy 
+.RE
+.PP
+\fBBug\fP
+.RS 4
+No known bugs\&. 
+.RE
+.PP
+
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define BACKLOG   16"
+
+.PP
+Defines the maximum legnth for the queue of pending connnections, passed to \fClisten()\fP function\&. For more Info about \fCbacklog\fP parameter in \fClisten()\fP function, please refer to POSIX Sockets Docs\&. 
+.SS "#define FILE_PATH_BUF_SIZE   1024"
+
+.PP
+Defines the maximum length of path for website root directory\&. In config file, the length of value for key defined by \fCSITE_DIR_CONF_KEY\fP macro (default: \fCsite_root_dir\fP) should not exceed this value\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fBSITE_DIR_CONF_KEY\fP 
+.RE
+.PP
+
+.SS "#define SERVER_NAME   'ElServe/2\&.0'"
+
+.PP
+Defines the value for value for \fCServer\fP response header\&. 
+.PP
+\fBSee also\fP
+.RS 4
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Server 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "void clean_request (FILE * file, \fBrequest\fP * req, \fBresponse\fP * res)"
+
+.PP
+Closes file stream, requests and response objects and free memory allocated for them\&. If \fCfile\fP or \fCreq\fP or \fCresp\fP is \fCNULL\fP, then no action is taken\&. This helps in cases where only one or two of the objects are allocated and needed to be freed\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile\fP File stream to be closed\&. 
+.br
+\fIreq\fP Request object to be closed\&. 
+.br
+\fIres\fP Response object to be closed\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
+.SS "void* handle_request (void * new_conn_fd)"
+
+.PP
+Handles the client requests\&. This function is called by the main loop on a new thread for each connection\&. It handles the client requests and sends the response back to the client\&. The file descriptor for the client is passed as an pointer to the function by \fCpthread_create()\fP\&. The thread is detached after it is created\&. So, the resources must be freed before the thread exits\&.
+.PP
+If any error occurs, returns a non-zero value\&. On success, returns 0\&. This return value is currently unused\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fInew_conn_fd\fP Pointer to the file descriptor of the new connection\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
+.SS "void setup_socket ()"
+
+.PP
+Sets up the server's POSIX socket\&. Creates a TCP socket and binds it to the host and port specified in the config file\&. On success, it sets \fCtcp_socket\fP file descriptor to the socket created and returns\&. On failure, it exits with exit code -1\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fI\fP .RE
+.PP
+
+.SS "void start_server ()"
+
+.PP
+Loads the config, sets up the server and starts the main loop\&. This function is the entry point for the server\&. It loads the config, sets up the server socket and enters the main loop\&. This function never returns unless an error occurs or signalled by OS\&. The server main loop runs on main thread and creates a new thread for each connection\&. Requests are handled by the \fC\fBhandle_request()\fP\fP function on the newly created thread\&.
+.PP
+\fBReturns\fP
+.RS 4
+Never returns unless an error occurs or signalled by OS\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBhandle_request()\fP 
+.RE
+.PP
+
+.SS "void stop_server ()"
+
+.PP
+Stops the server and free all the resources\&. This function should be called when the server is no longer needed\&. It stops the server, closes the server socket, unloads config and mime types hash table and frees all the resources\&.
+.PP
+This function must be called before the program exits to ensure all the resources are freed\&. Recommended to call this function from \fCatexit()\fP function and as signal handler using \fCsignal()\fP function\&.
+.PP
+If \fC\fBstop_server()\fP\fP is called before \fC\fBstart_server()\fP\fP, it does nothing\&.
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for nanows from the source code\&.
